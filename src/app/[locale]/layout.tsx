@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import { displayFont, bodyFont, chineseFont } from "@/lib/fonts";
 import { hasLocale, getDictionary } from "@/lib/dictionaries";
@@ -84,9 +85,17 @@ export default async function LocaleLayout({
       className={`${displayFont.variable} ${bodyFont.variable} ${chineseFont.variable}`}
     >
       <head>
-        {/* TODO: Add Google Analytics tracking code */}
-        {/* TODO: Add Baidu Tongji tracking code */}
-        {/* TODO: Add Baidu site verification meta tag */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CGMPR92FK7"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-CGMPR92FK7');`}
+        </Script>
+        {/* TODO: Add Baidu Tongji tracking code when ready */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
