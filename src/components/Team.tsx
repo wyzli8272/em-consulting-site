@@ -25,7 +25,8 @@ const photos: Record<string, { src: string; alt: string; position: string }> = {
 };
 
 function MemberCard({ member }: { member: TeamMember }) {
-  const photo = photos[member.name];
+  const photoKey = Object.keys(photos).find((k) => member.name.startsWith(k));
+  const photo = photoKey ? photos[photoKey] : undefined;
 
   return (
     <div>
