@@ -48,9 +48,10 @@ export default function Contact({ translations }: ContactProps) {
             <p className="mt-3 text-base leading-relaxed text-white/60 font-chinese">
               {translations.ctaDescription}
             </p>
-            {/* TODO: Replace href with Calendly or scheduling tool link */}
             <a
-              href="#"
+              href="https://calendly.com/lishaorui82/em-consulting-diagnostic-session"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-6 inline-block bg-gold px-8 py-3 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold/85"
               aria-label={translations.cta}
             >

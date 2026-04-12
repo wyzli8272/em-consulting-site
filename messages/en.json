@@ -9,12 +9,13 @@
     "team": "Team",
     "pricing": "Pricing",
     "contact": "Contact",
-    "cta": "Book Diagnostic"
+    "cta": "Book Free Diagnostic"
   },
   "hero": {
     "title": "EM Consulting",
     "subtitle": "Wharton Huntsman Dual Degree & MIT Early Action. Admissions strategy for Chinese families.",
-    "cta": "Book a Diagnostic"
+    "cta": "Book Your Free Diagnostic →",
+    "ctaSubtext": "A 90-minute session to assess competitiveness and map your strategic direction"
   },
   "whyUs": {
     "title": "Why EM Consulting",
@@ -98,9 +99,29 @@
       ]
     }
   },
+  "howItWorks": {
+    "title": "How It Works",
+    "steps": [
+      {
+        "number": "1",
+        "title": "Free Diagnostic Session",
+        "description": "Book a complimentary 90-minute call. We assess the student's academic profile, activities, and target schools to evaluate current competitiveness."
+      },
+      {
+        "number": "2",
+        "title": "Your Strategy Report",
+        "description": "After signing, we deliver a comprehensive Admissions Audit within five business days — covering competitive positioning, school list assessment, and strategic recommendations."
+      },
+      {
+        "number": "3",
+        "title": "End-to-End Execution",
+        "description": "From positioning through submission, five milestones of one-on-one guidance with clear direction and tangible deliverables at every stage."
+      }
+    ]
+  },
   "pricing": {
     "title": "Pricing",
-    "note": "We do not guarantee admission outcomes. We guarantee the highest standard of strategic rigor at every stage.",
+    "note": "Packages start at $6,000, depending on the number of schools and depth of service. The diagnostic session is always free.",
     "audit": {
       "name": "Admissions Audit",
       "nameEn": "Admissions Audit",
@@ -118,8 +139,8 @@
   },
   "contact": {
     "title": "Contact",
-    "cta": "Book a Diagnostic",
-    "ctaDescription": "90-minute diagnostic session to assess your child's positioning and our recommended direction.",
+    "cta": "Book Your Free Diagnostic →",
+    "ctaDescription": "A 90-minute session to assess competitiveness and map your strategic direction",
     "wechat": "WeChat",
     "wechatDescription": "Scan to add our advisor on WeChat",
     "email": "Email",

@@ -99,12 +99,14 @@ export default function Navigation({ translations, locale }: NavigationProps) {
           >
             {toggleLabel}
           </Link>
-          <button
-            onClick={() => scrollTo("contact")}
+          <a
+            href="https://calendly.com/lishaorui82/em-consulting-diagnostic-session"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-gold text-ink px-5 py-2 text-sm font-medium transition-colors duration-200 hover:bg-gold/85"
           >
             {translations.cta}
-          </button>
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -172,13 +174,15 @@ export default function Navigation({ translations, locale }: NavigationProps) {
           >
             {toggleLabel}
           </Link>
-          <button
-            onClick={() => scrollTo("contact")}
+          <a
+            href="https://calendly.com/lishaorui82/em-consulting-diagnostic-session"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-4 bg-gold px-8 py-3 text-ink font-medium transition-colors duration-200 hover:bg-gold/85"
             tabIndex={mobileOpen ? 0 : -1}
           >
             {translations.cta}
-          </button>
+          </a>
         </div>
       </div>
     </nav>

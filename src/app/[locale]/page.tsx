@@ -7,6 +7,7 @@ import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
 import Team from "@/components/Team";
 import Pricing from "@/components/Pricing";
+import HowItWorks from "@/components/HowItWorks";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -30,6 +31,7 @@ export default async function Page({
         <Process translations={dict.process} />
         <Team translations={dict.team} locale={locale} />
         <Pricing translations={dict.pricing} />
+        <HowItWorks translations={dict.howItWorks} />
         <Contact translations={dict.contact} />
       </main>
       <Footer translations={dict.footer} />

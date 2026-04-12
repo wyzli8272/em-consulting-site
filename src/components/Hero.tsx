@@ -2,19 +2,18 @@
 
 import { motion } from "framer-motion";
 
+const CALENDLY_URL = "https://calendly.com/lishaorui82/em-consulting-diagnostic-session";
+
 interface HeroProps {
   translations: {
     title: string;
     subtitle: string;
     cta: string;
+    ctaSubtext: string;
   };
 }
 
 export default function Hero({ translations }: HeroProps) {
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
       className="relative flex min-h-[100dvh] items-center justify-center bg-ink px-6"
@@ -40,16 +39,22 @@ export default function Hero({ translations }: HeroProps) {
         </motion.p>
 
         <motion.div
+          className="mt-10 flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          <button
-            onClick={scrollToContact}
-            className="mt-10 inline-block bg-gold px-8 py-3.5 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold/85"
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-gold px-8 py-3.5 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold/85"
           >
             {translations.cta}
-          </button>
+          </a>
+          <p className="mt-3 text-sm text-cream/70 font-chinese">
+            {translations.ctaSubtext}
+          </p>
         </motion.div>
       </div>
     </section>
