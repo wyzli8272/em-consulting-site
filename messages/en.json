@@ -1,0 +1,132 @@
+{
+  "metadata": {
+    "title": "EM Consulting — College Admissions Strategy",
+    "description": "Wharton Huntsman Dual Degree and MIT admit. Structured admissions consulting for Chinese families targeting U.S. Top-20 universities."
+  },
+  "nav": {
+    "whyUs": "Why Us",
+    "process": "Process",
+    "team": "Team",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "cta": "Book Diagnostic"
+  },
+  "hero": {
+    "title": "EM Consulting",
+    "subtitle": "Wharton Huntsman Dual Degree & MIT Early Action. Admissions strategy for Chinese families.",
+    "cta": "Book a Diagnostic"
+  },
+  "whyUs": {
+    "title": "Why EM Consulting",
+    "items": [
+      {
+        "title": "MIT + Wharton, same cycle",
+        "description": "Not former admissions officers guessing from the outside. Applicants who navigated the system this year. We know the current standards because we just met them."
+      },
+      {
+        "title": "Five-milestone structured process",
+        "description": "Defined deliverables and checkpoints at every stage. Not open-ended guidance — a trackable, documented strategy engagement."
+      },
+      {
+        "title": "Selective enrollment",
+        "description": "We decline students we cannot meaningfully help. Our acceptance rate is part of the service — we do not take cases where we lack confidence in the outcome."
+      },
+      {
+        "title": "Native bilingual, native bicultural",
+        "description": "Mandarin-first with parents, English-first with students. No translation layer, no cultural gap."
+      }
+    ]
+  },
+  "process": {
+    "title": "Our Process",
+    "milestones": [
+      {
+        "number": "01",
+        "title": "Strategic Positioning",
+        "timeline": "Month 1",
+        "deliverable": "Positioning Deck: core narrative, school list (8–12), essay topic map"
+      },
+      {
+        "number": "02",
+        "title": "Profile Optimization",
+        "timeline": "Months 2–4",
+        "deliverable": "Profile Roadmap: activity adjustments, recommendation strategy, test timeline"
+      },
+      {
+        "number": "03",
+        "title": "Essay Development",
+        "timeline": "Months 4–7",
+        "deliverable": "Essay Portfolio: 3–4 feedback rounds per essay, entirely student-written"
+      },
+      {
+        "number": "04",
+        "title": "Application Review",
+        "timeline": "Months 7–8",
+        "deliverable": "Submission Checklist: full materials review, mock interviews, parent sign-off"
+      },
+      {
+        "number": "05",
+        "title": "Post-Submission",
+        "timeline": "Months 8–10",
+        "deliverable": "Decision Framework: waitlist strategy, multi-offer comparison"
+      }
+    ]
+  },
+  "team": {
+    "title": "Team",
+    "together": "We conduct all initial consultations together.",
+    "eric": {
+      "name": "Eric",
+      "role": "Co-Founder · Strategy & Operations",
+      "credentials": [
+        "Huntsman Program (Wharton + College of Arts & Sciences)",
+        "Joseph Wharton Scholar",
+        "YC-backed founder",
+        "VC scout at multiple funds",
+        "Native Mandarin, Fujian Province network"
+      ]
+    },
+    "mary": {
+      "name": "Mary",
+      "role": "Co-Founder · Acquisition & Client Relations",
+      "credentials": [
+        "Admitted to MIT (EA, Astrophysics) and Wharton (ED), same cycle",
+        "Wharton single-degree",
+        "Citi Sales & Trading summer analyst",
+        "Xiaohongshu content creator",
+        "Native Mandarin"
+      ]
+    }
+  },
+  "pricing": {
+    "title": "Pricing",
+    "note": "We do not guarantee admission outcomes. We guarantee the highest standard of strategic rigor at every stage.",
+    "audit": {
+      "name": "Admissions Audit",
+      "nameEn": "Admissions Audit",
+      "price": "$300–500",
+      "priceRmb": "approx. ¥2,000–3,500",
+      "description": "90-minute diagnostic session. Written assessment of positioning, competitiveness, and recommended strategy. Standalone deliverable, no obligation."
+    },
+    "full": {
+      "name": "Full Package",
+      "nameEn": "Full Package",
+      "price": "$6,000–11,000",
+      "priceRmb": "approx. ¥45,000–80,000",
+      "description": "Five-milestone engagement covering 8–12 schools. All deliverables included, with biweekly check-ins and regular parent updates."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "cta": "Book a Diagnostic",
+    "ctaDescription": "90-minute diagnostic session to assess your child's positioning and our recommended direction.",
+    "wechat": "WeChat",
+    "wechatDescription": "Scan to add our advisor on WeChat",
+    "email": "Email",
+    "emailAddress": "contact@emconsulting.co"
+  },
+  "footer": {
+    "copyright": "© 2026 EM Consulting. All rights reserved.",
+    "email": "contact@emconsulting.co"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "metadata": {
+    "title": "EM Consulting — 美本申请策略咨询",
+    "description": "沃顿·亨茨曼双学位与MIT录取背景，为高净值中国家庭提供结构化美本申请策略服务。"
+  },
+  "nav": {
+    "whyUs": "为什么选择我们",
+    "process": "服务流程",
+    "team": "团队",
+    "pricing": "价格",
+    "contact": "联系我们",
+    "cta": "预约诊断"
+  },
+  "hero": {
+    "title": "EM Consulting",
+    "subtitle": "沃顿·亨茨曼双学位 & MIT早申录取，专注中国家庭的美本申请策略",
+    "cta": "预约诊断评估"
+  },
+  "whyUs": {
+    "title": "为什么选择 EM Consulting",
+    "items": [
+      {
+        "title": "MIT + 沃顿，同一申请季",
+        "description": "不是前招生官的经验推测，是今年刚完成全流程的申请者视角。我们了解当前的录取标准，因为我们刚刚经历过。"
+      },
+      {
+        "title": "五阶段结构化服务",
+        "description": "每阶段交付明确文档成果，有具体时间节点。不是无限制的「辅导」，是可追踪、有标准的策略执行。"
+      },
+      {
+        "title": "选择性招生",
+        "description": "我们拒绝无法实质帮助的学生。接受率本身就是服务质量的体现——不接我们对结果没有信心的案例。"
+      },
+      {
+        "title": "中英双语原生",
+        "description": "母语级中文与家长沟通，母语级英文指导学生。没有翻译环节，没有文化断层。"
+      }
+    ]
+  },
+  "process": {
+    "title": "服务流程",
+    "milestones": [
+      {
+        "number": "01",
+        "title": "策略定位",
+        "timeline": "第1个月",
+        "deliverable": "定位报告：核心叙事方向、选校名单（8–12所）、文书主题规划"
+      },
+      {
+        "number": "02",
+        "title": "背景优化",
+        "timeline": "第2–4个月",
+        "deliverable": "背景规划书：活动调整建议、推荐信策略、标化考试时间安排"
+      },
+      {
+        "number": "03",
+        "title": "文书发展",
+        "timeline": "第4–7个月",
+        "deliverable": "文书作品集：每篇3–4轮反馈，全部内容由学生本人撰写"
+      },
+      {
+        "number": "04",
+        "title": "申请审核",
+        "timeline": "第7–8个月",
+        "deliverable": "提交清单：全部材料审核、模拟面试、家长确认签字"
+      },
+      {
+        "number": "05",
+        "title": "提交后策略",
+        "timeline": "第8–10个月",
+        "deliverable": "决策框架：候补名单应对方案、多录取对比分析"
+      }
+    ]
+  },
+  "team": {
+    "title": "团队",
+    "together": "我们共同参与每一次初始咨询。",
+    "eric": {
+      "name": "Eric",
+      "role": "联合创始人 · 策略与运营",
+      "credentials": [
+        "亨茨曼项目（沃顿商学院 + 文理学院双学位）",
+        "Joseph Wharton Scholar",
+        "YC支持的创业公司创始人",
+        "多家基金风险投资Scout",
+        "中文母语，福建家族网络"
+      ]
+    },
+    "mary": {
+      "name": "Mary",
+      "role": "联合创始人 · 获客与客户关系",
+      "credentials": [
+        "同一申请季录取MIT（EA，天体物理）和沃顿（ED）",
+        "沃顿商学院单学位",
+        "花旗银行销售与交易部暑期实习",
+        "小红书内容创作者",
+        "中文母语"
+      ]
+    }
+  },
+  "pricing": {
+    "title": "服务价格",
+    "note": "我们不承诺录取结果。我们承诺的是每个阶段最高标准的策略严谨性。",
+    "audit": {
+      "name": "诊断评估",
+      "nameEn": "Admissions Audit",
+      "price": "$300–500",
+      "priceRmb": "约 ¥2,000–3,500",
+      "description": "90分钟诊断面谈。书面评估申请定位、竞争力分析和策略建议。独立交付物，无后续绑定。"
+    },
+    "full": {
+      "name": "全程服务",
+      "nameEn": "Full Package",
+      "price": "$6,000–11,000",
+      "priceRmb": "约 ¥45,000–80,000",
+      "description": "五阶段全程服务，覆盖8–12所学校。包含全部交付物、双周进度沟通和定期家长更新。"
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "cta": "预约诊断评估",
+    "ctaDescription": "90分钟诊断面谈，了解您孩子的申请定位和我们的建议方向。",
+    "wechat": "微信咨询",
+    "wechatDescription": "扫描二维码添加顾问微信",
+    "email": "邮件联系",
+    "emailAddress": "contact@emconsulting.co"
+  },
+  "footer": {
+    "copyright": "© 2026 EM Consulting. 保留所有权利。",
+    "email": "contact@emconsulting.co"
+  }
+}
