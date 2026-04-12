@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface TeamMember {
@@ -18,15 +19,29 @@ interface TeamProps {
   locale: string;
 }
 
+const photos: Record<string, { src: string; alt: string; position: string }> = {
+  Eric: { src: "/images/eric.jpg", alt: "Eric Li", position: "center 20%" },
+  Mary: { src: "/images/mary.jpg", alt: "Mary Liu", position: "center 15%" },
+};
+
 function MemberCard({ member }: { member: TeamMember }) {
+  const photo = photos[member.name];
+
   return (
     <div>
-      {/* Photo placeholder */}
-      <div
-        className="mb-6 aspect-[4/5] w-full max-w-[280px] bg-navy/5"
-        aria-label={`${member.name} photo placeholder`}
-        role="img"
-      />
+      <div className="relative mb-6 aspect-[4/5] w-full max-w-[280px] overflow-hidden bg-navy/5">
+        {photo && (
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            fill
+            sizes="280px"
+            className="object-cover"
+            style={{ objectPosition: photo.position }}
+            loading="lazy"
+          />
+        )}
+      </div>
       <h3 className="text-xl font-semibold text-navy">{member.name}</h3>
       <p className="mt-1 text-sm text-navy/60">{member.role}</p>
       <ul className="mt-4 space-y-2" role="list">
