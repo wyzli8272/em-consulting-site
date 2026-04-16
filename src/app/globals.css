@@ -6,8 +6,8 @@
   --color-ink: #000814;
   --color-cream: #FAF8F5;
 
-  --font-display: var(--font-the-seasons), var(--font-noto-sans-sc), "PingFang SC", Georgia, serif;
-  --font-body: var(--font-helvetica-now), var(--font-noto-sans-sc), "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-display-serif), var(--font-noto-sans-sc), "PingFang SC", Georgia, serif;
+  --font-body: var(--font-body-sans), var(--font-noto-sans-sc), "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-chinese: var(--font-noto-sans-sc), "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
