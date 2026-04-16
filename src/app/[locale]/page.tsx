@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
 import Team from "@/components/Team";
+import TrackRecord from "@/components/TrackRecord";
 import Pricing from "@/components/Pricing";
 import HowItWorks from "@/components/HowItWorks";
 import Contact from "@/components/Contact";
@@ -25,12 +26,13 @@ export default async function Page({
   return (
     <>
       <Navigation translations={dict.nav} locale={locale} />
-      <main>
+      <main id="main-content">
         <Hero translations={dict.hero} />
         <WhyUs translations={dict.whyUs} />
         <Process translations={dict.process} />
         <Team translations={dict.team} locale={locale} />
-        <Pricing translations={dict.pricing} />
+        <TrackRecord translations={dict.trackRecord} />
+        <Pricing translations={dict.pricing} locale={locale} />
         <HowItWorks translations={dict.howItWorks} />
         <Contact translations={dict.contact} />
       </main>

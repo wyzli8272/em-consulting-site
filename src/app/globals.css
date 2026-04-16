@@ -6,9 +6,58 @@
   --color-ink: #000814;
   --color-cream: #FAF8F5;
 
-  --font-display: var(--font-the-seasons), Georgia, "Times New Roman", serif;
-  --font-body: var(--font-helvetica-now), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-the-seasons), var(--font-noto-sans-sc), "PingFang SC", Georgia, serif;
+  --font-body: var(--font-helvetica-now), var(--font-noto-sans-sc), "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-chinese: var(--font-noto-sans-sc), "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+/* Fluid type scale */
+.text-display {
+  font-size: clamp(3.25rem, 2.5rem + 3.75vw, 8rem);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+
+.text-headline {
+  font-size: clamp(2.5rem, 2rem + 2.5vw, 5rem);
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+}
+
+.text-title {
+  font-size: clamp(1.875rem, 1.5rem + 1.875vw, 3.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+.text-subtitle {
+  font-size: clamp(1.375rem, 1.2rem + 0.875vw, 2.125rem);
+  line-height: 1.2;
+}
+
+.text-body-xl {
+  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.375rem);
+  line-height: 1.6;
+}
+
+.text-body-lg {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.75;
+}
+
+/* Decorative utilities */
+.accent-rule {
+  display: block;
+  width: 48px;
+  height: 3px;
+  background-color: #FFD60A;
+}
+
+.section-tag {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }
 
 /* Base styles */

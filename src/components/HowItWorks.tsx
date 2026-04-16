@@ -10,68 +10,74 @@ interface Step {
 
 interface HowItWorksProps {
   translations: {
+    sectionTag: string;
     title: string;
     steps: Step[];
   };
 }
 
+const ease = [0.16, 1, 0.3, 1] as const;
+const offsets = ["", "md:mt-12", ""];
+
 export default function HowItWorks({ translations }: HowItWorksProps) {
   return (
     <section
       id="how-it-works"
-      className="bg-white px-6 py-20 md:py-28"
+      className="bg-white px-6 py-24 md:py-32"
       aria-labelledby="how-it-works-heading"
     >
       <div className="mx-auto max-w-[1200px]">
-        <motion.h2
-          id="how-it-works-heading"
-          className="font-display text-3xl font-bold text-navy md:text-4xl"
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease }}
         >
-          {translations.title}
-        </motion.h2>
+          <span className="section-tag text-navy/40">
+            {translations.sectionTag}
+          </span>
+          <div className="accent-rule mt-4" aria-hidden="true" />
+          <h2
+            id="how-it-works-heading"
+            className="mt-5 font-display text-title text-navy"
+          >
+            {translations.title}
+          </h2>
+        </motion.div>
 
-        <div className="relative mt-16">
-          {/* Connecting line */}
-          <div
-            className="absolute left-6 top-0 hidden h-full w-px bg-gold/30 md:left-1/2 md:block md:-translate-x-1/2"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute left-6 top-0 block h-full w-px bg-gold/30 md:hidden"
-            aria-hidden="true"
-          />
-
-          <div className="grid gap-16 md:grid-cols-3 md:gap-12">
-            {translations.steps.map((step, i) => (
-              <motion.div
-                key={step.number}
-                className="relative pl-16 md:pl-0 md:text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.15,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
+        <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
+          {translations.steps.map((step, i) => (
+            <motion.div
+              key={step.number}
+              className={`relative ${offsets[i] || ""}`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{
+                duration: 0.6,
+                delay: i * 0.12,
+                ease,
+              }}
+            >
+              {/* Oversized watermark number */}
+              <span
+                className="pointer-events-none select-none font-display text-[8rem] leading-none text-gold/10 md:text-[10rem]"
+                aria-hidden="true"
               >
-                {/* Step number — mobile left-aligned, desktop centered */}
-                <span className="absolute left-0 top-0 font-display text-5xl font-bold text-gold md:static md:mb-4 md:block md:text-5xl">
-                  {step.number}
-                </span>
-                <h3 className="font-display text-xl font-semibold text-navy">
+                {step.number}
+              </span>
+
+              {/* Content overlapping the watermark */}
+              <div className="-mt-14 md:-mt-18">
+                <h3 className="text-subtitle font-display text-navy">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-base leading-relaxed text-ink/70 font-chinese">
+                <p className="mt-3 text-body-lg text-navy/65 font-chinese">
                   {step.description}
                 </p>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

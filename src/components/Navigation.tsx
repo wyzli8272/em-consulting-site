@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
+import { CALENDLY_URL } from "@/lib/constants";
 
 interface NavigationProps {
   translations: {
     whyUs: string;
     process: string;
     team: string;
+    trackRecord: string;
     pricing: string;
     contact: string;
     cta: string;
@@ -19,6 +21,7 @@ const sections = [
   { id: "why-us", key: "whyUs" as const },
   { id: "process", key: "process" as const },
   { id: "team", key: "team" as const },
+  { id: "track-record", key: "trackRecord" as const },
   { id: "pricing", key: "pricing" as const },
   { id: "contact", key: "contact" as const },
 ];
@@ -26,6 +29,9 @@ const sections = [
 export default function Navigation({ translations, locale }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const firstFocusRef = useRef<HTMLButtonElement>(null);
+  const lastFocusRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -45,6 +51,35 @@ export default function Navigation({ translations, locale }: NavigationProps) {
     };
   }, [mobileOpen]);
 
+  // Escape key closes mobile menu
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [mobileOpen]);
+
+  // Focus trap for mobile overlay
+  const handleFocusTrap = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (!mobileOpen || e.key !== "Tab") return;
+      const first = firstFocusRef.current;
+      const last = lastFocusRef.current;
+      if (!first || !last) return;
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    },
+    [mobileOpen]
+  );
+
   const scrollTo = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
@@ -55,9 +90,10 @@ export default function Navigation({ translations, locale }: NavigationProps) {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300 ${
+      ref={navRef}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-cream shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
+          ? "bg-cream/95 backdrop-blur-md shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
           : "bg-transparent"
       }`}
       role="navigation"
@@ -81,7 +117,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             <button
               key={s.id}
               onClick={() => scrollTo(s.id)}
-              className={`text-sm transition-opacity duration-200 hover:opacity-70 ${
+              className={`text-xs uppercase tracking-[0.15em] font-medium transition-opacity duration-200 hover:opacity-70 ${
                 scrolled ? "text-navy" : "text-white/90"
               }`}
             >
@@ -90,7 +126,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
           ))}
           <Link
             href={otherLocale}
-            className={`text-sm transition-opacity duration-200 hover:opacity-70 ${
+            className={`text-xs uppercase tracking-[0.15em] font-medium transition-opacity duration-200 hover:opacity-70 ${
               scrolled ? "text-navy" : "text-white/90"
             }`}
             aria-label={
@@ -100,10 +136,10 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             {toggleLabel}
           </Link>
           <a
-            href="https://calendly.com/lishaorui82/em-consulting-diagnostic-session"
+            href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gold text-ink px-5 py-2 text-sm font-medium transition-colors duration-200 hover:bg-gold/85"
+            className="bg-gold text-ink px-5 py-2 text-xs uppercase tracking-[0.1em] font-medium transition-colors duration-200 hover:bg-gold/85"
           >
             {translations.cta}
           </a>
@@ -155,13 +191,15 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             : "pointer-events-none opacity-0"
         }`}
         aria-hidden={!mobileOpen}
+        onKeyDown={handleFocusTrap}
       >
         <div className="flex flex-col items-center gap-8">
-          {sections.map((s) => (
+          {sections.map((s, i) => (
             <button
               key={s.id}
+              ref={i === 0 ? firstFocusRef : undefined}
               onClick={() => scrollTo(s.id)}
-              className="font-display text-2xl text-white transition-opacity duration-200 hover:opacity-70"
+              className="text-xs uppercase tracking-[0.2em] font-medium text-white transition-opacity duration-200 hover:opacity-70"
               tabIndex={mobileOpen ? 0 : -1}
             >
               {translations[s.key]}
@@ -169,16 +207,17 @@ export default function Navigation({ translations, locale }: NavigationProps) {
           ))}
           <Link
             href={otherLocale}
-            className="text-lg text-white/70 transition-opacity duration-200 hover:opacity-70"
+            className="text-xs uppercase tracking-[0.2em] font-medium text-white/70 transition-opacity duration-200 hover:opacity-70"
             tabIndex={mobileOpen ? 0 : -1}
           >
             {toggleLabel}
           </Link>
           <a
-            href="https://calendly.com/lishaorui82/em-consulting-diagnostic-session"
+            ref={lastFocusRef}
+            href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 bg-gold px-8 py-3 text-ink font-medium transition-colors duration-200 hover:bg-gold/85"
+            className="mt-4 bg-gold px-8 py-3 text-ink text-xs uppercase tracking-[0.1em] font-medium transition-colors duration-200 hover:bg-gold/85"
             tabIndex={mobileOpen ? 0 : -1}
           >
             {translations.cta}

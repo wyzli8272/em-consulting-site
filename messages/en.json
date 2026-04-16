@@ -1,23 +1,26 @@
 {
   "metadata": {
     "title": "EM Consulting — College Admissions Strategy",
-    "description": "Wharton Huntsman Dual Degree and MIT admit. Structured admissions consulting for Chinese families targeting U.S. Top-20 universities."
+    "description": "Wharton Huntsman Dual Degree and MIT admit. Structured admissions consulting for Chinese families targeting U.S. top universities."
   },
   "nav": {
     "whyUs": "Why Us",
     "process": "Process",
     "team": "Team",
+    "trackRecord": "Track Record",
     "pricing": "Pricing",
     "contact": "Contact",
     "cta": "Book Free Diagnostic"
   },
   "hero": {
-    "title": "EM Consulting",
-    "subtitle": "Wharton Huntsman Dual Degree & MIT Early Action. Admissions strategy for Chinese families.",
+    "sectionTag": "EM Consulting",
+    "title": "Your child deserves a real plan",
+    "subtitle": "Wharton Huntsman Dual Degree & MIT admit. Positioning through submission, end to end.",
     "cta": "Book Your Free Diagnostic →",
     "ctaSubtext": "A 90-minute session to assess competitiveness and map your strategic direction"
   },
   "whyUs": {
+    "sectionTag": "Why Us",
     "title": "Why EM Consulting",
     "items": [
       {
@@ -25,60 +28,62 @@
         "description": "Not former admissions officers guessing from the outside. Applicants who navigated the system this year. We know the current standards because we just met them."
       },
       {
-        "title": "Five-milestone structured process",
-        "description": "Defined deliverables and checkpoints at every stage. Not open-ended guidance — a trackable, documented strategy engagement."
+        "title": "Five milestones, real deliverables",
+        "description": "Defined documents and conclusions at every stage, with deadlines and acceptance criteria. Not open-ended coaching — a trackable strategy engagement."
       },
       {
         "title": "Selective enrollment",
-        "description": "We decline students we cannot meaningfully help. Our acceptance rate is part of the service — we do not take cases where we lack confidence in the outcome."
+        "description": "We decline students we cannot meaningfully help. We only take cases where we have confidence in the outcome — that selectivity is part of the service."
       },
       {
-        "title": "Native bilingual, native bicultural",
+        "title": "Native bilingual communication",
         "description": "Mandarin-first with parents, English-first with students. No translation layer, no cultural gap."
       }
     ]
   },
   "process": {
-    "title": "Our Process",
+    "sectionTag": "Our Process",
+    "title": "Five milestones, positioning to submission",
     "milestones": [
       {
         "number": "01",
         "title": "Strategic Positioning",
         "timeline": "Month 1",
-        "deliverable": "Positioning Deck: core narrative, school list (8–12), essay topic map"
+        "deliverable": "Deliverable: Positioning deck with core narrative direction, initial school list (8–12), and essay topic map"
       },
       {
         "number": "02",
         "title": "Profile Optimization",
         "timeline": "Months 2–4",
-        "deliverable": "Profile Roadmap: activity adjustments, recommendation strategy, test timeline"
+        "deliverable": "Deliverable: Profile roadmap covering activity adjustments, recommendation strategy, and test timeline"
       },
       {
         "number": "03",
         "title": "Essay Development",
         "timeline": "Months 4–7",
-        "deliverable": "Essay Portfolio: 3–4 feedback rounds per essay, entirely student-written"
+        "deliverable": "Deliverable: Finalized essays, 3–4 feedback rounds each. All content written by the student"
       },
       {
         "number": "04",
         "title": "Application Review",
         "timeline": "Months 7–8",
-        "deliverable": "Submission Checklist: full materials review, mock interviews, parent sign-off"
+        "deliverable": "Deliverable: Submission checklist with full materials review, mock interviews, and parent sign-off"
       },
       {
         "number": "05",
         "title": "Post-Submission",
         "timeline": "Months 8–10",
-        "deliverable": "Decision Framework: waitlist strategy, multi-offer comparison"
+        "deliverable": "Deliverable: Decision analysis framework covering waitlist strategy and multi-offer comparison"
       }
     ]
   },
   "team": {
+    "sectionTag": "Who We Are",
     "title": "Team",
     "together": "We conduct all initial consultations together.",
     "eric": {
       "name": "Eric Li",
-      "role": "Co-Founder · Strategy & Operations",
+      "role": "Co-Founder · Strategy & Delivery",
       "credentials": [
         "Huntsman Program (Wharton + College of Arts & Sciences)",
         "Joseph Wharton Scholar",
@@ -89,7 +94,7 @@
     },
     "mary": {
       "name": "Mary Liu",
-      "role": "Co-Founder · Acquisition & Client Relations",
+      "role": "Co-Founder · Admissions Guidance & Parent Relations",
       "credentials": [
         "Admitted to MIT (EA, Astrophysics) and Wharton (ED), same cycle",
         "Wharton single-degree",
@@ -99,55 +104,77 @@
       ]
     }
   },
+  "trackRecord": {
+    "sectionTag": "Track Record",
+    "title": "Where our students were admitted",
+    "subtitle": "Select admissions from Eric's personal counseling and advisory experience.",
+    "schools": [
+      { "name": "Penn Engineering", "logo": "/images/UniversityofPennsylvania_FullLogo_RGB-4_0.png" },
+      { "name": "Wharton School", "logo": "/images/Wharton-Logo-RGB.png" },
+      { "name": "Huntsman Program", "logo": "/images/3.png" },
+      { "name": "Duke Trinity College", "logo": "/images/Duke_University_logo.svg.png" },
+      { "name": "Emory University", "logo": "/images/Emory-University-Logo.png" },
+      { "name": "Georgetown University", "logo": "/images/Georgetown_University_Logotype.svg.png" },
+      { "name": "Tulane University", "logo": null }
+    ],
+    "stats": [
+      { "value": "~50/yr", "label": "Huntsman Program global admits", "detail": "Eric admitted ED" },
+      { "value": "1560", "label": "Eric's SAT", "detail": "" },
+      { "value": "1570", "label": "Mary's SAT", "detail": "Dual MIT & Wharton admit" }
+    ],
+    "testimonial": {
+      "quote": "",
+      "attribution": "Duke '29"
+    }
+  },
   "howItWorks": {
-    "title": "How It Works",
+    "sectionTag": "Getting Started",
+    "title": "Three steps to get started",
     "steps": [
       {
         "number": "1",
         "title": "Free Diagnostic Session",
-        "description": "Book a complimentary 90-minute call. We assess the student's academic profile, activities, and target schools to evaluate current competitiveness."
+        "description": "Book a 90-minute call. We assess the student's academic profile, activities, and target schools, and give an initial competitiveness read."
       },
       {
         "number": "2",
-        "title": "Your Strategy Report",
-        "description": "After signing, we deliver a comprehensive Admissions Audit within five business days — covering competitive positioning, school list assessment, and strategic recommendations."
+        "title": "Sign-on & Strategy Report",
+        "description": "After signing, we deliver a full Admissions Strategy Report within five business days — covering positioning analysis, school list assessment, and next steps."
       },
       {
         "number": "3",
         "title": "End-to-End Execution",
-        "description": "From positioning through submission, five milestones of one-on-one guidance with clear direction and tangible deliverables at every stage."
+        "description": "From positioning through submission, five milestones of one-on-one guidance. Clear direction and tangible deliverables at every stage."
       }
     ]
   },
   "pricing": {
-    "title": "Pricing",
-    "note": "Packages start at $6,000, depending on the number of schools and depth of service. The diagnostic session is always free.",
+    "sectionTag": "Pricing",
+    "title": "Transparent pricing",
+    "note": "Every engagement starts with a free diagnostic session. After confirming fit, pricing is based on school count and service depth.",
     "audit": {
-      "name": "Admissions Audit",
+      "name": "Admissions Diagnostic Report",
       "nameEn": "Admissions Audit",
       "price": "$300–500",
       "priceRmb": "approx. ¥2,000–3,500",
-      "description": "90-minute diagnostic session. Written assessment of positioning, competitiveness, and recommended strategy. Standalone deliverable, no obligation."
+      "description": "Standalone deliverable. After a 90-minute session, a written assessment of positioning, competitiveness, and recommended strategy. No obligation."
     },
     "full": {
       "name": "Full Package",
       "nameEn": "Full Package",
       "price": "$6,000–11,000",
       "priceRmb": "approx. ¥45,000–80,000",
-      "description": "Five-milestone engagement covering 8–12 schools. All deliverables included, with biweekly check-ins and regular parent updates. Pricing based on school count and service depth."
+      "description": "Five-milestone engagement covering 8–12 schools. All deliverables included, with biweekly check-ins and regular parent updates.",
+      "recommended": true
     }
   },
   "contact": {
-    "title": "Contact",
+    "sectionTag": "Contact",
+    "title": "Next step",
     "cta": "Book Your Free Diagnostic →",
-    "ctaDescription": "A 90-minute session to assess competitiveness and map your strategic direction",
-    "wechat": "WeChat",
-    "wechatDescription": "Scan to add our advisor on WeChat",
-    "email": "Email",
-    "emailAddress": "contact@emconsulting.co"
+    "ctaDescription": "A 90-minute session to assess competitiveness and map your strategic direction. Completely free, no obligation."
   },
   "footer": {
-    "copyright": "© 2026 EM Consulting. All rights reserved.",
-    "email": "contact@emconsulting.co"
+    "copyright": "© 2026 EM Consulting. All rights reserved."
   }
 }
