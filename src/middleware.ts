@@ -19,7 +19,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next|api|fonts|images|favicon\\.ico|sitemap\\.xml|robots\\.txt).*)",
-  ],
+  // Negative lookahead skips: internals, API, and any path with a dot (assets, maps, favicon, sitemap, robots)
+  matcher: ["/((?!_next|_vercel|api|.*\\..*).*)"],
 };

@@ -53,12 +53,12 @@ function MemberCard({
         )}
       </div>
       <h3 className="text-subtitle font-display text-navy">{member.name}</h3>
-      <p className="mt-1 text-sm text-navy/55">{member.role}</p>
+      <p className="mt-1 text-sm text-navy/70">{member.role}</p>
       <ul className="mt-4 space-y-2" role="list">
         {member.credentials.map((cred, i) => (
           <li
             key={i}
-            className="flex items-start gap-2 text-body-lg text-navy/65 font-chinese"
+            className="flex items-start gap-2 text-body-lg text-navy/80 font-chinese"
           >
             <span
               className="mt-2.5 block h-1 w-1 shrink-0 bg-gold"
@@ -76,7 +76,7 @@ export default function Team({ translations }: TeamProps) {
   return (
     <section
       id="team"
-      className="bg-white px-6 py-24 md:py-32"
+      className="bg-white section-standard px-6"
       aria-labelledby="team-heading"
     >
       <div className="mx-auto max-w-[1200px]">
@@ -86,7 +86,7 @@ export default function Team({ translations }: TeamProps) {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease }}
         >
-          <span className="section-tag text-navy/40">
+          <span className="section-tag text-gold">
             {translations.sectionTag}
           </span>
           <div className="accent-rule mt-4" aria-hidden="true" />
@@ -107,6 +107,16 @@ export default function Team({ translations }: TeamProps) {
             transition={{ duration: 0.7, ease }}
           >
             <MemberCard member={translations.eric} />
+            {/* "Together" note aligned under Eric — fixes the "lurch" the UI agent called out */}
+            <motion.p
+              className="mt-12 max-w-[420px] text-body-lg text-navy/70 font-chinese"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3, ease }}
+            >
+              {translations.together}
+            </motion.p>
           </motion.div>
 
           <motion.div
@@ -119,16 +129,6 @@ export default function Team({ translations }: TeamProps) {
             <MemberCard member={translations.mary} offset />
           </motion.div>
         </div>
-
-        <motion.p
-          className="mt-16 text-center text-body-lg text-navy/55 font-chinese"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2, ease }}
-        >
-          {translations.together}
-        </motion.p>
       </div>
     </section>
   );

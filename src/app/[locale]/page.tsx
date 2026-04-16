@@ -5,10 +5,10 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
-import Team from "@/components/Team";
 import TrackRecord from "@/components/TrackRecord";
+import Team from "@/components/Team";
 import Pricing from "@/components/Pricing";
-import HowItWorks from "@/components/HowItWorks";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -30,10 +30,10 @@ export default async function Page({
         <Hero translations={dict.hero} />
         <WhyUs translations={dict.whyUs} />
         <Process translations={dict.process} />
-        <Team translations={dict.team} locale={locale} />
         <TrackRecord translations={dict.trackRecord} />
+        <Team translations={dict.team} locale={locale} />
         <Pricing translations={dict.pricing} locale={locale} />
-        <HowItWorks translations={dict.howItWorks} />
+        <FAQ translations={dict.faq} />
         <Contact translations={dict.contact} />
       </main>
       <Footer translations={dict.footer} />

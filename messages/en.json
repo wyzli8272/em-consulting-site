@@ -6,16 +6,17 @@
   "nav": {
     "whyUs": "Why Us",
     "process": "Process",
+    "trackRecord": "Advisory",
     "team": "Team",
-    "trackRecord": "Track Record",
     "pricing": "Pricing",
+    "faq": "FAQ",
     "contact": "Contact",
     "cta": "Book Free Diagnostic"
   },
   "hero": {
     "sectionTag": "EM Consulting",
-    "title": "Your child deserves a real plan",
-    "subtitle": "Wharton Huntsman Dual Degree & MIT admit. Positioning through submission, end to end.",
+    "title": "One application. One systematic plan.",
+    "subtitle": "Huntsman Program · MIT and Wharton dual admit. Positioning through submission, end to end.",
     "cta": "Book Your Free Diagnostic →",
     "ctaSubtext": "A 90-minute session to assess competitiveness and map your strategic direction"
   },
@@ -25,19 +26,23 @@
     "items": [
       {
         "title": "MIT + Wharton, same cycle",
-        "description": "Not former admissions officers guessing from the outside. Applicants who navigated the system this year. We know the current standards because we just met them."
+        "description": "Not former admissions officers recalling how it worked a decade ago. Applicants who met these standards this cycle. We know the signals that matter right now because we just met them."
       },
       {
         "title": "Five milestones, real deliverables",
-        "description": "Defined documents and conclusions at every stage, with deadlines and acceptance criteria. Not open-ended coaching — a trackable strategy engagement."
+        "description": "Written documents and acceptance checkpoints at every stage — positioning deck, profile roadmap, finalized essays, submission checklist, decision framework. Not open-ended coaching. A trackable strategy engagement."
       },
       {
-        "title": "Selective enrollment",
-        "description": "We decline students we cannot meaningfully help. We only take cases where we have confidence in the outcome — that selectivity is part of the service."
+        "title": "Selective by design",
+        "description": "We decline students we cannot meaningfully help and only take cases where we have confidence in the outcome. Fair to your family and to us."
       },
       {
         "title": "Native bilingual communication",
-        "description": "Mandarin-first with parents, English-first with students. No translation layer, no cultural gap."
+        "description": "Mandarin-first with parents, English-first with students. No translation layer. No cultural gap."
+      },
+      {
+        "title": "Founding cohort · max 10",
+        "description": "Accepting 10 families this application cycle. Even if we don't match after the diagnostic, the free 90-minute session leaves you with a candid read on your child's competitiveness."
       }
     ]
   },
@@ -49,33 +54,58 @@
         "number": "01",
         "title": "Strategic Positioning",
         "timeline": "Month 1",
-        "deliverable": "Deliverable: Positioning deck with core narrative direction, initial school list (8–12), and essay topic map"
+        "deliverable": "Output: Positioning deck with core narrative direction, initial school list (8–12), and essay topic map"
       },
       {
         "number": "02",
         "title": "Profile Optimization",
         "timeline": "Months 2–4",
-        "deliverable": "Deliverable: Profile roadmap covering activity adjustments, recommendation strategy, and test timeline"
+        "deliverable": "Output: Profile roadmap covering activity adjustments, recommendation strategy, and test timeline"
       },
       {
         "number": "03",
         "title": "Essay Development",
         "timeline": "Months 4–7",
-        "deliverable": "Deliverable: Finalized essays, 3–4 feedback rounds each. All content written by the student"
+        "deliverable": "Output: Finalized essays, 3–4 feedback rounds each. All content written by the student"
       },
       {
         "number": "04",
         "title": "Application Review",
         "timeline": "Months 7–8",
-        "deliverable": "Deliverable: Submission checklist with full materials review, mock interviews, and parent sign-off"
+        "deliverable": "Output: Submission checklist with full materials review, mock interviews, and parent sign-off"
       },
       {
         "number": "05",
         "title": "Post-Submission",
         "timeline": "Months 8–10",
-        "deliverable": "Deliverable: Decision analysis framework covering waitlist strategy and multi-offer comparison"
+        "deliverable": "Output: Decision analysis framework covering waitlist strategy and multi-offer comparison"
       }
     ]
+  },
+  "trackRecord": {
+    "sectionTag": "Advisory Experience",
+    "title": "Founder credentials and prior mentorship",
+    "subtitle": "EM Consulting was founded in 2026. Below are the founders' own admissions results and the schools where students Eric personally mentored (before launching the firm) were admitted.",
+    "founderCredsLabel": "Founders' own admissions",
+    "founderCreds": [
+      { "name": "Eric Li", "detail": "Huntsman Program admit (ED) · ~50 global admits/year" },
+      { "name": "Mary Liu", "detail": "Same cycle: MIT (EA, Astrophysics) and Wharton (ED)" }
+    ],
+    "mentorshipLabel": "Schools where Eric's mentees were admitted (pre-firm)",
+    "schools": [
+      { "name": "Penn Engineering", "logo": "/images/UniversityofPennsylvania_FullLogo_RGB-4_0.png" },
+      { "name": "Wharton School", "logo": "/images/Wharton-Logo-RGB.png" },
+      { "name": "Huntsman Program", "logo": "/images/3.png" },
+      { "name": "Duke University", "logo": "/images/Duke_University_logo.svg.png" },
+      { "name": "Emory University", "logo": "/images/Emory-University-Logo.png" },
+      { "name": "Georgetown University", "logo": "/images/Georgetown_University_Logotype.svg.png" },
+      { "name": "Tulane University", "logo": null }
+    ],
+    "testimonial": {
+      "quote": "Eric helped me through the entire process — narrowing my school list, sharpening my extracurriculars, and figuring out my personal statement. I was stuck on what story to tell, and he gave me a framework that made it click. He also reviewed all my supplementals and helped me apply to scholarships I wouldn't have found on my own. It made the whole thing a lot less stressful.",
+      "attribution": "Duke '29 · mentored by Eric before EM Consulting"
+    },
+    "antiObjection": "Our track record is our own admissions — the same standards your child faces, met recently."
   },
   "team": {
     "sectionTag": "Who We Are",
@@ -83,7 +113,7 @@
     "together": "We conduct all initial consultations together.",
     "eric": {
       "name": "Eric Li",
-      "role": "Co-Founder · Strategy & Delivery",
+      "role": "Co-Founder · Strategy & Execution",
       "credentials": [
         "Huntsman Program (Wharton + College of Arts & Sciences)",
         "Joseph Wharton Scholar",
@@ -94,79 +124,69 @@
     },
     "mary": {
       "name": "Mary Liu",
-      "role": "Co-Founder · Admissions Guidance & Parent Relations",
+      "role": "Co-Founder · Admissions Guidance",
       "credentials": [
         "Admitted to MIT (EA, Astrophysics) and Wharton (ED), same cycle",
-        "Wharton single-degree",
+        "Wharton School",
         "Citi Sales & Trading summer analyst",
         "Xiaohongshu content creator",
         "Native Mandarin"
       ]
     }
   },
-  "trackRecord": {
-    "sectionTag": "Track Record",
-    "title": "Where our students were admitted",
-    "subtitle": "Select admissions from Eric's personal counseling and advisory experience.",
-    "schools": [
-      { "name": "Penn Engineering", "logo": "/images/UniversityofPennsylvania_FullLogo_RGB-4_0.png" },
-      { "name": "Wharton School", "logo": "/images/Wharton-Logo-RGB.png" },
-      { "name": "Huntsman Program", "logo": "/images/3.png" },
-      { "name": "Duke Trinity College", "logo": "/images/Duke_University_logo.svg.png" },
-      { "name": "Emory University", "logo": "/images/Emory-University-Logo.png" },
-      { "name": "Georgetown University", "logo": "/images/Georgetown_University_Logotype.svg.png" },
-      { "name": "Tulane University", "logo": null }
-    ],
-    "stats": [
-      { "value": "~50/yr", "label": "Huntsman Program global admits", "detail": "Eric admitted ED" },
-      { "value": "1560", "label": "Eric's SAT", "detail": "" },
-      { "value": "1570", "label": "Mary's SAT", "detail": "Dual MIT & Wharton admit" }
-    ],
-    "testimonial": {
-      "quote": "Eric helped me through the entire process — narrowing my school list, sharpening my extracurriculars, and figuring out my personal statement. I was stuck on what story to tell, and he gave me a framework that made it click. He also reviewed all my supplementals and helped me apply to scholarships I wouldn't have found on my own. It made the whole thing a lot less stressful.",
-      "attribution": "Duke '29"
-    }
-  },
-  "howItWorks": {
-    "sectionTag": "Getting Started",
-    "title": "Three steps to get started",
-    "steps": [
-      {
-        "number": "1",
-        "title": "Free Diagnostic Session",
-        "description": "Book a 90-minute call. We assess the student's academic profile, activities, and target schools, and give an initial competitiveness read."
-      },
-      {
-        "number": "2",
-        "title": "Sign-on & Strategy Report",
-        "description": "After signing, we deliver a full Admissions Strategy Report within five business days — covering positioning analysis, school list assessment, and next steps."
-      },
-      {
-        "number": "3",
-        "title": "End-to-End Execution",
-        "description": "From positioning through submission, five milestones of one-on-one guidance. Clear direction and tangible deliverables at every stage."
-      }
-    ]
-  },
   "pricing": {
     "sectionTag": "Pricing",
     "title": "Transparent pricing",
-    "note": "Every engagement starts with a free diagnostic session. After confirming fit, pricing is based on school count and service depth.",
+    "note": "Every engagement begins with a free 90-minute diagnostic — no contract, no fee. After confirming fit, pricing is based on school count (8–12) and service depth.",
     "audit": {
       "name": "Admissions Diagnostic Report",
       "nameEn": "Admissions Audit",
       "price": "$300–500",
       "priceRmb": "approx. ¥2,000–3,500",
-      "description": "Standalone deliverable. After a 90-minute session, a written assessment of positioning, competitiveness, and recommended strategy. No obligation."
+      "description": "Standalone written report after a 90-minute session: positioning, competitiveness analysis, strategic recommendations. Purchasable on its own, no obligation to continue."
     },
     "full": {
       "name": "Full Package",
       "nameEn": "Full Package",
       "price": "$6,000–11,000",
       "priceRmb": "approx. ¥45,000–80,000",
-      "description": "Five-milestone engagement covering 8–12 schools. All deliverables included, with biweekly check-ins and regular parent updates.",
+      "description": "Five-milestone engagement covering 8–12 schools. All written deliverables included, with biweekly check-ins and regular parent updates.",
       "recommended": true
     }
+  },
+  "faq": {
+    "sectionTag": "FAQ",
+    "title": "Questions parents ask most",
+    "items": [
+      {
+        "q": "Aren't you just students yourselves?",
+        "a": "We aren't former admissions officers relying on decade-old experience — we're applicants who met these standards this cycle. Former AOs can spot adult-ghostwritten essays; our age proximity helps students sound authentically like their best selves. The best swimming coaches aren't Olympic swimmers — they see what the athlete can't see about their own form."
+      },
+      {
+        "q": "Why no admission guarantee?",
+        "a": "Admissions decisions are made by the schools, entirely beyond our control. We operate on the McKinsey model: fees compensate for time, expertise, and deliverables regardless of outcome. Agencies that guarantee admission are guaranteeing schools your child didn't need help getting into. We focus on maximizing probability at schools that actually matter."
+      },
+      {
+        "q": "What if you decline us after the diagnostic?",
+        "a": "The 90-minute diagnostic is free regardless. If we determine fit isn't right, you still leave with a candid assessment of your child's competitiveness. For a full written roadmap, we offer a standalone Strategy Session ($500–800 USD) outside any full engagement — enough to clarify next steps on your own."
+      },
+      {
+        "q": "How many hours per week does the student commit?",
+        "a": "It varies by milestone. Month 1 (Positioning): ~2–3 hours/week. Months 2–4 (Profile): 1–2 hours/week plus activity time. Months 4–7 (Essay peak): 5–8 hours/week as the student drafts and revises multiple essays. Months 7–8 (Review): 3–5 hours/week. Months 8–10 (Post-submission): 1–2 hours/week. The majority is the student's own writing and revision — we never ghostwrite, and the student is the sole author of every application material."
+      },
+      {
+        "q": "How are you different from legacy agencies like New Oriental or Crimson?",
+        "a": "The U.S. admissions consulting market sits in three tiers: legacy agencies (New Oriental, etc., RMB 100–300K) — stale knowledge and hollow guarantees; boutique student-founded firms (Felix Academy, etc., RMB 50–100K) — mostly transfer consulting, not freshman admissions; freelance tutors (Xiaohongshu individuals, RMB 200–600/hr) — no structured methodology. EM Consulting is the only firm combining MIT + Wharton admissions credentials, native Mandarin communication, and a trackable 5-milestone process."
+      },
+      {
+        "q": "How do you prevent ghostwriting concerns on essays?",
+        "a": "We never write or substantially rewrite any application material. Our role is brainstorming topics, providing outlines, and giving feedback on drafts the student has written — 3–4 iterative rounds per essay. We maintain written records of the revision process, and the student is the sole author of every material. This is codified in Section 2 (\"Academic Integrity\") of our service agreement — violations result in immediate termination without refund."
+      },
+      {
+        "q": "What is the refund and cancellation policy?",
+        "a": "Full terms are in Section 5 of the Service Agreement. Summary: Before Milestone 1 (Positioning Deck) delivery — First installment (50%) refunded, minus $500 administrative fee. After Milestone 1, before Milestone 3 (Essay phase) — First installment non-refundable (core deliverables received); Second installment not yet collected. After Milestone 3 commences — Both installments non-refundable (most labor-intensive phase). Either party may terminate with 30 days written notice; pro-rata refund applies to milestones not yet commenced. The free diagnostic session carries no fee and requires no contract."
+      }
+    ]
   },
   "contact": {
     "sectionTag": "Contact",

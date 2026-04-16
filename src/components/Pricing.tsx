@@ -24,21 +24,23 @@ interface PricingProps {
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-export default function Pricing({ translations, locale }: PricingProps) {
+export default function Pricing({ translations }: PricingProps) {
   return (
     <section
       id="pricing"
-      className="px-6 py-24 md:py-32"
+      className="section-standard px-6"
       aria-labelledby="pricing-heading"
     >
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-[1200px] md:grid md:grid-cols-12 md:gap-12">
+        {/* Left rail — breaks the repeating "tag + rule + title stacked" opener pattern */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="md:col-span-4 md:sticky md:top-28 md:self-start"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease }}
+          transition={{ duration: 0.7, ease }}
         >
-          <span className="section-tag text-navy/40">
+          <span className="section-tag text-gold">
             {translations.sectionTag}
           </span>
           <div className="accent-rule mt-4" aria-hidden="true" />
@@ -48,47 +50,46 @@ export default function Pricing({ translations, locale }: PricingProps) {
           >
             {translations.title}
           </h2>
+          <p className="mt-6 max-w-[340px] text-body-lg text-navy/75 font-chinese">
+            {translations.note}
+          </p>
         </motion.div>
 
-        {/* Asymmetric cards — Full Package dominant (7-col), Audit secondary (5-col) */}
-        <div className="mt-16 grid gap-6 md:grid-cols-12 md:gap-8">
-          {/* Full Package — dominant navy card */}
-          <motion.div
-            className="relative bg-navy p-8 md:col-span-7 md:p-10"
+        {/* Right cards */}
+        <div className="mt-12 md:col-span-8 md:mt-0 space-y-6">
+          {/* Full Package — dominant navy card, white price (no gold dominance) */}
+          <motion.article
+            className="relative bg-navy p-8 md:p-10"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease }}
           >
-            {translations.full.recommended && (
-              <span className="absolute top-0 right-0 bg-gold px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-ink">
-                {locale === "zh-CN" ? "推荐" : "Recommended"}
-              </span>
-            )}
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <h3 className="text-subtitle font-display text-white">
                 {translations.full.name}
               </h3>
-              <span className="text-sm text-white/35">
+              <span className="text-sm text-white/60">
                 {translations.full.nameEn}
               </span>
             </div>
-            <div className="mt-5">
-              <span className="font-display text-headline text-gold">
+            <div className="mt-5 flex items-center gap-4">
+              <span className="h-px w-8 bg-gold" aria-hidden="true" />
+              <span className="font-display text-headline text-white">
                 {translations.full.price}
               </span>
-              <span className="ml-3 text-sm text-white/40">
-                {translations.full.priceRmb}
-              </span>
             </div>
-            <p className="mt-5 max-w-[480px] text-body-lg text-white/60 font-chinese">
+            <p className="mt-2 text-sm text-white/65">
+              {translations.full.priceRmb}
+            </p>
+            <p className="mt-5 max-w-[520px] text-body-lg text-white/80 font-chinese">
               {translations.full.description}
             </p>
-          </motion.div>
+          </motion.article>
 
           {/* Audit — secondary white card */}
-          <motion.div
-            className="border border-navy/10 bg-white p-8 md:col-span-5 md:p-10"
+          <motion.article
+            className="border border-navy/10 bg-white p-8 md:p-10"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -98,33 +99,24 @@ export default function Pricing({ translations, locale }: PricingProps) {
               <h3 className="text-subtitle font-display text-navy">
                 {translations.audit.name}
               </h3>
-              <span className="text-sm text-navy/35">
+              <span className="text-sm text-navy/55">
                 {translations.audit.nameEn}
               </span>
             </div>
-            <div className="mt-5">
+            <div className="mt-5 flex items-center gap-4">
+              <span className="h-px w-8 bg-gold" aria-hidden="true" />
               <span className="font-display text-headline text-navy">
                 {translations.audit.price}
               </span>
-              <span className="ml-3 text-sm text-navy/40">
-                {translations.audit.priceRmb}
-              </span>
             </div>
-            <p className="mt-5 max-w-[480px] text-body-lg text-navy/60 font-chinese">
+            <p className="mt-2 text-sm text-navy/65">
+              {translations.audit.priceRmb}
+            </p>
+            <p className="mt-5 max-w-[520px] text-body-lg text-navy/75 font-chinese">
               {translations.audit.description}
             </p>
-          </motion.div>
+          </motion.article>
         </div>
-
-        <motion.p
-          className="mt-10 text-center text-sm text-navy/45 font-chinese"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2, ease }}
-        >
-          {translations.note}
-        </motion.p>
       </div>
     </section>
   );

@@ -17,9 +17,13 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function WhyUs({ translations }: WhyUsProps) {
   return (
-    <section id="why-us" className="px-6 py-24 md:py-32" aria-labelledby="why-us-heading">
+    <section
+      id="why-us"
+      className="section-standard px-6"
+      aria-labelledby="why-us-heading"
+    >
       <div className="mx-auto max-w-[1200px] md:grid md:grid-cols-12 md:gap-12">
-        {/* Left column — 5/12, sticky heading */}
+        {/* Left column — sticky heading */}
         <motion.div
           className="md:col-span-5 md:sticky md:top-28 md:self-start"
           initial={{ opacity: 0, x: -30 }}
@@ -27,7 +31,9 @@ export default function WhyUs({ translations }: WhyUsProps) {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
         >
-          <span className="section-tag text-gold">{translations.sectionTag}</span>
+          <span className="section-tag text-gold">
+            {translations.sectionTag}
+          </span>
           <div className="accent-rule mt-4" aria-hidden="true" />
           <h2
             id="why-us-heading"
@@ -37,30 +43,39 @@ export default function WhyUs({ translations }: WhyUsProps) {
           </h2>
         </motion.div>
 
-        {/* Right column — 7/12, items with left border */}
-        <div className="mt-12 space-y-10 md:col-span-7 md:mt-0">
+        {/* Right column — numbered items (no side-stripe borders per impeccable) */}
+        <ol className="mt-12 space-y-12 md:col-span-7 md:mt-0">
           {translations.items.map((item, i) => (
-            <motion.div
+            <motion.li
               key={i}
-              className="border-l-2 border-gold/40 pl-6"
+              className="flex gap-6"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{
                 duration: 0.6,
-                delay: i * 0.1,
+                delay: i * 0.08,
                 ease,
               }}
             >
-              <h3 className="text-subtitle font-display text-navy">
-                {item.title}
-              </h3>
-              <p className="mt-3 max-w-[520px] text-body-lg text-navy/65 font-chinese">
-                {item.description}
-              </p>
-            </motion.div>
+              {/* Leading number — subtle typographic marker, not a decoration */}
+              <span
+                className="font-display text-2xl text-gold/70 pt-1 tabular-nums shrink-0 w-10"
+                aria-hidden="true"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="text-subtitle font-display text-navy">
+                  {item.title}
+                </h3>
+                <p className="mt-3 max-w-[520px] text-body-lg text-navy/80 font-chinese">
+                  {item.description}
+                </p>
+              </div>
+            </motion.li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

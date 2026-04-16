@@ -19,5 +19,5 @@ export const chineseFont = Noto_Sans_SC({
   subsets: ["latin"],
   variable: "--font-noto-sans-sc",
   display: "swap",
-  weight: ["400", "500", "700"],
+  weight: ["400", "700"],
 });

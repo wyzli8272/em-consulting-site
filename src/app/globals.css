@@ -60,6 +60,17 @@
   letter-spacing: 0.2em;
 }
 
+/* Section padding utilities — vary rhythm */
+.section-compact { padding-top: 5rem; padding-bottom: 5rem; }
+.section-standard { padding-top: 6rem; padding-bottom: 6rem; }
+.section-hero { padding-top: 8rem; padding-bottom: 8rem; }
+
+@media (min-width: 768px) {
+  .section-compact { padding-top: 6rem; padding-bottom: 6rem; }
+  .section-standard { padding-top: 8rem; padding-bottom: 8rem; }
+  .section-hero { padding-top: 10rem; padding-bottom: 10rem; }
+}
+
 /* Base styles */
 html {
   scroll-behavior: smooth;
@@ -71,6 +82,8 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Kill faux-bold: forces fallback chain to use real bold weights instead of synthesis */
+  font-synthesis: none;
 }
 
 /* Respect reduced motion preferences */
@@ -88,8 +101,22 @@ body {
   }
 }
 
-/* Focus styles for accessibility */
+/* Focus styles for accessibility — currentColor adapts to foreground on dark/light */
 :focus-visible {
-  outline: 2px solid #003566;
-  outline-offset: 2px;
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* FAQ details/summary styling */
+details[open] summary .faq-chevron {
+  transform: rotate(180deg);
+}
+
+details summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
 }

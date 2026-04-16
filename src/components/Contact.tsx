@@ -18,12 +18,12 @@ export default function Contact({ translations }: ContactProps) {
   return (
     <section
       id="contact"
-      className="border-t border-gold/20 bg-ink px-6 py-24 md:py-32"
+      className="border-t border-gold/25 bg-ink section-standard px-6"
       aria-labelledby="contact-heading"
     >
       <div className="mx-auto max-w-[1200px]">
         <motion.div
-          className="mx-auto max-w-[640px] text-center"
+          className="max-w-[720px]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -32,13 +32,14 @@ export default function Contact({ translations }: ContactProps) {
           <span className="section-tag text-gold">
             {translations.sectionTag}
           </span>
+          <div className="accent-rule mt-4" aria-hidden="true" />
           <h2
             id="contact-heading"
             className="mt-5 font-display text-title text-white"
           >
             {translations.title}
           </h2>
-          <p className="mt-4 text-body-xl text-white/55 font-chinese">
+          <p className="mt-6 text-body-xl text-white/80 font-chinese">
             {translations.ctaDescription}
           </p>
           <a
