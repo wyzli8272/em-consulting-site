@@ -10,15 +10,16 @@ Single-page app, bilingual (zh-CN default, English toggle), deployed on Vercel.
 - Ink Black: #000814 (hero section, footer, dramatic contrast)
 - Warm Cream: #FAF8F5 (page background)
 - White: #FFFFFF (card backgrounds, content containers)
-- Display font: The Seasons (H1–H2 only). Fallback: Playfair Display.
-- Body font: Helvetica Now Display. Fallback: Helvetica Neue, Helvetica, Arial, sans-serif.
-- Chinese font: Noto Sans SC from Google Fonts with unicode-range subsetting.
+- Display font: Italiana (Google Fonts, weight 400 only — elegance lives in the letterforms, not weight variation). Used for H1–H2 and price numerals.
+- Body font: Public Sans (Google Fonts, weights 400/500/600). US Design System grotesque, Helvetica-adjacent.
+- Chinese font: Noto Sans SC (Google Fonts) with unicode-range subsetting.
 - 8px spacing grid. Max content width: 1200px. Mobile padding: 24px.
 
 ## Font files
-The Seasons and Helvetica Now Display are commercial fonts. Self-host from /public/fonts/.
-If TTF/WOFF2 files are not yet in that directory, use the fallback fonts and leave TODO comments.
-Do NOT load commercial fonts from any CDN.
+All three fonts load via `next/font/google` — no local files, no demo/trial versions, no CDN concerns.
+If Eric + Mary later license The Seasons + Helvetica Now Display, swap them back by restoring
+`next/font/local` imports in src/lib/fonts.ts. Never ship a trial/demo TTF — they watermark glyphs
+(the FontSpring demo of The Seasons draws "DEMO" on $, @, &).
 
 ## i18n
 Default locale: zh-CN (served at /). English at /en.
