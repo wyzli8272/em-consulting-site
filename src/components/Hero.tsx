@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { EASE_OUT as ease } from "@/lib/motion";
 import { CALENDLY_URL } from "@/lib/constants";
 
@@ -20,6 +20,12 @@ interface HeroProps {
 }
 
 export default function Hero({ translations }: HeroProps) {
+  // `initial={false}` when reduced-motion is preferred makes Framer render
+  // elements directly at the target state with no invisible initial frame.
+  // Required to fully honor WCAG 2.3.3 — MotionConfig(reducedMotion="user")
+  // zeroes the transition duration but leaves `initial` applied, which
+  // can still produce a one-frame flash at opacity: 0 on slow devices.
+  const shouldReduce = useReducedMotion();
   return (
     <section
       className="relative flex min-h-[100dvh] items-end bg-ink px-6 overflow-hidden pb-24 md:pb-32"
@@ -69,7 +75,7 @@ export default function Hero({ translations }: HeroProps) {
           {/* Subtitle */}
           <m.p
             className="mt-6 max-w-[560px] text-body-xl text-white/80 font-chinese"
-            initial={{ opacity: 0, y: 16 }}
+            initial={shouldReduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease }}
           >

@@ -144,20 +144,62 @@ export default function Navigation({ translations, locale }: NavigationProps) {
   const ctaNewTabLabel =
     locale === "zh-CN" ? "（在新窗口打开）" : "(opens in new tab)";
 
-  // Preserve the current section anchor when switching locales so the reader
-  // doesn't lose their place. Runs only on plain left-click; middle/cmd/shift
-  // fall through to the default /en or / URL.
+  // Preserve the reader's place when switching locales. Two strategies,
+  // both only firing on plain left-click (middle/cmd/shift/right fall
+  // through to the default /en or / URL so new-tab / new-window open at
+  // the top of the other locale, which is usually what users expect for
+  // those gestures):
+  //
+  //   1. If the URL carries a section hash (#pricing, #faq, etc.), hand
+  //      it to the other locale so the reader lands on the same section.
+  //   2. Otherwise, stash `window.scrollY` in sessionStorage before the
+  //      navigation and restore it on mount of the destination locale
+  //      (see the scroll-restore effect below). Covers the case where
+  //      a parent is reading mid-page with no anchor — without this,
+  //      Next.js default resets scroll to 0 on the new locale.
   const handleLocaleSwitch = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
       if (typeof window === "undefined") return;
       const hash = window.location.hash;
-      if (!hash) return;
-      e.preventDefault();
-      window.location.assign(`${otherLocale}${hash}`);
+      if (hash) {
+        e.preventDefault();
+        window.location.assign(`${otherLocale}${hash}`);
+        return;
+      }
+      // No hash: record the scroll position and let <Link> handle the nav.
+      // We still block-and-assign to force a full navigation — Next's
+      // client-side soft navigation preserves state the route resolver
+      // doesn't want preserved. sessionStorage survives the browser-level
+      // document swap.
+      try {
+        window.sessionStorage.setItem("em-scroll", String(window.scrollY));
+      } catch {
+        // Private mode / cookie-blocked — fall through without preserving.
+      }
     },
     [otherLocale]
   );
+
+  // Restore scroll position after a locale-toggle navigation. Fires once
+  // on mount; clears the key so that an intentional return to top (e.g.
+  // clicking the brand wordmark) isn't second-guessed on the next nav.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    let saved: string | null = null;
+    try {
+      saved = window.sessionStorage.getItem("em-scroll");
+      if (saved === null) return;
+      window.sessionStorage.removeItem("em-scroll");
+    } catch {
+      return;
+    }
+    const y = Number(saved);
+    if (!Number.isFinite(y) || y <= 0) return;
+    // Defer one frame so layout/paint settle first (CJK glyphs coming
+    // from OS fonts, which can shift height briefly as they swap in).
+    requestAnimationFrame(() => window.scrollTo({ top: y, behavior: "auto" }));
+  }, []);
 
   return (
     <nav

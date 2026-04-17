@@ -1,6 +1,6 @@
 "use client";
 
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { EASE_OUT as ease } from "@/lib/motion";
 
 interface FAQItem {
@@ -17,6 +17,7 @@ interface FAQProps {
 }
 
 export default function FAQ({ translations }: FAQProps) {
+  const shouldReduce = useReducedMotion();
   return (
     <section
       id="faq"
@@ -27,7 +28,7 @@ export default function FAQ({ translations }: FAQProps) {
         {/* Left rail — breaks opener pattern, uses numbered roman-style marker */}
         <m.div
           className="md:col-span-4 md:sticky md:top-28 md:self-start"
-          initial={{ opacity: 0, x: -30 }}
+          initial={shouldReduce ? false : { opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
@@ -55,7 +56,7 @@ export default function FAQ({ translations }: FAQProps) {
             <li key={item.q}>
               <m.details
                 className="group py-6"
-                initial={{ opacity: 0, y: 16 }}
+                initial={shouldReduce ? false : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{

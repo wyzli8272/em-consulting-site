@@ -1,6 +1,6 @@
 "use client";
 
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { EASE_OUT as ease } from "@/lib/motion";
 
 interface ProcessProps {
@@ -17,6 +17,7 @@ interface ProcessProps {
 }
 
 export default function Process({ translations }: ProcessProps) {
+  const shouldReduce = useReducedMotion();
   return (
     <section
       id="process"
@@ -25,7 +26,7 @@ export default function Process({ translations }: ProcessProps) {
     >
       <div className="mx-auto max-w-[1200px]">
         <m.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease }}
@@ -49,7 +50,7 @@ export default function Process({ translations }: ProcessProps) {
             <m.li
               key={milestone.number}
               className="relative flex gap-6 md:gap-10"
-              initial={{ opacity: 0, x: -30 }}
+              initial={shouldReduce ? false : { opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{

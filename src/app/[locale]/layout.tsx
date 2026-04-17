@@ -78,7 +78,7 @@ export default async function LocaleLayout({
     name: "EM Consulting",
     description:
       locale === "zh-CN"
-        ? "沃顿·亨茨曼双学位与MIT录取背景。一位顾问全程参与美本申请的策略制定与执行。"
+        ? "沃顿·亨茨曼双学位与MIT录取背景。由顾问全程参与美本申请的策略制定与执行。"
         : "Wharton Huntsman Dual Degree and MIT admit. Structured admissions consulting for Chinese families applying to U.S. universities.",
     url: locale === "zh-CN" ? SITE_URL : `${SITE_URL}/en`,
     serviceType: "College Admissions Consulting",

@@ -1,6 +1,6 @@
 "use client";
 
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { EASE_OUT as ease } from "@/lib/motion";
 
 interface PricingTier {
@@ -22,6 +22,7 @@ interface PricingProps {
 }
 
 export default function Pricing({ translations }: PricingProps) {
+  const shouldReduce = useReducedMotion();
   return (
     <section
       id="pricing"
@@ -32,7 +33,7 @@ export default function Pricing({ translations }: PricingProps) {
         {/* Left rail — breaks the repeating "tag + rule + title stacked" opener pattern */}
         <m.div
           className="md:col-span-4 md:sticky md:top-28 md:self-start"
-          initial={{ opacity: 0, x: -30 }}
+          initial={shouldReduce ? false : { opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
@@ -58,7 +59,7 @@ export default function Pricing({ translations }: PricingProps) {
               so the price feels substantial, not squeezed. */}
           <m.article
             className="relative bg-navy p-10 md:p-14"
-            initial={{ opacity: 0, y: 24 }}
+            initial={shouldReduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease }}
@@ -67,7 +68,7 @@ export default function Pricing({ translations }: PricingProps) {
               <h3 className="text-subtitle font-display text-white">
                 {translations.full.name}
               </h3>
-              <span className="text-sm text-white/60">
+              <span className="text-sm text-white/60" lang="en">
                 {translations.full.nameEn}
               </span>
             </div>
@@ -92,7 +93,7 @@ export default function Pricing({ translations }: PricingProps) {
           {/* Audit — secondary cream card (not pure white, aligns with surface token) */}
           <m.article
             className="border border-navy/10 bg-cream p-8 md:p-10"
-            initial={{ opacity: 0, y: 24 }}
+            initial={shouldReduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.1, ease }}
@@ -101,7 +102,7 @@ export default function Pricing({ translations }: PricingProps) {
               <h3 className="text-subtitle font-display text-navy">
                 {translations.audit.name}
               </h3>
-              <span className="text-sm text-navy/70">
+              <span className="text-sm text-navy/70" lang="en">
                 {translations.audit.nameEn}
               </span>
             </div>

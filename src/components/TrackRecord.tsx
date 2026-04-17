@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { EASE_OUT as ease } from "@/lib/motion";
 
 interface School {
@@ -32,6 +32,7 @@ interface TrackRecordProps {
 }
 
 export default function TrackRecord({ translations }: TrackRecordProps) {
+  const shouldReduce = useReducedMotion();
   return (
     <section
       id="advisory-experience"
@@ -41,7 +42,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
       <div className="mx-auto max-w-[1200px]">
         {/* Header */}
         <m.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease }}
@@ -64,7 +65,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
         {/* Block A: Founder credentials — primary proof */}
         <m.div
           className="mt-16 grid gap-8 md:grid-cols-12 md:gap-12"
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease }}
@@ -97,7 +98,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
         {/* Block B: Eric's mentorship — schools as prose list, not a logo bar */}
         <m.div
           className="mt-16 grid gap-8 md:grid-cols-12 md:gap-12"
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease }}
@@ -139,7 +140,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
         {translations.testimonial.quote && (
           <m.figure
             className="mt-20 relative"
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduce ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease }}
@@ -164,7 +165,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
         {/* Anti-objection framing — from Eric's project brief */}
         <m.p
           className="mt-16 max-w-[720px] font-display text-subtitle text-navy/85 italic"
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease }}

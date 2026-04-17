@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { EASE_OUT as ease } from "@/lib/motion";
 
 interface TeamMember {
@@ -58,7 +58,7 @@ function MemberCard({ member }: { member: TeamMember }) {
             className="flex items-start gap-3 text-body-lg text-navy/80 font-chinese"
           >
             <span
-              className="text-navy/35 shrink-0 select-none pt-[0.1em]"
+              className="text-navy/45 shrink-0 select-none pt-[0.1em]"
               aria-hidden="true"
             >
               ·
@@ -72,6 +72,7 @@ function MemberCard({ member }: { member: TeamMember }) {
 }
 
 export default function Team({ translations }: TeamProps) {
+  const shouldReduce = useReducedMotion();
   return (
     <section
       id="team"
@@ -80,7 +81,7 @@ export default function Team({ translations }: TeamProps) {
     >
       <div className="mx-auto max-w-[1200px]">
         <m.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease }}
@@ -103,7 +104,7 @@ export default function Team({ translations }: TeamProps) {
         <div className="mt-16 grid gap-12 md:grid-cols-12 md:gap-16">
           <m.div
             className="md:col-span-6"
-            initial={{ opacity: 0, y: 24 }}
+            initial={shouldReduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, ease }}
@@ -113,7 +114,7 @@ export default function Team({ translations }: TeamProps) {
 
           <m.div
             className="md:col-span-6"
-            initial={{ opacity: 0, y: 24 }}
+            initial={shouldReduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, delay: 0.15, ease }}
@@ -125,7 +126,7 @@ export default function Team({ translations }: TeamProps) {
         {/* Together note — full-width row, centered. Removed from Eric's column so the grid reads as two equal partners. */}
         <m.p
           className="mt-16 mx-auto max-w-[520px] text-center text-body-lg text-navy/70 font-chinese"
-          initial={{ opacity: 0, y: 12 }}
+          initial={shouldReduce ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.6, delay: 0.2, ease }}

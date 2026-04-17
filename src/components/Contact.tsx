@@ -1,6 +1,6 @@
 "use client";
 
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { EASE_OUT as ease } from "@/lib/motion";
 import { CALENDLY_URL } from "@/lib/constants";
 
@@ -14,6 +14,7 @@ interface ContactProps {
 }
 
 export default function Contact({ translations }: ContactProps) {
+  const shouldReduce = useReducedMotion();
   return (
     <section
       id="contact"
@@ -23,7 +24,7 @@ export default function Contact({ translations }: ContactProps) {
       <div className="mx-auto max-w-[1200px]">
         <m.div
           className="max-w-[720px]"
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { EASE_OUT as ease } from "@/lib/motion";
 
 interface WhyUsProps {
@@ -15,6 +15,7 @@ interface WhyUsProps {
 }
 
 export default function WhyUs({ translations }: WhyUsProps) {
+  const shouldReduce = useReducedMotion();
   return (
     <section
       id="why-us"
@@ -25,7 +26,7 @@ export default function WhyUs({ translations }: WhyUsProps) {
         {/* Left column — sticky heading */}
         <m.div
           className="md:col-span-5 md:sticky md:top-28 md:self-start"
-          initial={{ opacity: 0, x: -30 }}
+          initial={shouldReduce ? false : { opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
@@ -48,7 +49,7 @@ export default function WhyUs({ translations }: WhyUsProps) {
             <m.li
               key={item.title}
               className="flex gap-6"
-              initial={{ opacity: 0, y: 24 }}
+              initial={shouldReduce ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{
