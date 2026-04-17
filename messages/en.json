@@ -15,8 +15,8 @@
   },
   "hero": {
     "sectionTag": "EM Consulting",
-    "title": "One application. One systematic plan.",
-    "subtitle": "Huntsman Program · MIT and Wharton dual admit. A structured five-milestone plan for the full U.S. application.",
+    "title": "A structured five-milestone plan for U.S. college applications.",
+    "subtitle": "Huntsman Program · MIT and Wharton dual admit. One advisor walks every family through the full application cycle.",
     "cta": "Book Your Free Diagnostic →",
     "ctaSubtext": "A 90-minute session to assess your child's competitiveness and talk through next steps."
   },
@@ -26,19 +26,19 @@
     "items": [
       {
         "title": "MIT + Wharton, same cycle",
-        "description": "Decade-old admissions experience is the industry standard. We took a different route: we just met these standards ourselves. The signals that matter now are the signals we just read."
+        "description": "The industry norm is decades-old admissions experience. We took a different route. We met these standards ourselves a few months ago, so the application cycle we're working on now is the one we just lived."
       },
       {
         "title": "Five milestones, real deliverables",
-        "description": "Every stage produces a written document and an acceptance checkpoint: positioning deck, profile roadmap, finalized essays, submission checklist, decision framework. This is a trackable strategy engagement, not open-ended coaching."
+        "description": "Every stage produces a written document and an acceptance checkpoint: positioning deck, profile roadmap, finalized essays, submission checklist, decision framework. We work in milestones, and you see what each one produces."
       },
       {
         "title": "Selective by design",
-        "description": "We turn down students we can't actually help, and we take cases where we expect a good result. That's fair to your family and to us."
+        "description": "We turn down students we can't actually help. A case we take on is one where we believe our work will change the outcome."
       },
       {
         "title": "Native bilingual communication",
-        "description": "We speak Mandarin natively with parents and English natively with students, so nothing gets lost in translation or in cultural context."
+        "description": "We speak Mandarin natively with parents and English natively with students. Parents don't have to wait for someone to translate, and students don't have to switch registers."
       },
       {
         "title": "Founding cohort · max 10",
@@ -54,31 +54,31 @@
         "number": "01",
         "title": "Strategic positioning",
         "timeline": "Month 1",
-        "deliverable": "Delivered: positioning deck with core narrative direction, initial school list (8–12), and essay topic map."
+        "deliverable": "Positioning deck with core narrative direction, initial school list (8–12), and essay topic map."
       },
       {
         "number": "02",
         "title": "Profile optimization",
         "timeline": "Months 2–4",
-        "deliverable": "Delivered: profile roadmap covering activity adjustments, recommendation strategy, and test timeline."
+        "deliverable": "Profile roadmap covering activity adjustments, recommendation strategy, and test timeline."
       },
       {
         "number": "03",
         "title": "Essay development",
         "timeline": "Months 4–7",
-        "deliverable": "Delivered: finalized essays with 3–4 feedback rounds each. All content written by the student."
+        "deliverable": "Finalized essays with 3–4 feedback rounds each. All content written by the student."
       },
       {
         "number": "04",
         "title": "Application review",
         "timeline": "Months 7–8",
-        "deliverable": "Delivered: submission checklist with full materials review, mock interviews, and a written parent brief."
+        "deliverable": "Submission checklist with full materials review, mock interviews, and a written parent brief."
       },
       {
         "number": "05",
         "title": "Post-submission",
         "timeline": "Months 8–10",
-        "deliverable": "Delivered: decision analysis framework covering waitlist strategy and multi-offer comparison."
+        "deliverable": "Decision analysis framework covering waitlist strategy and multi-offer comparison."
       }
     ]
   },
@@ -105,7 +105,7 @@
       "quote": "Eric helped me through the entire process — narrowing my school list, sharpening my extracurriculars, and figuring out my personal statement. I was stuck on what story to tell, and he gave me a framework that made it click. He also reviewed all my supplementals and helped me apply to scholarships I wouldn't have found on my own. It made the whole thing a lot less stressful.",
       "attribution": "Duke '29 · mentored by Eric before EM Consulting"
     },
-    "antiObjection": "Our track record is our own admissions. We met the same standards your child now faces."
+    "antiObjection": "Our own admissions are the track record. We met the same standards your child now faces."
   },
   "team": {
     "sectionTag": "Who We Are",
@@ -137,7 +137,7 @@
   "pricing": {
     "sectionTag": "Pricing",
     "title": "Transparent pricing",
-    "note": "Every engagement begins with a free 90-minute diagnostic; no contract and no fee required. After confirming fit, pricing depends on school count (8–12) and service depth.",
+    "note": "Every engagement begins with a free 90-minute diagnostic — no contract required. After confirming fit, pricing depends on school count (8–12) and service depth.",
     "audit": {
       "name": "Admissions Diagnostic Report",
       "nameEn": "Admissions Audit",
@@ -159,11 +159,15 @@
     "items": [
       {
         "q": "Aren't you just students yourselves?",
-        "a": "Decade-old admissions experience is the industry standard, and we took a different route: we're the applicants who just met these standards. Former AOs can spot adult-ghostwritten essays; our age makes it easier for students to write in their own voice. Top swimming coaches usually aren't Olympic champions. They notice what the athlete can't see about their own form."
+        "a": "We just lived the application cycle we're consulting on. Two months ago, we were sitting across from admissions officers ourselves. Being close to the applicant experience is the point of this role, not a gap to apologize for. Former admissions officers can spot adult-ghostwritten essays; our age makes it easier for students to write in their own voice."
+      },
+      {
+        "q": "How do you prevent ghostwriting concerns on essays?",
+        "a": "We never write or substantially rewrite any application material. Our work is to discuss topics, suggest outlines, and give feedback on the student's own drafts. Each essay runs 3–4 rounds, and every revision is tracked in writing. If a family wants ghostwriting, we'll end the engagement."
       },
       {
         "q": "Why no admission guarantee?",
-        "a": "Admissions decisions are made by the schools, entirely beyond our control. We operate on the McKinsey model: fees compensate for time, expertise, and deliverables, not for outcome. Agencies that promise admission usually promise schools your child could get into without them. Our work is on the schools that require real strategy."
+        "a": "Admissions decisions are made by the schools, entirely beyond our control. Our fees compensate for strategy, time, and written deliverables, not for outcome. Agencies that promise admission usually promise schools your child could get into without them. Our work is on the schools where the outcome isn't already decided."
       },
       {
         "q": "What if you decline us after the diagnostic?",
@@ -175,11 +179,7 @@
       },
       {
         "q": "How are you different from legacy agencies like New Oriental or Crimson?",
-        "a": "We don't position ourselves by comparison to the rest of the market. Our shape is simpler: two founders who just admitted to MIT and Wharton, native Mandarin with parents, five milestones with written deliverables at each stage. That's what we do."
-      },
-      {
-        "q": "How do you prevent ghostwriting concerns on essays?",
-        "a": "We never write or substantially rewrite any application material. We brainstorm topics, suggest outlines, and give feedback on drafts the student writes. Each essay runs 3–4 rounds, with written records kept for every revision. This policy is codified in our service agreement, and any violation ends the engagement without refund."
+        "a": "Instead of positioning ourselves against the market, here's what we actually do: two founders who admitted to MIT and Wharton the same cycle, native Mandarin with parents, five milestones with written deliverables at each stage."
       },
       {
         "q": "What is the refund and cancellation policy?",
@@ -191,7 +191,7 @@
     "sectionTag": "Contact",
     "title": "Start here",
     "cta": "Book Your Free Diagnostic →",
-    "ctaDescription": "A 90-minute session to assess your child's competitiveness and talk through next steps. Free to you, with no obligation afterward."
+    "ctaDescription": "A 90-minute session to assess your child's competitiveness and talk through next steps. The session is free, and whether we work together afterward is entirely your family's call."
   },
   "footer": {
     "copyright": "© 2026 EM Consulting. All rights reserved."
