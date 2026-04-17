@@ -24,6 +24,18 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Negative lookahead skips: internals, API, and any path with a dot (assets, maps, favicon, sitemap, robots)
-  matcher: ["/((?!_next|_vercel|api|.*\\..*).*)"],
+  // Negative lookahead skips:
+  //   - Next internals (_next) and Vercel internals (_vercel)
+  //   - API routes (api)
+  //   - App-root metadata routes that are NOT nested under [locale]
+  //     (opengraph-image, icon, apple-icon) — these live at
+  //     `src/app/*` and would otherwise be rewritten to
+  //     `/zh-CN/opengraph-image` (nonexistent → 404). This is the bug
+  //     that was silently breaking every WeChat/LinkedIn/Twitter
+  //     share preview on the live deploy.
+  //   - Any path with a dot in it (asset filenames, sourcemaps, favicon.ico,
+  //     sitemap.xml, robots.txt). The .*\.  clause catches those.
+  matcher: [
+    "/((?!_next|_vercel|api|opengraph-image|icon|apple-icon|.*\\..*).*)",
+  ],
 };

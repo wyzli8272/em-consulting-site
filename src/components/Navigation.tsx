@@ -18,13 +18,19 @@ interface NavigationProps {
   locale: string;
 }
 
+// Order must match the render order of sections in app/[locale]/page.tsx:
+// Hero → WhyUs → Process → TrackRecord → Team → FAQ → Pricing → Contact.
+// Round 4 deliberately placed FAQ before Pricing (objections resolve before
+// price reveal), but the nav array kept the old Pricing-before-FAQ order,
+// so clicking "Pricing" scrolled past FAQ and clicking "FAQ" bounced back
+// up. Keep this array synchronized with page.tsx render order.
 const sections = [
   { id: "why-us", key: "whyUs" as const },
   { id: "process", key: "process" as const },
   { id: "advisory-experience", key: "trackRecord" as const },
   { id: "team", key: "team" as const },
-  { id: "pricing", key: "pricing" as const },
   { id: "faq", key: "faq" as const },
+  { id: "pricing", key: "pricing" as const },
   { id: "contact", key: "contact" as const },
 ];
 
@@ -158,7 +164,13 @@ export default function Navigation({ translations, locale }: NavigationProps) {
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         scrolled
           ? "bg-cream/95 shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
-          : "bg-ink/65"
+          : // Pre-scroll scrim over the hero photo. Bumped 65% → 80%
+            // because on the upper-right of the campus photo (sky +
+            // pillars) the mid-tones pushed the effective contrast of
+            // `text-white/80` nav links below WCAG 4.5:1. Full white text
+            // on ink/80 clears 12:1 against pure ink and still clears
+            // ~5.5:1 against the lightest photo areas.
+            "bg-ink/80"
       }`}
       aria-label={locale === "zh-CN" ? "主导航" : "Main navigation"}
     >
@@ -211,10 +223,14 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             className={`h-4 w-px ${scrolled ? "bg-navy/20" : "bg-white/30"}`}
             aria-hidden="true"
           />
+          {/* The visible text ("EN" / "中") is in a different language than
+              the surrounding nav content, so `lang` is set on the anchor so
+              VoiceOver / NVDA voice it correctly (WCAG 3.1.2). */}
           <Link
             href={otherLocale}
             scroll={false}
             onClick={handleLocaleSwitch}
+            lang={locale === "zh-CN" ? "en" : "zh-CN"}
             className={`text-xs uppercase tracking-[0.15em] font-medium transition-opacity duration-200 hover:opacity-70 ${
               scrolled ? "text-navy" : "text-white"
             }`}
@@ -276,7 +292,14 @@ export default function Navigation({ translations, locale }: NavigationProps) {
       {/* Mobile overlay as proper dialog. The onKeyDown trap is required on
           the dialog container itself to scope Tab/Shift+Tab/Escape behavior;
           `role="dialog"` upgrades semantics but jsx-a11y doesn't treat it as
-          an interactive role, hence the targeted disable. */}
+          an interactive role, hence the targeted disable.
+
+          `inert` is the modern replacement for aria-hidden + tabIndex=-1 on
+          focusable descendants. When `inert` is present on a container, the
+          entire subtree is removed from the accessibility tree AND from the
+          tab order, atomically — so assistive tech can't accidentally reach
+          an off-screen link that aria-hidden alone doesn't fully exclude.
+          Baseline-supported across all modern browsers. */}
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <div
         id="mobile-menu-panel"
@@ -288,7 +311,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
         }`}
-        aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
         onKeyDown={handleFocusTrap}
       >
         <div className="flex flex-col items-center gap-8">
@@ -308,8 +331,8 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             href={otherLocale}
             scroll={false}
             onClick={handleLocaleSwitch}
+            lang={locale === "zh-CN" ? "en" : "zh-CN"}
             className="text-xs uppercase tracking-[0.2em] font-medium text-white/80 transition-opacity duration-200 hover:opacity-70"
-            tabIndex={mobileOpen ? 0 : -1}
             aria-label={switchLabel}
           >
             {toggleLabel}

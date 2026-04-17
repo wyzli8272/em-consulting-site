@@ -18,16 +18,23 @@
        property can't invalidate the declaration. Without the fallback,
        CSS would mark the whole `--font-display` property invalid-at-
        computed-value-time and fall the H1 back to the user agent default
-       (which is what was breaking Italiana on both locales).
-     - For the CJK display serif, we don't try to load a web font at all.
-       PingFang SC (Apple), Songti SC / STSong (Apple editorial), Microsoft
-       YaHei / SimSun (Windows), and Noto Serif CJK SC (Linux) are already
-       installed on every target device. Italiana renders Latin glyphs; the
-       browser transparently substitutes the OS CJK serif for Chinese
-       characters. Zero additional download, zero FOIT, zero dependency
-       on next/font/google's finicky CJK handling. */
-  --font-display: var(--font-display-serif, Georgia), "PingFang SC", "Songti SC", "STSong", "Microsoft YaHei", SimSun, Georgia, serif;
-  --font-body: var(--font-body-sans, Helvetica), var(--font-noto-sans-sc, "PingFang SC"), "Helvetica Neue", Helvetica, Arial, sans-serif;
+       (which is what was breaking Italiana on both locales pre-f67453f).
+     - For the CJK display serif, we don't load a web font. We order the
+       fallback so OS-native CJK *serifs* win before CJK *sans* faces —
+       Songti SC / STSong on macOS, SimSun on Windows, Noto Serif CJK SC
+       on Linux — because the brand voice is editorial serif, and
+       landing on PingFang SC / Microsoft YaHei first would render zh-CN
+       headlines as sans (mixing stress axis with Italiana's hairline
+       serif). PingFang SC / YaHei are kept as last-ditch fallbacks
+       before the generic `serif` keyword so content still has a
+       reasonable face on devices missing every serif above. */
+  --font-display: var(--font-display-serif, Georgia), "Songti SC", "STSong", SimSun, "Noto Serif CJK SC", "Source Han Serif SC", "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  /* --font-body: single var() with inline PingFang SC fallback. Nesting a
+     second var() (as the previous revision did) added a second failure
+     point where an undefined custom property could invalidate the whole
+     declaration. Plain strings can't IACV, and CJK body glyphs are still
+     handled correctly by the browser's font substitution at glyph level. */
+  --font-body: var(--font-body-sans, Helvetica), "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-chinese: var(--font-noto-sans-sc, "PingFang SC"), "Microsoft YaHei", sans-serif;
 }
 
@@ -132,6 +139,17 @@ body {
 summary.faq-summary:focus-visible {
   outline-offset: 6px;
   border-radius: 2px;
+}
+
+/* Gold CTAs need an inset focus indicator. The default `:focus-visible`
+   draws a 2px ink-black outline 3px OUTSIDE the button — which is invisible
+   on the ink-navy surfaces where the Hero, Contact, and 404 CTAs sit (ink
+   on ink ≈ 1:1). Inset offset draws the outline on top of the gold fill
+   instead, where ink-on-gold clears ~12:1. This one rule keeps the focus
+   ring visible no matter which section's background is behind. */
+a.bg-gold:focus-visible,
+button.bg-gold:focus-visible {
+  outline-offset: -4px;
 }
 
 /* FAQ details/summary styling */

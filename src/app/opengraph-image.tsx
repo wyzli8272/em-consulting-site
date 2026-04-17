@@ -1,7 +1,11 @@
 import { ImageResponse } from "next/og";
 import { loadItalianaFont } from "@/lib/og-fonts";
 
-export const runtime = "edge";
+// Default (Node) runtime. Edge runtime for metadata image routes was
+// compiling without a valid entrypoint under Next 16 + Turbopack
+// (`app-edge-has-no-entrypoint` in middleware-manifest.json), which
+// returned 404 on the deployed site. See lib/og-fonts.ts for the full
+// diagnosis.
 export const alt = "EM Consulting — College Admissions Strategy";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -15,7 +19,7 @@ export const contentType = "image/png";
  * fallback that plagued the previous build's tagline, and signals confidence.
  */
 export default async function OpenGraphImage() {
-  const italianaFont = await loadItalianaFont();
+  const italianaFont = loadItalianaFont();
 
   return new ImageResponse(
     (

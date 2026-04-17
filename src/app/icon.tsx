@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { loadItalianaFont } from "@/lib/og-fonts";
 
-export const runtime = "edge";
+// Default (Node) runtime — see opengraph-image.tsx / lib/og-fonts.ts for why.
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
@@ -14,7 +14,7 @@ export const contentType = "image/png";
  * 16×16 downsample Chrome/Safari apply, and still looks intentional at 32×32.
  */
 export default async function Icon() {
-  const italianaFont = await loadItalianaFont();
+  const italianaFont = loadItalianaFont();
 
   return new ImageResponse(
     (

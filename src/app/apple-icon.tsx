@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { loadItalianaFont } from "@/lib/og-fonts";
 
-export const runtime = "edge";
+// Default (Node) runtime — see opengraph-image.tsx / lib/og-fonts.ts for why.
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
@@ -12,7 +12,7 @@ export const contentType = "image/png";
  * a branded artifact at 180×180, not a flat placeholder.
  */
 export default async function AppleIcon() {
-  const italianaFont = await loadItalianaFont();
+  const italianaFont = loadItalianaFont();
 
   return new ImageResponse(
     (
