@@ -18,19 +18,26 @@ export const bodyFont = Public_Sans({
 });
 
 // Chinese body (grotesque). Used for body copy in zh-CN.
+// preload: false — the layout only applies this font's className when
+// locale === "zh-CN", so on /en the font-face rule is emitted but no element
+// references it and the browser never fetches the woff2. Avoids shipping
+// ~75 KB of CJK glyphs to English-locale visitors.
 export const chineseFont = Noto_Sans_SC({
   subsets: ["latin"],
   variable: "--font-noto-sans-sc",
   display: "swap",
   weight: ["400", "700"],
+  preload: false,
 });
 
 // Chinese display (serif). Restores editorial serif voice for zh-CN headlines,
 // closing the cohesion gap where Italiana has zero CJK coverage and zh-CN H1
-// was falling through to the Sans grotesque.
+// was falling through to the Sans grotesque. preload: false for the same
+// reason as chineseFont above.
 export const chineseSerifFont = Noto_Serif_SC({
   subsets: ["latin"],
   variable: "--font-noto-serif-sc",
   display: "swap",
   weight: ["300", "400"],
+  preload: false,
 });

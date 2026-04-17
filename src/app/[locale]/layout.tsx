@@ -92,11 +92,20 @@ export default async function LocaleLayout({
     ],
   };
 
+  // Conditional font className: only attach the CJK font variables on zh-CN.
+  // Combined with `preload: false` on the CJK fonts in lib/fonts.ts, this means
+  // /en visitors never download the ~75 KB Noto Sans SC + ~80 KB Noto Serif SC
+  // bundles. Italiana + Public Sans alone cover all Latin glyphs on /en.
+  const fontClassName =
+    locale === "zh-CN"
+      ? `${displayFont.variable} ${bodyFont.variable} ${chineseFont.variable} ${chineseSerifFont.variable}`
+      : `${displayFont.variable} ${bodyFont.variable}`;
+
   return (
     <html
       lang={locale === "zh-CN" ? "zh-CN" : "en"}
       dir="ltr"
-      className={`${displayFont.variable} ${bodyFont.variable} ${chineseFont.variable} ${chineseSerifFont.variable}`}
+      className={fontClassName}
     >
       <body className="font-body bg-cream text-navy antialiased">
         <a
