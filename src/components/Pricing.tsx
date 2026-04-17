@@ -7,7 +7,7 @@ interface PricingTier {
   name: string;
   nameEn: string;
   price: string;
-  priceRmb: string;
+  priceAlt: string;
   description: string;
 }
 
@@ -76,10 +76,13 @@ export default function Pricing({ translations }: PricingProps) {
                 {translations.full.price}
               </span>
             </div>
-            {/* RMB reference line: 65% → 80% opacity, sm → base so it reads as a real
-                reference number (parents scan RMB first), not a whispered aside. */}
+            {/* Alt-currency reference line: 80% opacity, base size so it reads
+                as a real reference number, not a whispered aside. On zh-CN
+                this is USD; on /en this is RMB — the JSON keys now reflect
+                that (priceAlt, not priceRmb) since Cultural #C2 flipped the
+                currency order on the default locale so ¥ leads there. */}
             <p className="mt-2 text-base text-white/80">
-              {translations.full.priceRmb}
+              {translations.full.priceAlt}
             </p>
             <p className="mt-5 max-w-[520px] text-body-lg text-white/80 font-chinese">
               {translations.full.description}
@@ -108,7 +111,7 @@ export default function Pricing({ translations }: PricingProps) {
               </span>
             </div>
             <p className="mt-2 text-base text-navy/80">
-              {translations.audit.priceRmb}
+              {translations.audit.priceAlt}
             </p>
             <p className="mt-5 max-w-[520px] text-body-lg text-navy/75 font-chinese">
               {translations.audit.description}

@@ -11,14 +11,14 @@
     "pricing": "Pricing",
     "faq": "FAQ",
     "contact": "Contact",
-    "cta": "Book Free Diagnostic"
+    "cta": "Book a Session"
   },
   "hero": {
     "sectionTag": "EM Consulting",
     "title": "A structured five-milestone plan for U.S. college applications.",
-    "subtitle": "Huntsman Program · MIT and Wharton dual admit. One advisor walks every family through the full application cycle.",
-    "cta": "Book Your Free Diagnostic →",
-    "ctaSubtext": "A 90-minute session to assess your child's competitiveness and talk through next steps."
+    "subtitle": "Huntsman Program (Wharton + College dual degree, ~50 admits/year globally) · MIT and Wharton dual admit the same cycle. An advisor walks every family through the full application season.",
+    "cta": "Book a 90-Minute Session →",
+    "ctaSubtext": "Free, no contract. A 90-minute session to assess your child's competitiveness and map out a strategy."
   },
   "whyUs": {
     "sectionTag": "Why Us",
@@ -26,15 +26,15 @@
     "items": [
       {
         "title": "MIT + Wharton, same cycle",
-        "description": "The industry norm is decades-old admissions experience. We took a different route. We met these standards ourselves a few months ago, so the application cycle we're working on now is the one we just lived."
+        "description": "Most consultants sold their last admit a decade ago. We just got ours. The cycle we're advising on is the one we lived through two months back."
       },
       {
         "title": "Five milestones, real deliverables",
         "description": "Every stage produces a written document and an acceptance checkpoint: positioning deck, profile roadmap, finalized essays, submission checklist, decision framework. We work in milestones, and you see what each one produces."
       },
       {
-        "title": "Selective by design",
-        "description": "We turn down students we can't actually help. A case we take on is one where we believe our work will change the outcome."
+        "title": "We turn down more than we take",
+        "description": "We turn down students we can't actually help. We take the cases where our work changes the outcome."
       },
       {
         "title": "Native bilingual communication",
@@ -105,19 +105,19 @@
       "quote": "Eric helped me through the entire process — narrowing my school list, sharpening my extracurriculars, and figuring out my personal statement. I was stuck on what story to tell, and he gave me a framework that made it click. He also reviewed all my supplementals and helped me apply to scholarships I wouldn't have found on my own. It made the whole thing a lot less stressful.",
       "attribution": "Duke '29 · mentored by Eric before EM Consulting"
     },
-    "antiObjection": "Our own admissions are the track record. We met the same standards your child now faces."
+    "antiObjection": "We have no borrowed admissions credentials to list. What we can offer is the application cycle both founders just walked through, and the reasoning behind every judgment we made inside it."
   },
   "team": {
     "sectionTag": "Who We Are",
     "title": "Team",
-    "together": "We conduct all initial consultations together.",
+    "together": "Initial consultations: both founders on the call.",
     "eric": {
       "name": "Eric Li",
       "role": "Co-Founder · Strategy & Execution",
       "credentials": [
         "Huntsman Program (Wharton + College of Arts & Sciences)",
         "Joseph Wharton Scholar",
-        "Native Mandarin, Fujian Province network",
+        "Native Mandarin · Chinese diaspora network",
         "YC-backed founder",
         "VC scout at multiple funds"
       ]
@@ -129,7 +129,7 @@
         "Admitted to MIT (EA, Astrophysics) and Wharton (ED), same cycle",
         "Wharton School",
         "Citi Sales & Trading summer analyst",
-        "Xiaohongshu content creator",
+        "Chinese-language education content (Xiaohongshu)",
         "Native Mandarin"
       ]
     }
@@ -137,20 +137,20 @@
   "pricing": {
     "sectionTag": "Pricing",
     "title": "Transparent pricing",
-    "note": "Every engagement begins with a free 90-minute diagnostic — no contract required. After confirming fit, pricing depends on school count (8–12) and service depth.",
+    "note": "Every engagement begins with a free 90-minute diagnostic. No contract until you decide to work with us. After confirming fit, pricing depends on school count (8–12) and service depth.",
     "audit": {
       "name": "Admissions Diagnostic Report",
       "nameEn": "Admissions Audit",
       "price": "$300–500",
-      "priceRmb": "approx. ¥2,000–3,500",
+      "priceAlt": "approx. ¥2,000–3,500",
       "description": "Standalone written report after a 90-minute session: positioning, competitiveness analysis, strategic recommendations. Purchasable on its own, no obligation to continue."
     },
     "full": {
       "name": "Full Package",
       "nameEn": "Full Package",
       "price": "$6,000–11,000",
-      "priceRmb": "approx. ¥45,000–80,000",
-      "description": "Five-milestone engagement covering 8–12 schools. All written deliverables included. Parent updates at every milestone, with additional check-ins during intensive phases."
+      "priceAlt": "approx. ¥45,000–80,000",
+      "description": "Five-milestone engagement covering 8–12 schools, with every written deliverable. Parent updates at each milestone plus additional check-ins during intensive phases."
     }
   },
   "faq": {
@@ -159,7 +159,11 @@
     "items": [
       {
         "q": "Aren't you just students yourselves?",
-        "a": "We just lived the application cycle we're consulting on. Two months ago, we were sitting across from admissions officers ourselves. Being close to the applicant experience is the point of this role, not a gap to apologize for. Former admissions officers can spot adult-ghostwritten essays; our age makes it easier for students to write in their own voice."
+        "a": "We just lived the application cycle we're consulting on. Two months ago, we were sitting across from admissions officers ourselves. That proximity is an advantage, not a liability. Former admissions officers can spot adult-ghostwritten essays; our closeness in age makes it easier for students to write in their own voice."
+      },
+      {
+        "q": "What is the refund and cancellation policy?",
+        "a": "Full terms are in our service agreement. Summary: Before Milestone 1 (Positioning Deck) delivery: first installment (50%) refunded, minus a $500 administrative fee. After Milestone 1, before Milestone 3 (Essay phase): first installment non-refundable (core deliverables received); second installment not yet collected. After Milestone 3 commences: both installments non-refundable (most labor-intensive phase). Either party may terminate with 30 days written notice; pro-rata refund applies to milestones not yet commenced. The free diagnostic carries no fee and requires no contract."
       },
       {
         "q": "How do you prevent ghostwriting concerns on essays?",
@@ -167,11 +171,11 @@
       },
       {
         "q": "Why no admission guarantee?",
-        "a": "Admissions decisions are made by the schools, entirely beyond our control. Our fees compensate for strategy, time, and written deliverables, not for outcome. Agencies that promise admission usually promise schools your child could get into without them. Our work is on the schools where the outcome isn't already decided."
+        "a": "Admissions decisions belong to the schools, not to us. Our fees compensate for strategy, time, and written deliverables, not for outcome. Agencies that promise admission usually lock in schools your child would already have a strong shot at, and package that certainty as a guarantee. We focus on the schools where strategy changes the outcome."
       },
       {
         "q": "What if you decline us after the diagnostic?",
-        "a": "The 90-minute diagnostic is free regardless. If we determine fit isn't right, you still leave with a candid assessment of your child's competitiveness. If you want that assessment in writing, the standalone Admissions Audit ($300–500) covers the same ground as a formal written report."
+        "a": "The 90-minute diagnostic is free regardless. If we determine fit isn't right, you still leave with a candid assessment of your child's competitiveness. If you want that assessment in writing, the standalone Admissions Audit (see Pricing below) covers the same ground as a formal written report."
       },
       {
         "q": "How many hours per week does the student commit?",
@@ -179,19 +183,15 @@
       },
       {
         "q": "How are you different from legacy agencies like New Oriental or Crimson?",
-        "a": "Instead of positioning ourselves against the market, here's what we actually do: two founders who admitted to MIT and Wharton the same cycle, native Mandarin with parents, five milestones with written deliverables at each stage."
-      },
-      {
-        "q": "What is the refund and cancellation policy?",
-        "a": "Full terms are in our service agreement. Summary: Before Milestone 1 (Positioning Deck) delivery: first installment (50%) refunded, minus a $500 administrative fee. After Milestone 1, before Milestone 3 (Essay phase): first installment non-refundable (core deliverables received); second installment not yet collected. After Milestone 3 commences: both installments non-refundable (most labor-intensive phase). Either party may terminate with 30 days written notice; pro-rata refund applies to milestones not yet commenced. The free diagnostic carries no fee and requires no contract."
+        "a": "We don't introduce ourselves by ranking competitors. Here's what we actually do: two founders who admitted to MIT and Wharton the same cycle, native Mandarin with parents, five milestones with written deliverables at each stage. Parents can judge fit from there."
       }
     ]
   },
   "contact": {
     "sectionTag": "Contact",
     "title": "Start here",
-    "cta": "Book Your Free Diagnostic →",
-    "ctaDescription": "A 90-minute session to assess your child's competitiveness and talk through next steps. The session is free, and whether we work together afterward is entirely your family's call."
+    "cta": "Book a 90-Minute Session →",
+    "ctaDescription": "At this point, you've seen the track record, the process, and the pricing. A 90-minute diagnostic tells you where your child's competitiveness sits today. Whether we work together afterward is your family's call."
   },
   "footer": {
     "copyright": "© 2026 EM Consulting. All rights reserved."
