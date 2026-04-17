@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# round-3 working artifacts (not shipped)
+/_optimize_images.py
+/public/images/.originals/

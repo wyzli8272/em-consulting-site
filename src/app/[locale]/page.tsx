@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { getDictionary, hasLocale } from "@/lib/dictionaries";
-import type { Locale } from "@/lib/dictionaries";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import WhyUs from "@/components/WhyUs";
@@ -21,7 +20,8 @@ export default async function Page({
 
   if (!hasLocale(locale)) notFound();
 
-  const dict = await getDictionary(locale as Locale);
+  // hasLocale is a type predicate — `locale` is narrowed to Locale below.
+  const dict = await getDictionary(locale);
 
   return (
     <>
@@ -31,9 +31,9 @@ export default async function Page({
         <WhyUs translations={dict.whyUs} />
         <Process translations={dict.process} />
         <TrackRecord translations={dict.trackRecord} />
-        <Team translations={dict.team} locale={locale} />
-        <Pricing translations={dict.pricing} locale={locale} />
+        <Team translations={dict.team} />
         <FAQ translations={dict.faq} />
+        <Pricing translations={dict.pricing} />
         <Contact translations={dict.contact} />
       </main>
       <Footer translations={dict.footer} />

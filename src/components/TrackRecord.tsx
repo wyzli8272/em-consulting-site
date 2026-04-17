@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
+import { EASE_OUT as ease } from "@/lib/motion";
 
 interface School {
   name: string;
@@ -30,8 +31,6 @@ interface TrackRecordProps {
   };
 }
 
-const ease = [0.16, 1, 0.3, 1] as const;
-
 export default function TrackRecord({ translations }: TrackRecordProps) {
   return (
     <section
@@ -41,13 +40,13 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
     >
       <div className="mx-auto max-w-[1200px]">
         {/* Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease }}
         >
-          <span className="section-tag text-gold">
+          <span className="section-tag text-navy/70">
             {translations.sectionTag}
           </span>
           <div className="accent-rule mt-4" aria-hidden="true" />
@@ -60,10 +59,10 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
           <p className="mt-5 max-w-[720px] text-body-lg text-navy/75 font-chinese">
             {translations.subtitle}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Block A: Founder credentials — primary proof */}
-        <motion.div
+        <m.div
           className="mt-16 grid gap-8 md:grid-cols-12 md:gap-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -87,7 +86,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </m.div>
 
         {/* Divider rule */}
         <div
@@ -96,7 +95,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
         />
 
         {/* Block B: Eric's mentorship — schools as prose list, not a logo bar */}
-        <motion.div
+        <m.div
           className="mt-16 grid gap-8 md:grid-cols-12 md:gap-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -136,11 +135,11 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </m.div>
 
         {/* Block C: Testimonial — oversized decorative quote mark, no border-stripe */}
         {translations.testimonial.quote && (
-          <motion.figure
+          <m.figure
             className="mt-20 relative"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -161,11 +160,11 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
                 — {translations.testimonial.attribution}
               </figcaption>
             </blockquote>
-          </motion.figure>
+          </m.figure>
         )}
 
         {/* Anti-objection framing — from Eric's project brief */}
-        <motion.p
+        <m.p
           className="mt-16 max-w-[720px] font-display text-subtitle text-navy/85 italic"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -173,7 +172,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
           transition={{ duration: 0.6, ease }}
         >
           {translations.antiObjection}
-        </motion.p>
+        </m.p>
       </div>
     </section>
   );

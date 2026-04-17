@@ -34,22 +34,29 @@ export default function Navigation({ translations, locale }: NavigationProps) {
   const firstFocusRef = useRef<HTMLButtonElement>(null);
   const lastFocusRef = useRef<HTMLAnchorElement>(null);
   const ticking = useRef(false);
+  const rafId = useRef<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       if (ticking.current) return;
-      requestAnimationFrame(() => {
+      // Set the flag BEFORE scheduling the frame so concurrent scroll events
+      // don't queue multiple RAFs between "check flag" and "set flag."
+      ticking.current = true;
+      rafId.current = requestAnimationFrame(() => {
         setScrolled((prev) => {
           const next = window.scrollY > 50;
           return prev === next ? prev : next;
         });
         ticking.current = false;
+        rafId.current = null;
       });
-      ticking.current = true;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId.current !== null) cancelAnimationFrame(rafId.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -105,14 +112,22 @@ export default function Navigation({ translations, locale }: NavigationProps) {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-cream/95 backdrop-blur-md shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
-          : "bg-ink/30 backdrop-blur-sm"
+          : "bg-ink/45 backdrop-blur-sm"
       }`}
       role="navigation"
       aria-label={locale === "zh-CN" ? "主导航" : "Main navigation"}
     >
       <div className="mx-auto max-w-[1200px] px-6 flex h-16 items-center justify-between">
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        {/* Anchor (not button) so middle-click / cmd-click / right-click behave
+            correctly and the link semantics are preserved for keyboard users.
+            preventDefault only on plain left-click to keep smooth scroll. */}
+        <a
+          href="#top"
+          onClick={(e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
           className={`font-display text-xl tracking-tight transition-colors duration-300 ${
             scrolled ? "text-navy" : "text-white"
           }`}
@@ -122,7 +137,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             {" — "}
             {locale === "zh-CN" ? "回到顶部" : "back to top"}
           </span>
-        </button>
+        </a>
 
         <div className="hidden items-center gap-7 md:flex">
           {sections.map((s) => (
@@ -144,6 +159,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
           />
           <Link
             href={otherLocale}
+            scroll={false}
             className={`text-xs uppercase tracking-[0.15em] font-medium transition-opacity duration-200 hover:opacity-70 ${
               scrolled ? "text-navy" : "text-white"
             }`}
@@ -177,6 +193,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
                 : "Open menu"
           }
           aria-expanded={mobileOpen}
+          aria-controls="mobile-menu-panel"
         >
           <div className="flex w-6 flex-col gap-1.5">
             <span
@@ -201,8 +218,13 @@ export default function Navigation({ translations, locale }: NavigationProps) {
         </button>
       </div>
 
-      {/* Mobile overlay as proper dialog */}
+      {/* Mobile overlay as proper dialog. The onKeyDown trap is required on
+          the dialog container itself to scope Tab/Shift+Tab/Escape behavior;
+          `role="dialog"` upgrades semantics but jsx-a11y doesn't treat it as
+          an interactive role, hence the targeted disable. */}
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <div
+        id="mobile-menu-panel"
         role="dialog"
         aria-modal="true"
         aria-label={locale === "zh-CN" ? "菜单" : "Menu"}
@@ -228,6 +250,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
           ))}
           <Link
             href={otherLocale}
+            scroll={false}
             className="text-xs uppercase tracking-[0.2em] font-medium text-white/80 transition-opacity duration-200 hover:opacity-70"
             tabIndex={mobileOpen ? 0 : -1}
           >

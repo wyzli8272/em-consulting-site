@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
+import { EASE_OUT as ease } from "@/lib/motion";
 
 interface ProcessProps {
   translations: {
@@ -15,8 +16,6 @@ interface ProcessProps {
   };
 }
 
-const ease = [0.16, 1, 0.3, 1] as const;
-
 export default function Process({ translations }: ProcessProps) {
   return (
     <section
@@ -25,7 +24,7 @@ export default function Process({ translations }: ProcessProps) {
       aria-labelledby="process-heading"
     >
       <div className="mx-auto max-w-[1200px]">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -41,13 +40,13 @@ export default function Process({ translations }: ProcessProps) {
           >
             {translations.title}
           </h2>
-        </motion.div>
+        </m.div>
 
         <ol className="mt-16 space-y-0">
           {translations.milestones.map((milestone, i) => (
-            <motion.li
+            <m.li
               key={milestone.number}
-              className="group relative flex gap-6 md:gap-10"
+              className="relative flex gap-6 md:gap-10"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -57,20 +56,15 @@ export default function Process({ translations }: ProcessProps) {
                 ease,
               }}
             >
-              {/* Outline-style timeline chip — gold as border, not fill (impeccable: gold as accent, not dominant) */}
-              <div className="flex flex-col items-center">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-gold/60 bg-white/[0.03] text-lg text-white">
-                  {milestone.number}
-                </div>
-                {i < translations.milestones.length - 1 && (
-                  <div
-                    className="w-0.5 grow bg-gold/25"
-                    aria-hidden="true"
-                  />
-                )}
-              </div>
+              {/* Italiana numeral alone — no chip, no connector. Brand discipline: gold is the accent, not decoration. */}
+              <span
+                className="font-display text-5xl md:text-6xl leading-none tabular-nums text-gold-muted shrink-0 w-14 md:w-16 pt-1"
+                aria-hidden="true"
+              >
+                {milestone.number}
+              </span>
 
-              <div className="pb-14 pt-3">
+              <div className="pb-14">
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                   <h3 className="text-subtitle font-display text-white">
                     {milestone.title}
@@ -83,7 +77,7 @@ export default function Process({ translations }: ProcessProps) {
                   {milestone.deliverable}
                 </p>
               </div>
-            </motion.li>
+            </m.li>
           ))}
         </ol>
       </div>

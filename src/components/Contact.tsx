@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
+import { EASE_OUT as ease } from "@/lib/motion";
 import { CALENDLY_URL } from "@/lib/constants";
 
 interface ContactProps {
@@ -12,8 +13,6 @@ interface ContactProps {
   };
 }
 
-const ease = [0.16, 1, 0.3, 1] as const;
-
 export default function Contact({ translations }: ContactProps) {
   return (
     <section
@@ -22,7 +21,7 @@ export default function Contact({ translations }: ContactProps) {
       aria-labelledby="contact-heading"
     >
       <div className="mx-auto max-w-[1200px]">
-        <motion.div
+        <m.div
           className="max-w-[720px]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +49,7 @@ export default function Contact({ translations }: ContactProps) {
           >
             {translations.cta}
           </a>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

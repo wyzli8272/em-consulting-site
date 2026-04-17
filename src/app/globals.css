@@ -3,10 +3,17 @@
 @theme inline {
   --color-navy: #003566;
   --color-gold: #FFD60A;
+  /* Gold ladder — only three tiers permitted site-wide:
+     - gold (full):  CTAs and the accent-rule only.
+     - gold-muted:   structural accents on dark surfaces (timeline numerals, dark-bg borders).
+     - gold-whisper: decorative traces (oversized quote mark, dividers).
+     Every other opacity of gold is a drift; consolidate back to one of these three. */
+  --color-gold-muted: color-mix(in oklch, #FFD60A 60%, transparent);
+  --color-gold-whisper: color-mix(in oklch, #FFD60A 15%, transparent);
   --color-ink: #000814;
   --color-cream: #FAF8F5;
 
-  --font-display: var(--font-display-serif), var(--font-noto-sans-sc), "PingFang SC", Georgia, serif;
+  --font-display: var(--font-display-serif), var(--font-noto-serif-sc), var(--font-noto-sans-sc), "PingFang SC", Georgia, serif;
   --font-body: var(--font-body-sans), var(--font-noto-sans-sc), "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-chinese: var(--font-noto-sans-sc), "PingFang SC", "Microsoft YaHei", sans-serif;
 }
@@ -31,7 +38,8 @@
 }
 
 .text-subtitle {
-  font-size: clamp(1.375rem, 1.2rem + 0.875vw, 2.125rem);
+  /* Raised floor 22 → 24px so Italiana mid-tier headings carry weight at small viewports. */
+  font-size: clamp(1.5rem, 1.325rem + 0.875vw, 2.125rem);
   line-height: 1.2;
 }
 

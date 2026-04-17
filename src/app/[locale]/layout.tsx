@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import { displayFont, bodyFont, chineseFont } from "@/lib/fonts";
+import { displayFont, bodyFont, chineseFont, chineseSerifFont } from "@/lib/fonts";
 import { hasLocale, getDictionary } from "@/lib/dictionaries";
-import type { Locale } from "@/lib/dictionaries";
+import { SITE_URL } from "@/lib/constants";
+import MotionConfigWrapper from "@/components/MotionConfigWrapper";
 import "../globals.css";
 
 export const viewport: Viewport = {
@@ -23,9 +24,14 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!hasLocale(locale)) return {};
 
-  const dict = await getDictionary(locale as Locale);
+  // hasLocale is a type predicate — `locale` is narrowed to Locale below.
+  const dict = await getDictionary(locale);
 
   return {
+    // Resolves relative OG/Twitter image URLs (including the ImageResponse
+    // routes at /opengraph-image, /icon, /apple-icon) to absolute URLs so
+    // WeChat / WhatsApp / Twitter crawlers can fetch them.
+    metadataBase: new URL(SITE_URL),
     title: dict.metadata.title,
     description: dict.metadata.description,
     openGraph: {
@@ -72,7 +78,7 @@ export default async function LocaleLayout({
       locale === "zh-CN"
         ? "沃顿·亨茨曼双学位与MIT录取背景。从定位到提交，为中国家庭提供结构化的美本申请策略服务。"
         : "Wharton Huntsman Dual Degree and MIT admit. Structured admissions consulting for Chinese families targeting U.S. top universities.",
-    url: "https://emconsulting.co",
+    url: SITE_URL,
     serviceType: "College Admissions Consulting",
     areaServed: {
       "@type": "Country",
@@ -87,14 +93,9 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale === "zh-CN" ? "zh-CN" : "en"}
-      className={`${displayFont.variable} ${bodyFont.variable} ${chineseFont.variable}`}
+      dir="ltr"
+      className={`${displayFont.variable} ${bodyFont.variable} ${chineseFont.variable} ${chineseSerifFont.variable}`}
     >
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
       <body className="font-body bg-cream text-navy antialiased">
         <a
           href="#main-content"
@@ -102,7 +103,13 @@ export default async function LocaleLayout({
         >
           {locale === "zh-CN" ? "跳至主要内容" : "Skip to main content"}
         </a>
-        {children}
+        <MotionConfigWrapper>{children}</MotionConfigWrapper>
+        <Script
+          id="jsonld-professional-service"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-CGMPR92FK7"
           strategy="afterInteractive"

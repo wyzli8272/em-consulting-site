@@ -14,11 +14,9 @@ export default function Footer({ translations }: FooterProps) {
         <span className="font-display text-lg tracking-tight text-white/90">
           EM Consulting
         </span>
-        <span className="text-sm text-white/65">
+        <span className="text-sm text-white/70">
           {translations.copyright}
         </span>
-        {/* TODO: Add WeChat Official Account link when ready */}
-        {/* TODO: Add Xiaohongshu link when ready */}
       </div>
     </footer>
   );

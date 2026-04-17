@@ -1,8 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
+import { EASE_OUT as ease } from "@/lib/motion";
 import { CALENDLY_URL } from "@/lib/constants";
+
+// Hero CTA is intentionally NOT wrapped in motion.* — it's inside the LCP
+// candidate region, so opacity animations would delay the largest paint.
+// The subtitle's subtle fade-in is fine; the button must be static.
 
 interface HeroProps {
   translations: {
@@ -13,8 +18,6 @@ interface HeroProps {
     ctaSubtext: string;
   };
 }
-
-const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Hero({ translations }: HeroProps) {
   return (
@@ -59,22 +62,18 @@ export default function Hero({ translations }: HeroProps) {
           <div className="accent-rule mt-8" aria-hidden="true" />
 
           {/* Subtitle */}
-          <motion.p
+          <m.p
             className="mt-6 max-w-[560px] text-body-xl text-white/80 font-chinese"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease }}
           >
             {translations.subtitle}
-          </motion.p>
+          </m.p>
 
-          {/* CTA */}
-          <motion.div
-            className="mt-10"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease }}
-          >
+          {/* CTA — static (no initial opacity:0 + delay) so the above-the-fold
+              primary action is part of LCP paint, not a post-hydration flash */}
+          <div className="mt-10">
             <a
               href={CALENDLY_URL}
               target="_blank"
@@ -86,7 +85,7 @@ export default function Hero({ translations }: HeroProps) {
             <p className="mt-3 text-sm text-white/70 font-chinese">
               {translations.ctaSubtext}
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
