@@ -1,4 +1,4 @@
-import { Italiana, Public_Sans, Noto_Sans_SC, Noto_Serif_SC } from "next/font/google";
+import { Italiana, Public_Sans, Noto_Sans_SC } from "next/font/google";
 
 // Display: Italiana — tall, hairline editorial serif (free twin of The Seasons).
 // Single weight (400) by design — elegance comes from the forms, not the weight variation.
@@ -18,10 +18,13 @@ export const bodyFont = Public_Sans({
 });
 
 // Chinese body (grotesque). Used for body copy in zh-CN.
-// preload: false — the layout only applies this font's className when
-// locale === "zh-CN", so on /en the font-face rule is emitted but no element
-// references it and the browser never fetches the woff2. Avoids shipping
-// ~75 KB of CJK glyphs to English-locale visitors.
+// preload: false — Google ships Noto Sans SC as ~100 per-unicode-range
+// woff2 shards per weight (219 @font-face rules in dev). Without
+// preload:false Next would inject <link rel="preload"> for every one of
+// them, slowing first paint on EVERY locale. With preload:false the CSS
+// is emitted but the browser only downloads a shard when a glyph in that
+// unicode-range is actually rendered — so /en (all-Latin content) never
+// fetches a single CJK woff2.
 export const chineseFont = Noto_Sans_SC({
   subsets: ["latin"],
   variable: "--font-noto-sans-sc",
@@ -30,14 +33,19 @@ export const chineseFont = Noto_Sans_SC({
   preload: false,
 });
 
-// Chinese display (serif). Restores editorial serif voice for zh-CN headlines,
-// closing the cohesion gap where Italiana has zero CJK coverage and zh-CN H1
-// was falling through to the Sans grotesque. preload: false for the same
-// reason as chineseFont above.
-export const chineseSerifFont = Noto_Serif_SC({
-  subsets: ["latin"],
-  variable: "--font-noto-serif-sc",
-  display: "swap",
-  weight: ["300", "400"],
-  preload: false,
-});
+// NOTE: no Google-hosted CJK serif.
+//
+// We tried Noto_Serif_SC via next/font/google. Under Next 16 / Turbopack
+// it silently emitted zero @font-face rules regardless of weight config
+// (["300","400"], "400" alone — same null result). That left
+// `chineseSerifFont.variable` as the empty string, so the `--font-display`
+// var() chain in globals.css contained an unresolved reference and the
+// entire custom property went invalid-at-computed-value time — taking
+// Italiana down with it on BOTH locales.
+//
+// The right answer turned out to be simpler than fighting the font
+// loader: for zh-CN headlines, use the CJK serifs that already ship with
+// every target OS (PingFang SC on Apple, Microsoft YaHei / SimSun on
+// Windows, Noto Serif CJK SC on modern Linux). They render instantly,
+// download nothing, and are conventional Chinese editorial serifs.
+// The fallback stack lives in globals.css on the `--font-display` chain.

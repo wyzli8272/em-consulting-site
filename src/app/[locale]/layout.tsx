@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import { displayFont, bodyFont, chineseFont, chineseSerifFont } from "@/lib/fonts";
+import { displayFont, bodyFont, chineseFont } from "@/lib/fonts";
 import { hasLocale, getDictionary } from "@/lib/dictionaries";
 import { SITE_URL } from "@/lib/constants";
 import MotionConfigWrapper from "@/components/MotionConfigWrapper";
@@ -92,14 +92,18 @@ export default async function LocaleLayout({
     ],
   };
 
-  // Conditional font className: only attach the CJK font variables on zh-CN.
-  // Combined with `preload: false` on the CJK fonts in lib/fonts.ts, this means
-  // /en visitors never download the ~75 KB Noto Sans SC + ~80 KB Noto Serif SC
-  // bundles. Italiana + Public Sans alone cover all Latin glyphs on /en.
-  const fontClassName =
-    locale === "zh-CN"
-      ? `${displayFont.variable} ${bodyFont.variable} ${chineseFont.variable} ${chineseSerifFont.variable}`
-      : `${displayFont.variable} ${bodyFont.variable}`;
+  // Three font .variable classes are attached on both locales. Italiana
+  // and Public Sans cover all Latin glyphs; Noto Sans SC fills the CJK
+  // range for body copy on zh-CN. For zh-CN display headlines we rely on
+  // the OS-native CJK serifs declared in `--font-display` (PingFang SC /
+  // Microsoft YaHei / Songti SC) — see lib/fonts.ts for why we removed
+  // the Noto_Serif_SC next/font/google binding.
+  //
+  // Noto Sans SC is preload:false, so no <link rel="preload"> is
+  // injected — its 100+ per-unicode-range woff2 shards only download
+  // when a glyph in a given range actually renders. English content
+  // has no CJK glyphs → no CJK woff2 fetched on /en.
+  const fontClassName = `${displayFont.variable} ${bodyFont.variable} ${chineseFont.variable}`;
 
   return (
     <html

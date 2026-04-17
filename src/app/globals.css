@@ -13,9 +13,22 @@
   --color-ink: #000814;
   --color-cream: #FAF8F5;
 
-  --font-display: var(--font-display-serif), var(--font-noto-serif-sc), var(--font-noto-sans-sc), "PingFang SC", Georgia, serif;
-  --font-body: var(--font-body-sans), var(--font-noto-sans-sc), "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-chinese: var(--font-noto-sans-sc), "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* Font chains:
+     - Every var() carries a keyword fallback so an undefined CSS custom
+       property can't invalidate the declaration. Without the fallback,
+       CSS would mark the whole `--font-display` property invalid-at-
+       computed-value-time and fall the H1 back to the user agent default
+       (which is what was breaking Italiana on both locales).
+     - For the CJK display serif, we don't try to load a web font at all.
+       PingFang SC (Apple), Songti SC / STSong (Apple editorial), Microsoft
+       YaHei / SimSun (Windows), and Noto Serif CJK SC (Linux) are already
+       installed on every target device. Italiana renders Latin glyphs; the
+       browser transparently substitutes the OS CJK serif for Chinese
+       characters. Zero additional download, zero FOIT, zero dependency
+       on next/font/google's finicky CJK handling. */
+  --font-display: var(--font-display-serif, Georgia), "PingFang SC", "Songti SC", "STSong", "Microsoft YaHei", SimSun, Georgia, serif;
+  --font-body: var(--font-body-sans, Helvetica), var(--font-noto-sans-sc, "PingFang SC"), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-chinese: var(--font-noto-sans-sc, "PingFang SC"), "Microsoft YaHei", sans-serif;
 }
 
 /* Fluid type scale */
