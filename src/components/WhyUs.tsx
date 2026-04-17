@@ -18,7 +18,7 @@ export default function WhyUs({ translations }: WhyUsProps) {
   return (
     <section
       id="why-us"
-      className="section-standard px-6"
+      className="section-compact px-6"
       aria-labelledby="why-us-heading"
     >
       <div className="mx-auto max-w-[1200px] md:grid md:grid-cols-12 md:gap-12">

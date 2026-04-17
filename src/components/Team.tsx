@@ -27,18 +27,12 @@ const photos: Record<string, { src: string; position: string }> = {
   Mary: { src: "/images/mary.jpg", position: "center 15%" },
 };
 
-function MemberCard({
-  member,
-  offset,
-}: {
-  member: TeamMember;
-  offset?: boolean;
-}) {
+function MemberCard({ member }: { member: TeamMember }) {
   const photoKey = Object.keys(photos).find((k) => member.name.startsWith(k));
   const photo = photoKey ? photos[photoKey] : undefined;
 
   return (
-    <div className={offset ? "md:mt-20" : ""}>
+    <div>
       <div className="relative mb-6 aspect-[4/5] w-full max-w-[380px] overflow-hidden bg-navy/5">
         {photo && (
           <Image
@@ -55,6 +49,8 @@ function MemberCard({
       </div>
       <h3 className="text-subtitle font-display text-navy">{member.name}</h3>
       <p className="mt-1 text-sm text-navy/70">{member.role}</p>
+      {/* Credential bullets use a middle-dot, not an em-dash, to keep
+          em-dash usage scoped to sentence-level punctuation elsewhere. */}
       <ul className="mt-4 space-y-2" role="list">
         {member.credentials.map((cred) => (
           <li
@@ -62,10 +58,10 @@ function MemberCard({
             className="flex items-start gap-3 text-body-lg text-navy/80 font-chinese"
           >
             <span
-              className="text-navy/40 shrink-0 select-none"
+              className="text-navy/35 shrink-0 select-none pt-[0.1em]"
               aria-hidden="true"
             >
-              —
+              ·
             </span>
             {cred}
           </li>
@@ -79,7 +75,7 @@ export default function Team({ translations }: TeamProps) {
   return (
     <section
       id="team"
-      className="bg-white section-standard px-6"
+      className="bg-cream section-standard px-6"
       aria-labelledby="team-heading"
     >
       <div className="mx-auto max-w-[1200px]">
@@ -101,11 +97,14 @@ export default function Team({ translations }: TeamProps) {
           </h2>
         </m.div>
 
+        {/* Equal 6/6 grid: both partners the same visual weight.
+            Plain fade-rise (no scale, no blur-in) — editorial portraits
+            don't need cinematic entrances. */}
         <div className="mt-16 grid gap-12 md:grid-cols-12 md:gap-16">
           <m.div
             className="md:col-span-6"
-            initial={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
-            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, ease }}
           >
@@ -114,12 +113,12 @@ export default function Team({ translations }: TeamProps) {
 
           <m.div
             className="md:col-span-6"
-            initial={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
-            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, delay: 0.15, ease }}
           >
-            <MemberCard member={translations.mary} offset />
+            <MemberCard member={translations.mary} />
           </m.div>
         </div>
 
