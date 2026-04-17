@@ -205,13 +205,15 @@ export default function Navigation({ translations, locale }: NavigationProps) {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "bg-cream/95 shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
-          : // Pre-scroll scrim over the hero photo. Bumped 65% → 80%
-            // because on the upper-right of the campus photo (sky +
-            // pillars) the mid-tones pushed the effective contrast of
-            // `text-white/80` nav links below WCAG 4.5:1. Full white text
-            // on ink/80 clears 12:1 against pure ink and still clears
-            // ~5.5:1 against the lightest photo areas.
+          ? // Hairline boundary instead of drop shadow — editorial
+            // publications use a rule, not a cast shadow, to separate
+            // the masthead from the page. navy/[0.08] matches the
+            // Footer's top border weight so the page opens and closes
+            // with the same hairline signature.
+            "bg-cream/95 border-b border-navy/[0.08]"
+          : // Pre-scroll scrim over the hero photo. 80% ink so
+            // `text-white/80` nav links clear 4.5:1 even over the
+            // lightest areas of the campus photo.
             "bg-ink/80"
       }`}
       aria-label={locale === "zh-CN" ? "主导航" : "Main navigation"}
@@ -247,12 +249,19 @@ export default function Navigation({ translations, locale }: NavigationProps) {
 
         <div className="hidden items-center gap-7 md:flex">
           {sections.map((s) => (
+            // Hover uses color transition, not opacity. `hover:opacity-70`
+            // mutes the entire element including text stroke, which makes
+            // the hairline Italiana wordmark (and the tight letter-spacing
+            // of the section labels) look momentarily broken. Color-based
+            // hover preserves glyph weight.
             <a
               key={s.id}
               href={`#${s.id}`}
               onClick={(e) => scrollTo(s.id, e)}
-              className={`text-xs uppercase tracking-[0.15em] font-medium transition-opacity duration-200 hover:opacity-70 ${
-                scrolled ? "text-navy" : "text-white"
+              className={`text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-200 ${
+                scrolled
+                  ? "text-navy hover:text-navy/60"
+                  : "text-white hover:text-white/70"
               }`}
             >
               {translations[s.key]}
@@ -273,8 +282,10 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             scroll={false}
             onClick={handleLocaleSwitch}
             lang={locale === "zh-CN" ? "en" : "zh-CN"}
-            className={`text-xs uppercase tracking-[0.15em] font-medium transition-opacity duration-200 hover:opacity-70 ${
-              scrolled ? "text-navy" : "text-white"
+            className={`text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-200 ${
+              scrolled
+                ? "text-navy hover:text-navy/60"
+                : "text-white hover:text-white/70"
             }`}
             aria-label={switchLabel}
           >
@@ -285,7 +296,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gold text-ink px-5 py-2 text-xs uppercase tracking-[0.1em] font-medium transition-colors duration-200 hover:bg-gold/85"
+            className="bg-gold text-ink px-5 py-2 text-xs uppercase tracking-[0.1em] font-medium transition-colors duration-200 hover:bg-gold-hover"
           >
             {translations.cta}
             <span className="sr-only"> {ctaNewTabLabel}</span>
@@ -363,7 +374,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
               ref={i === 0 ? firstFocusRef : undefined}
               href={`#${s.id}`}
               onClick={(e) => scrollTo(s.id, e)}
-              className="text-xs uppercase tracking-[0.2em] font-medium text-white transition-opacity duration-200 hover:opacity-70"
+              className="text-xs uppercase tracking-[0.2em] font-medium text-white transition-colors duration-200 hover:text-white/70"
               tabIndex={mobileOpen ? 0 : -1}
             >
               {translations[s.key]}
@@ -374,7 +385,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             scroll={false}
             onClick={handleLocaleSwitch}
             lang={locale === "zh-CN" ? "en" : "zh-CN"}
-            className="text-xs uppercase tracking-[0.2em] font-medium text-white/80 transition-opacity duration-200 hover:opacity-70"
+            className="text-xs uppercase tracking-[0.2em] font-medium text-white/80 transition-colors duration-200 hover:text-white"
             aria-label={switchLabel}
           >
             {toggleLabel}
@@ -384,7 +395,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 bg-gold px-8 py-3 text-ink text-xs uppercase tracking-[0.1em] font-medium transition-colors duration-200 hover:bg-gold/85"
+            className="mt-4 bg-gold px-8 py-3 text-ink text-xs uppercase tracking-[0.1em] font-medium transition-colors duration-200 hover:bg-gold-hover"
             tabIndex={mobileOpen ? 0 : -1}
           >
             {translations.cta}

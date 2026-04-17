@@ -52,7 +52,7 @@ export default async function LocaleNotFound() {
       </p>
       <Link
         href={isZh ? "/" : "/en"}
-        className="mt-10 inline-block bg-gold px-8 py-3.5 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold/85"
+        className="mt-10 inline-block bg-gold px-8 py-3.5 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold-hover"
       >
         {dict.nav.cta /* reuses the primary CTA label so the 404 stays on-brand */}
       </Link>

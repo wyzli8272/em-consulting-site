@@ -10,6 +10,12 @@
      Every other opacity of gold is a drift; consolidate back to one of these three. */
   --color-gold-muted: color-mix(in oklch, #FFD60A 60%, transparent);
   --color-gold-whisper: color-mix(in oklch, #FFD60A 15%, transparent);
+  /* gold-hover: CTA hover state only. Kept as a named token instead of
+     the inline `hover:bg-gold/85` utility so the "4th tier" doesn't drift
+     into decorative use — hover is a semantic role, not a general opacity
+     variant of the gold accent. The 85% value is tuned to read as a
+     confident dim (still clearly gold) rather than a washed-out gray. */
+  --color-gold-hover: color-mix(in oklch, #FFD60A 85%, transparent);
   --color-ink: #000814;
   --color-cream: #FAF8F5;
 
@@ -143,6 +149,18 @@ body {
 summary.faq-summary:focus-visible {
   outline-offset: 6px;
   border-radius: 2px;
+}
+
+/* zh-CN display weight correction. Italiana ships weight 400 but reads
+   as a hairline on the page (roughly weight 200 optically). The OS CJK
+   serifs it falls through to (Songti SC, STSong, SimSun, Noto Serif CJK
+   SC) render at their native weight 400, which produces a ~1.5x weight
+   mismatch mid-headline on zh-CN where Latin glyphs sit next to Chinese
+   characters. Force weight 300 on the zh-CN display class so the CJK
+   fallback cut lands closer to Italiana's optical weight. No effect on
+   /en where Italiana is the only font that renders. */
+html[lang="zh-CN"] .font-display {
+  font-weight: 300;
 }
 
 /* Gold CTAs need an inset focus indicator. The default `:focus-visible`

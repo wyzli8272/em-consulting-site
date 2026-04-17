@@ -34,7 +34,7 @@ export default async function AppleIcon() {
             display: "flex",
             fontSize: 96,
             fontWeight: 400,
-            letterSpacing: "-0.05em",
+            letterSpacing: "-0.04em",
             lineHeight: 1,
           }}
         >

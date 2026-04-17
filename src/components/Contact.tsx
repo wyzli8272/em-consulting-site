@@ -18,7 +18,7 @@ export default function Contact({ translations }: ContactProps) {
   return (
     <section
       id="contact"
-      className="border-t border-gold-whisper bg-ink section-hero px-6"
+      className="border-t border-white/[0.08] bg-ink section-hero px-6"
       aria-labelledby="contact-heading"
     >
       <div className="mx-auto max-w-[1200px]">
@@ -46,7 +46,7 @@ export default function Contact({ translations }: ContactProps) {
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-10 inline-block bg-gold px-10 py-4 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold/85"
+            className="mt-10 inline-block bg-gold px-10 py-4 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold-hover"
           >
             {translations.cta}
           </a>

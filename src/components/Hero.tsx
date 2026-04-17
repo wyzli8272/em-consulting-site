@@ -89,7 +89,7 @@ export default function Hero({ translations }: HeroProps) {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-gold px-8 py-3.5 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold/85"
+              className="inline-block bg-gold px-8 py-3.5 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold-hover"
             >
               {translations.cta}
             </a>

@@ -16,7 +16,7 @@ export default function Footer({ translations }: FooterProps) {
             rather than a trailing footer strip. */}
         <div className="accent-rule" aria-hidden="true" />
         <div className="flex w-full flex-col items-center justify-between gap-4 md:flex-row">
-          <span className="font-display text-lg tracking-tight text-white/90">
+          <span className="font-display text-xl tracking-tight text-white">
             EM Consulting
           </span>
           <span className="text-sm text-white/70">
