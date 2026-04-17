@@ -14,7 +14,8 @@ export type Locale = keyof typeof dictionaries;
 
 /** Canonical dictionary shape, derived from zh-CN (the default locale and
  *  the source of truth for available keys). Both locale files must match
- *  this shape; `scripts/check-i18n.ts` enforces it at build time. */
+ *  this shape at runtime; `scripts/check-i18n.mjs` enforces structural
+ *  parity via the `prebuild` hook so a mismatched file cannot ship. */
 export type Dictionary = typeof zhCN;
 
 export const locales: Locale[] = ["zh-CN", "en"];

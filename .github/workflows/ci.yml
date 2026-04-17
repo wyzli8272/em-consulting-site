@@ -1,0 +1,51 @@
+# CI for em-consulting-site.
+#
+# Mirrors what Vercel runs on deploy, but catches failures in the PR before
+# merge. The `check` script fans out to lint + typecheck + i18n parity, and
+# `build` exercises the prebuild hook + full Next.js production compile.
+#
+# Runtime: Node 20 LTS (aligned with @types/node ^20 and Next 16's baseline).
+
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+# Cancel in-flight runs when a newer commit lands on the same ref.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint · typecheck · i18n · build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: i18n parity check
+        run: npm run check-i18n
+
+      - name: Build
+        run: npm run build
