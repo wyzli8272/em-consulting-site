@@ -117,15 +117,13 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
                 className="flex items-center gap-4 py-4"
               >
                 {school.logo ? (
-                  <div className="relative h-10 w-10 shrink-0 grayscale opacity-60">
-                    <Image
-                      src={school.logo}
-                      alt=""
-                      fill
-                      sizes="40px"
-                      className="object-contain"
-                    />
-                  </div>
+                  <Image
+                    src={school.logo}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 shrink-0 object-contain grayscale opacity-60"
+                  />
                 ) : (
                   <div className="h-10 w-10 shrink-0" aria-hidden="true" />
                 )}
@@ -147,7 +145,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
             transition={{ duration: 0.6, ease }}
           >
             <span
-              className="absolute -top-6 -left-2 md:-top-10 md:-left-6 font-display text-[8rem] md:text-[12rem] leading-none text-gold/20 select-none pointer-events-none"
+              className="absolute -top-6 -left-2 md:-top-10 md:-left-6 font-display text-[8rem] md:text-[12rem] leading-none text-gold-whisper select-none pointer-events-none"
               aria-hidden="true"
             >
               &ldquo;
@@ -156,7 +154,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
               <p className="max-w-[760px] text-body-xl italic text-navy/80 font-chinese">
                 {translations.testimonial.quote}
               </p>
-              <figcaption className="mt-6 text-sm text-navy/65 font-chinese not-italic">
+              <figcaption className="mt-6 text-sm text-navy/70 font-chinese not-italic">
                 — {translations.testimonial.attribution}
               </figcaption>
             </blockquote>

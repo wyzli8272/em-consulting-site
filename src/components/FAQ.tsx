@@ -20,7 +20,7 @@ export default function FAQ({ translations }: FAQProps) {
   return (
     <section
       id="faq"
-      className="bg-white section-standard px-6"
+      className="bg-cream section-standard px-6"
       aria-labelledby="faq-heading"
     >
       <div className="mx-auto max-w-[1200px] md:grid md:grid-cols-12 md:gap-12">
@@ -44,57 +44,63 @@ export default function FAQ({ translations }: FAQProps) {
           </h2>
         </m.div>
 
-        {/* Right column — details/summary accordion, no JS needed */}
-        <div className="mt-12 md:col-span-8 md:mt-0 divide-y divide-navy/10">
+        {/* Right column — details/summary accordion, no JS needed.
+            ul/li wrap is critical: screen readers announce "list of N items"
+            which they cannot derive from a bare stack of details elements. */}
+        <ul
+          role="list"
+          className="mt-12 md:col-span-8 md:mt-0 divide-y divide-navy/10 list-none"
+        >
           {translations.items.map((item, i) => (
-            <m.details
-              key={item.q}
-              className="group py-6"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.5,
-                delay: i * 0.05,
-                ease,
-              }}
-            >
-              <summary className="flex cursor-pointer items-start justify-between gap-6 text-left">
-                <div className="flex gap-5">
-                  <span
-                    className="font-display text-sm text-navy/40 pt-1 tabular-nums shrink-0 w-6"
+            <li key={item.q}>
+              <m.details
+                className="group py-6"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: i * 0.05,
+                  ease,
+                }}
+              >
+                <summary className="faq-summary flex cursor-pointer items-start justify-between gap-6 text-left">
+                  <div className="flex gap-5">
+                    <span
+                      className="font-display text-sm text-navy/40 pt-1 tabular-nums shrink-0 w-6"
+                      aria-hidden="true"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-subtitle font-display text-navy group-hover:text-navy/75 transition-colors">
+                      {item.q}
+                    </span>
+                  </div>
+                  <svg
+                    className="faq-chevron shrink-0 mt-2 h-5 w-5 text-navy/70 transition-transform duration-300"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                     aria-hidden="true"
                   >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-subtitle font-display text-navy group-hover:text-navy/75 transition-colors">
-                    {item.q}
-                  </span>
+                    <path
+                      d="M5 8l5 5 5-5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </summary>
+                <div className="mt-4 pl-11">
+                  <p className="max-w-[640px] text-body-lg text-navy/80 font-chinese">
+                    {item.a}
+                  </p>
                 </div>
-                <svg
-                  className="faq-chevron shrink-0 mt-2 h-5 w-5 text-navy/70 transition-transform duration-300"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M5 8l5 5 5-5"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </summary>
-              <div className="mt-4 pl-11">
-                <p className="max-w-[640px] text-body-lg text-navy/80 font-chinese">
-                  {item.a}
-                </p>
-              </div>
-            </m.details>
+              </m.details>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

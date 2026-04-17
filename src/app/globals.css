@@ -109,10 +109,16 @@ body {
   }
 }
 
-/* Focus styles for accessibility — currentColor adapts to foreground on dark/light */
+/* Focus styles for accessibility — currentColor adapts to foreground on dark/light.
+   Summary gets a slightly larger offset because the chevron crowds the right edge. */
 :focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
+}
+
+summary.faq-summary:focus-visible {
+  outline-offset: 6px;
+  border-radius: 2px;
 }
 
 /* FAQ details/summary styling */

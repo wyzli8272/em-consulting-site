@@ -31,8 +31,9 @@ const sections = [
 export default function Navigation({ translations, locale }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const firstFocusRef = useRef<HTMLButtonElement>(null);
+  const firstFocusRef = useRef<HTMLAnchorElement>(null);
   const lastFocusRef = useRef<HTMLAnchorElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const ticking = useRef(false);
   const rafId = useRef<number | null>(null);
 
@@ -62,20 +63,28 @@ export default function Navigation({ translations, locale }: NavigationProps) {
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
-      // Move initial focus to first interactive element
-      setTimeout(() => firstFocusRef.current?.focus(), 50);
-    } else {
-      document.body.style.overflow = "";
+      // Move initial focus to first interactive element. Tracked so the
+      // cleanup can cancel the scheduled focus if the dialog closes before
+      // the timeout fires (prevents a stale focus call on an unmounted ref).
+      const id = window.setTimeout(() => firstFocusRef.current?.focus(), 50);
+      return () => {
+        document.body.style.overflow = "";
+        window.clearTimeout(id);
+      };
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = "";
+    return undefined;
   }, [mobileOpen]);
 
   useEffect(() => {
     if (!mobileOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileOpen(false);
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        // Restore focus to the hamburger trigger so screen-reader users
+        // aren't dropped on <body> after dismissing the dialog.
+        triggerRef.current?.focus();
+      }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
@@ -99,22 +108,58 @@ export default function Navigation({ translations, locale }: NavigationProps) {
     [mobileOpen]
   );
 
-  const scrollTo = useCallback((id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setMobileOpen(false);
-  }, []);
+  /**
+   * Smooth-scroll to a section anchor on plain left-click, otherwise let the
+   * browser handle the link (middle-click, cmd-click, right-click etc.). The
+   * `scrollIntoView` behavior is forced to `auto` when the user has
+   * prefers-reduced-motion set — meeting WCAG 2.3.3 without suppressing all
+   * scroll behavior for everyone.
+   */
+  const scrollTo = useCallback(
+    (id: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      const prefersReduced =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.getElementById(id)?.scrollIntoView({
+        behavior: prefersReduced ? "auto" : "smooth",
+      });
+      history.replaceState(null, "", `#${id}`);
+      setMobileOpen(false);
+    },
+    []
+  );
 
   const otherLocale = locale === "zh-CN" ? "/en" : "/";
   const toggleLabel = locale === "zh-CN" ? "EN" : "中";
+  const switchLabel =
+    locale === "zh-CN" ? "Switch to English" : "切换到中文";
+  const ctaNewTabLabel =
+    locale === "zh-CN" ? "（在新窗口打开）" : "(opens in new tab)";
+
+  // Preserve the current section anchor when switching locales so the reader
+  // doesn't lose their place. Runs only on plain left-click; middle/cmd/shift
+  // fall through to the default /en or / URL.
+  const handleLocaleSwitch = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      if (typeof window === "undefined") return;
+      const hash = window.location.hash;
+      if (!hash) return;
+      e.preventDefault();
+      window.location.assign(`${otherLocale}${hash}`);
+    },
+    [otherLocale]
+  );
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "bg-cream/95 backdrop-blur-md shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
-          : "bg-ink/45 backdrop-blur-sm"
+          ? "bg-cream/95 shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
+          : "bg-ink/65"
       }`}
-      role="navigation"
       aria-label={locale === "zh-CN" ? "主导航" : "Main navigation"}
     >
       <div className="mx-auto max-w-[1200px] px-6 flex h-16 items-center justify-between">
@@ -126,7 +171,14 @@ export default function Navigation({ translations, locale }: NavigationProps) {
           onClick={(e) => {
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            const prefersReduced =
+              typeof window !== "undefined" &&
+              window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            window.scrollTo({
+              top: 0,
+              behavior: prefersReduced ? "auto" : "smooth",
+            });
+            history.replaceState(null, "", window.location.pathname);
           }}
           className={`font-display text-xl tracking-tight transition-colors duration-300 ${
             scrolled ? "text-navy" : "text-white"
@@ -141,18 +193,20 @@ export default function Navigation({ translations, locale }: NavigationProps) {
 
         <div className="hidden items-center gap-7 md:flex">
           {sections.map((s) => (
-            <button
+            <a
               key={s.id}
-              onClick={() => scrollTo(s.id)}
+              href={`#${s.id}`}
+              onClick={(e) => scrollTo(s.id, e)}
               className={`text-xs uppercase tracking-[0.15em] font-medium transition-opacity duration-200 hover:opacity-70 ${
                 scrolled ? "text-navy" : "text-white"
               }`}
             >
               {translations[s.key]}
-            </button>
+            </a>
           ))}
 
-          {/* Locale toggle with divider */}
+          {/* Locale toggle with divider so it's visually distinct from the
+              section anchors — a small but important affordance. */}
           <span
             className={`h-4 w-px ${scrolled ? "bg-navy/20" : "bg-white/30"}`}
             aria-hidden="true"
@@ -160,12 +214,11 @@ export default function Navigation({ translations, locale }: NavigationProps) {
           <Link
             href={otherLocale}
             scroll={false}
+            onClick={handleLocaleSwitch}
             className={`text-xs uppercase tracking-[0.15em] font-medium transition-opacity duration-200 hover:opacity-70 ${
               scrolled ? "text-navy" : "text-white"
             }`}
-            aria-label={
-              locale === "zh-CN" ? "Switch to English" : "切换到中文"
-            }
+            aria-label={switchLabel}
           >
             {toggleLabel}
           </Link>
@@ -177,10 +230,12 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             className="bg-gold text-ink px-5 py-2 text-xs uppercase tracking-[0.1em] font-medium transition-colors duration-200 hover:bg-gold/85"
           >
             {translations.cta}
+            <span className="sr-only"> {ctaNewTabLabel}</span>
           </a>
         </div>
 
         <button
+          ref={triggerRef}
           onClick={() => setMobileOpen(!mobileOpen)}
           className="relative z-[60] flex h-11 w-11 items-center justify-center md:hidden"
           aria-label={
@@ -238,21 +293,24 @@ export default function Navigation({ translations, locale }: NavigationProps) {
       >
         <div className="flex flex-col items-center gap-8">
           {sections.map((s, i) => (
-            <button
+            <a
               key={s.id}
               ref={i === 0 ? firstFocusRef : undefined}
-              onClick={() => scrollTo(s.id)}
+              href={`#${s.id}`}
+              onClick={(e) => scrollTo(s.id, e)}
               className="text-xs uppercase tracking-[0.2em] font-medium text-white transition-opacity duration-200 hover:opacity-70"
               tabIndex={mobileOpen ? 0 : -1}
             >
               {translations[s.key]}
-            </button>
+            </a>
           ))}
           <Link
             href={otherLocale}
             scroll={false}
+            onClick={handleLocaleSwitch}
             className="text-xs uppercase tracking-[0.2em] font-medium text-white/80 transition-opacity duration-200 hover:opacity-70"
             tabIndex={mobileOpen ? 0 : -1}
+            aria-label={switchLabel}
           >
             {toggleLabel}
           </Link>
@@ -265,6 +323,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             tabIndex={mobileOpen ? 0 : -1}
           >
             {translations.cta}
+            <span className="sr-only"> {ctaNewTabLabel}</span>
           </a>
         </div>
       </div>
