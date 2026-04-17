@@ -1,4 +1,4 @@
-import { Italiana, Public_Sans, Noto_Sans_SC } from "next/font/google";
+import { Italiana, Public_Sans } from "next/font/google";
 
 // Display: Italiana — tall, hairline editorial serif (free twin of The Seasons).
 // Single weight (400) by design — elegance comes from the forms, not the weight variation.
@@ -17,35 +17,28 @@ export const bodyFont = Public_Sans({
   weight: ["400", "500", "600"],
 });
 
-// Chinese body (grotesque). Used for body copy in zh-CN.
-// preload: false — Google ships Noto Sans SC as ~100 per-unicode-range
-// woff2 shards per weight (219 @font-face rules in dev). Without
-// preload:false Next would inject <link rel="preload"> for every one of
-// them, slowing first paint on EVERY locale. With preload:false the CSS
-// is emitted but the browser only downloads a shard when a glyph in that
-// unicode-range is actually rendered — so /en (all-Latin content) never
-// fetches a single CJK woff2.
-export const chineseFont = Noto_Sans_SC({
-  subsets: ["latin"],
-  variable: "--font-noto-sans-sc",
-  display: "swap",
-  weight: ["400", "700"],
-  preload: false,
-});
-
-// NOTE: no Google-hosted CJK serif.
+// NOTE: no Google-hosted CJK web fonts at all.
 //
-// We tried Noto_Serif_SC via next/font/google. Under Next 16 / Turbopack
-// it silently emitted zero @font-face rules regardless of weight config
-// (["300","400"], "400" alone — same null result). That left
-// `chineseSerifFont.variable` as the empty string, so the `--font-display`
-// var() chain in globals.css contained an unresolved reference and the
-// entire custom property went invalid-at-computed-value time — taking
-// Italiana down with it on BOTH locales.
+// Round 4 attempted to bundle Noto Serif SC via next/font/google for
+// zh-CN display headlines. Under Next 16 / Turbopack it silently emitted
+// zero @font-face rules, invalidating the --font-display var() chain
+// and taking Italiana down on both locales (fixed in f67453f by switching
+// display to OS-native CJK serifs).
 //
-// The right answer turned out to be simpler than fighting the font
-// loader: for zh-CN headlines, use the CJK serifs that already ship with
-// every target OS (PingFang SC on Apple, Microsoft YaHei / SimSun on
-// Windows, Noto Serif CJK SC on modern Linux). They render instantly,
-// download nothing, and are conventional Chinese editorial serifs.
-// The fallback stack lives in globals.css on the `--font-display` chain.
+// Round 5's Evidence Collector then measured the body-text side of the
+// equation: Noto Sans SC via next/font/google was still loading ~1 MB
+// of woff2 shards on every zh-CN cold visit. Google ships CJK Noto as
+// ~100 unicode-range chunks per weight; `preload: false` only removes
+// the `<link rel="preload">` hint — the moment any CJK glyph renders,
+// CSS references the family name and the browser fetches shards on
+// demand. With most of the zh-CN page in Chinese, most shards get
+// fetched. Lighthouse Performance on zh-CN: 37.
+//
+// The fix mirrors the Round 4 Noto Serif SC fix: drop the Google
+// binding entirely and fall through to OS-native CJK sans — PingFang SC
+// on Apple, Microsoft YaHei on Windows, Noto Sans CJK SC on modern
+// Linux. Every target device ships one. Zero runtime download, zero
+// FOIT, zero unicode-range fragmentation.
+//
+// The fallback stack lives on --font-body and --font-chinese in
+// globals.css.

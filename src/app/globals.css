@@ -35,7 +35,11 @@
      declaration. Plain strings can't IACV, and CJK body glyphs are still
      handled correctly by the browser's font substitution at glyph level. */
   --font-body: var(--font-body-sans, Helvetica), "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-chinese: var(--font-noto-sans-sc, "PingFang SC"), "Microsoft YaHei", sans-serif;
+  /* --font-chinese: OS-native CJK sans only. The Noto_Sans_SC next/font/
+     google binding was removed in favor of system fonts — see lib/fonts.ts
+     for the performance rationale. PingFang SC is the Apple default;
+     Microsoft YaHei and Source Han Sans SC cover Windows / Linux. */
+  --font-chinese: "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", sans-serif;
 }
 
 /* Fluid type scale */

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import { displayFont, bodyFont, chineseFont } from "@/lib/fonts";
+import { displayFont, bodyFont } from "@/lib/fonts";
 import { hasLocale, getDictionary } from "@/lib/dictionaries";
 import { SITE_URL } from "@/lib/constants";
 import MotionConfigWrapper from "@/components/MotionConfigWrapper";
@@ -92,18 +92,15 @@ export default async function LocaleLayout({
     ],
   };
 
-  // Three font .variable classes are attached on both locales. Italiana
-  // and Public Sans cover all Latin glyphs; Noto Sans SC fills the CJK
-  // range for body copy on zh-CN. For zh-CN display headlines we rely on
-  // the OS-native CJK serifs declared in `--font-display` (PingFang SC /
-  // Microsoft YaHei / Songti SC) — see lib/fonts.ts for why we removed
-  // the Noto_Serif_SC next/font/google binding.
-  //
-  // Noto Sans SC is preload:false, so no <link rel="preload"> is
-  // injected — its 100+ per-unicode-range woff2 shards only download
-  // when a glyph in a given range actually renders. English content
-  // has no CJK glyphs → no CJK woff2 fetched on /en.
-  const fontClassName = `${displayFont.variable} ${bodyFont.variable} ${chineseFont.variable}`;
+  // Two font .variable classes on both locales: Italiana (display) and
+  // Public Sans (body). Both cover all Latin glyphs. CJK glyphs on zh-CN
+  // are rendered by OS-native fallbacks declared inside the --font-display,
+  // --font-body, and --font-chinese chains in globals.css — no Google-
+  // hosted CJK web font is loaded. See lib/fonts.ts for the full
+  // rationale; this kills ~1 MB of Noto Sans SC woff2 shards that were
+  // blocking first paint on every zh-CN cold visit (Lighthouse
+  // Performance was 37 on zh-CN / 61 on /en before the removal).
+  const fontClassName = `${displayFont.variable} ${bodyFont.variable}`;
 
   return (
     <html
