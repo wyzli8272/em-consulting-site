@@ -42,7 +42,9 @@ export default function Process({ translations }: ProcessProps) {
           </h2>
         </m.div>
 
-        <ol className="mt-16 space-y-0">
+        {/* space-y-14 on the list, not pb-14 on each inner div — removes
+            trailing dead space below the final milestone. */}
+        <ol className="mt-16 space-y-14">
           {translations.milestones.map((milestone, i) => (
             <m.li
               key={milestone.number}
@@ -56,15 +58,16 @@ export default function Process({ translations }: ProcessProps) {
                 ease,
               }}
             >
-              {/* Italiana numeral alone — no chip, no connector. Brand discipline: gold is the accent, not decoration. */}
+              {/* Italiana numeral alone — no chip, no connector.
+                  Brand discipline: gold is the accent, not decoration. */}
               <span
-                className="font-display text-5xl md:text-6xl leading-none tabular-nums text-gold-muted shrink-0 w-14 md:w-16 pt-1"
+                className="font-display text-6xl md:text-7xl leading-none tabular-nums text-gold-muted shrink-0 w-14 md:w-20 pt-1"
                 aria-hidden="true"
               >
                 {milestone.number}
               </span>
 
-              <div className="pb-14">
+              <div>
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                   <h3 className="text-subtitle font-display text-white">
                     {milestone.title}

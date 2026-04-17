@@ -25,20 +25,25 @@ export default function Hero({ translations }: HeroProps) {
       className="relative flex min-h-[100dvh] items-end bg-ink px-6 overflow-hidden pb-24 md:pb-32"
       aria-labelledby="hero-heading"
     >
-      {/* Campus photo background */}
+      {/* Campus photo background. quality={85} on the hero (default is 75)
+          because this is the LCP image — a little extra weight is worth it
+          for perceived quality of the first visual impression. */}
       <Image
         src="/images/46205966351_7ca2cd4681_k.webp"
         alt=""
         fill
         priority
+        quality={85}
         sizes="100vw"
         className="object-cover"
         style={{ objectPosition: "center 40%" }}
       />
 
-      {/* Gradient overlay — tightened so tablet-width text stays readable */}
+      {/* Gradient overlay — to-ink/55 → to-ink/70 so right-edge text clears
+          the campus photo cleanly even at tablet widths where text extends
+          farther into the image than on desktop. */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/55"
+        className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/70"
         aria-hidden="true"
       />
 
@@ -78,7 +83,7 @@ export default function Hero({ translations }: HeroProps) {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-gold px-8 py-3.5 text-base font-medium text-ink transition-all duration-300 hover:bg-gold/90 hover:shadow-[0_0_30px_rgba(255,214,10,0.25)]"
+              className="inline-block bg-gold px-8 py-3.5 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold/85"
             >
               {translations.cta}
             </a>

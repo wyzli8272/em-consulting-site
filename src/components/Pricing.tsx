@@ -54,9 +54,10 @@ export default function Pricing({ translations }: PricingProps) {
 
         {/* Right cards */}
         <div className="mt-12 md:col-span-8 md:mt-0 space-y-6">
-          {/* Full Package — dominant navy card, white price (no gold dominance) */}
+          {/* Full Package — dominant navy card with generous padding (p-10 md:p-14)
+              so the price feels substantial, not squeezed. */}
           <m.article
-            className="relative bg-navy p-8 md:p-10"
+            className="relative bg-navy p-10 md:p-14"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -75,7 +76,9 @@ export default function Pricing({ translations }: PricingProps) {
                 {translations.full.price}
               </span>
             </div>
-            <p className="mt-2 text-sm text-white/65">
+            {/* RMB reference line: 65% → 80% opacity, sm → base so it reads as a real
+                reference number (parents scan RMB first), not a whispered aside. */}
+            <p className="mt-2 text-base text-white/80">
               {translations.full.priceRmb}
             </p>
             <p className="mt-5 max-w-[520px] text-body-lg text-white/80 font-chinese">
@@ -83,9 +86,9 @@ export default function Pricing({ translations }: PricingProps) {
             </p>
           </m.article>
 
-          {/* Audit — secondary white card */}
+          {/* Audit — secondary cream card (not pure white, aligns with surface token) */}
           <m.article
-            className="border border-navy/10 bg-white p-8 md:p-10"
+            className="border border-navy/10 bg-cream p-8 md:p-10"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -104,7 +107,7 @@ export default function Pricing({ translations }: PricingProps) {
                 {translations.audit.price}
               </span>
             </div>
-            <p className="mt-2 text-sm text-navy/70">
+            <p className="mt-2 text-base text-navy/80">
               {translations.audit.priceRmb}
             </p>
             <p className="mt-5 max-w-[520px] text-body-lg text-navy/75 font-chinese">
