@@ -37,6 +37,8 @@ export async function generateMetadata({
     openGraph: {
       title: dict.metadata.title,
       description: dict.metadata.description,
+      url: locale === "zh-CN" ? SITE_URL : `${SITE_URL}/en`,
+      siteName: "EM Consulting",
       locale: locale === "zh-CN" ? "zh_CN" : "en_US",
       type: "website",
     },
@@ -76,9 +78,9 @@ export default async function LocaleLayout({
     name: "EM Consulting",
     description:
       locale === "zh-CN"
-        ? "沃顿·亨茨曼双学位与MIT录取背景。从定位到提交，为中国家庭提供结构化的美本申请策略服务。"
-        : "Wharton Huntsman Dual Degree and MIT admit. Structured admissions consulting for Chinese families targeting U.S. top universities.",
-    url: SITE_URL,
+        ? "沃顿·亨茨曼双学位与MIT录取背景。一位顾问全程参与美本申请的策略制定与执行。"
+        : "Wharton Huntsman Dual Degree and MIT admit. Structured admissions consulting for Chinese families applying to U.S. universities.",
+    url: locale === "zh-CN" ? SITE_URL : `${SITE_URL}/en`,
     serviceType: "College Admissions Consulting",
     areaServed: {
       "@type": "Country",
@@ -108,8 +110,9 @@ export default async function LocaleLayout({
           id="jsonld-professional-service"
           type="application/ld+json"
           strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        >
+          {JSON.stringify(jsonLd)}
+        </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-CGMPR92FK7"
           strategy="afterInteractive"
