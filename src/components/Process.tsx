@@ -77,7 +77,7 @@ export default function Process({ translations }: ProcessProps) {
                     {milestone.timeline}
                   </span>
                 </div>
-                <p className="mt-3 max-w-[520px] text-body-lg text-white/75 font-chinese">
+                <p className="mt-3 max-w-[640px] text-body-lg text-white/75 font-chinese">
                   {milestone.deliverable}
                 </p>
               </div>

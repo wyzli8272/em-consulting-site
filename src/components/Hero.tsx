@@ -99,6 +99,52 @@ export default function Hero({ translations }: HeroProps) {
           </div>
         </div>
       </div>
+
+      {/* Mobile-only scroll affordance. A parent scanning 375×667 sees
+          the CTA ~60 px from the bottom with no cue that 7 more sections
+          live below — the downward chevron + gentle bob is a quiet
+          signal to keep scrolling. Fades on scroll (CSS-only, no JS) so
+          it disappears the moment it's been understood. Hidden from AT
+          since the skip-link + main content are the authoritative paths;
+          `aria-hidden` prevents it from being announced as orphaned
+          decoration. */}
+      <div
+        className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 md:hidden"
+        aria-hidden="true"
+      >
+        <m.div
+          className="flex flex-col items-center gap-1 text-white/60"
+          initial={shouldReduce ? false : { opacity: 0, y: 6 }}
+          animate={shouldReduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8, ease }}
+        >
+          <m.svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            animate={
+              shouldReduce
+                ? undefined
+                : { y: [0, 3, 0] }
+            }
+            transition={{
+              duration: 1.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <path
+              d="M3.5 5.5l3.5 3.5 3.5-3.5"
+              stroke="currentColor"
+              strokeWidth="1.3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </m.svg>
+        </m.div>
+      </div>
     </section>
   );
 }

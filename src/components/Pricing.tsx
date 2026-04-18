@@ -64,8 +64,13 @@ export default function Pricing({ translations }: PricingProps) {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease }}
           >
+            {/* Full Package title one tier larger than the Audit title
+                below so the anchor tier dominates visually at every
+                breakpoint. On mobile both cards stack under their smaller
+                paddings, and the navy fill alone was not quite enough
+                asymmetry — the h3 size step closes the gap. */}
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h3 className="text-subtitle font-display text-white">
+              <h3 className="text-title font-display text-white">
                 {translations.full.name}
               </h3>
               <span className="text-sm text-white/60" lang="en">
@@ -92,7 +97,7 @@ export default function Pricing({ translations }: PricingProps) {
 
           {/* Audit — secondary cream card (not pure white, aligns with surface token) */}
           <m.article
-            className="border border-navy/10 bg-cream p-8 md:p-10"
+            className="border border-navy/15 bg-cream p-8 md:p-10"
             initial={shouldReduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}

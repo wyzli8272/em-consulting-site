@@ -123,16 +123,25 @@ export default function Team({ translations }: TeamProps) {
           </m.div>
         </div>
 
-        {/* Together note — full-width row, centered. Removed from Eric's column so the grid reads as two equal partners. */}
-        <m.p
-          className="mt-16 mx-auto max-w-[520px] text-center text-body-lg text-navy/70 font-chinese"
+        {/* Together note — full-width row, centered under the two partner
+            cards. Added a gold accent-rule above it so the center-aligned
+            prose is anchored by a visible hairline rather than floating
+            loose between the cards and the next section. The rule uses
+            the same gold signature that sits under every section tag on
+            the page, so the together-note reads as a branded closer on
+            the Team block rather than a loose disclaimer. */}
+        <m.div
+          className="mt-16 flex flex-col items-center"
           initial={shouldReduce ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.6, delay: 0.2, ease }}
         >
-          {translations.together}
-        </m.p>
+          <div className="accent-rule" aria-hidden="true" />
+          <p className="mt-6 max-w-[520px] text-center text-body-lg text-navy/75 font-chinese">
+            {translations.together}
+          </p>
+        </m.div>
       </div>
     </section>
   );

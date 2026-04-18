@@ -146,7 +146,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
             transition={{ duration: 0.6, ease }}
           >
             <span
-              className="absolute -top-6 -left-2 md:-top-10 md:-left-6 font-display text-[8rem] md:text-[12rem] leading-none text-gold-whisper select-none pointer-events-none"
+              className="absolute -top-6 -left-2 md:-top-10 md:-left-6 font-display text-[5rem] md:text-[12rem] leading-none text-gold-whisper select-none pointer-events-none"
               aria-hidden="true"
             >
               &ldquo;
@@ -155,8 +155,33 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
               <p className="max-w-[760px] text-body-xl italic text-navy/80 font-chinese">
                 {translations.testimonial.quote}
               </p>
-              <figcaption className="mt-6 text-sm text-navy/70 font-chinese not-italic">
-                — {translations.testimonial.attribution}
+              {/* Attribution split across two lines so the "mentored
+                  before EM Consulting" caveat gets its own typographic
+                  weight — this is the honesty signal that protects the
+                  site's credibility (the Duke '29 quote predates the
+                  firm) and should read as intentional transparency,
+                  not a hidden footnote. The attribution line renders
+                  the school; the caveat line renders the framing. */}
+              <figcaption className="mt-6 font-chinese not-italic">
+                {(() => {
+                  const parts = translations.testimonial.attribution.split(
+                    /\s*·\s*/,
+                  );
+                  const [who, ...rest] = parts;
+                  const caveat = rest.join(" · ");
+                  return (
+                    <>
+                      <span className="block text-sm text-navy/70">
+                        — {who}
+                      </span>
+                      {caveat && (
+                        <span className="mt-1 block text-xs tracking-wide text-navy/55">
+                          {caveat}
+                        </span>
+                      )}
+                    </>
+                  );
+                })()}
               </figcaption>
             </blockquote>
           </m.figure>

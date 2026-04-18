@@ -78,7 +78,7 @@ export default function FAQ({ translations }: FAQProps) {
                     </span>
                   </div>
                   <svg
-                    className="faq-chevron shrink-0 mt-2 h-5 w-5 text-navy/70 transition-transform duration-300"
+                    className="faq-chevron shrink-0 mt-2 h-5 w-5 text-navy/70 transition-transform duration-150"
                     viewBox="0 0 20 20"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
