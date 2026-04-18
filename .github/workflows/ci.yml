@@ -9,10 +9,12 @@
 name: CI
 
 on:
+  # Trigger on both `master` and `main` so a default-branch rename (a
+  # common repo-hygiene step) doesn't silently stop CI from running.
   push:
-    branches: [master]
+    branches: [master, main]
   pull_request:
-    branches: [master]
+    branches: [master, main]
 
 # Cancel in-flight runs when a newer commit lands on the same ref.
 concurrency:

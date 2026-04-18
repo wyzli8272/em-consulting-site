@@ -36,7 +36,19 @@ const walk = (a, b, path) => {
   const tb = typeOf(b);
   if (ta !== tb) {
     errors.push(`${path || "<root>"}: type mismatch (zh-CN=${ta}, en=${tb})`);
-    return;
+    // Descend when both sides are containers of the same kind — a string-vs-
+    // object mismatch at one key shouldn't hide every missing translation
+    // inside a sibling subtree. The early-return pre-Round-5 bailed out
+    // entirely on any type mismatch, which undersold the error budget on
+    // large diffs ("fix the one type mismatch, re-run, see the next N
+    // missing keys"). Descending reports everything in one pass.
+    if (ta === "object" && tb === "object") {
+      // Walk the intersection as objects.
+    } else if (ta === "array" && tb === "array") {
+      // Walk the intersection as arrays.
+    } else {
+      return;
+    }
   }
 
   if (ta === "array") {
