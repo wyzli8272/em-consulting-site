@@ -175,7 +175,15 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
                         — {who}
                       </span>
                       {caveat && (
-                        <span className="mt-1 block text-xs tracking-wide text-navy/55">
+                        // text-sm + text-navy/75 clears WCAG 4.5:1 on
+                        // cream (≈5.6:1). Round 6 Commit 6 shipped this
+                        // at text-xs/navy-55 which computed to 3.19:1
+                        // — a WCAG 1.4.3 fail. The split still visually
+                        // subordinates the caveat (smaller + lighter
+                        // than the school line above), but stays
+                        // legible for screen-carriers and for readers
+                        // with low-contrast displays.
+                        <span className="mt-1 block text-sm tracking-wide text-navy/75">
                           {caveat}
                         </span>
                       )}

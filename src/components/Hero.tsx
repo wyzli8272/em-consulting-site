@@ -31,14 +31,20 @@ export default function Hero({ translations }: HeroProps) {
       className="relative flex min-h-[100dvh] items-end bg-ink px-6 overflow-hidden pb-24 md:pb-32"
       aria-labelledby="hero-heading"
     >
-      {/* Campus photo background. quality={85} on the hero (default is 75)
-          because this is the LCP image — a little extra weight is worth it
-          for perceived quality of the first visual impression. */}
+      {/* Campus photo background. `quality={85}` gets more detail for the
+          LCP image (default is 75); requires the matching `images.qualities`
+          allowlist in next.config.ts — without it Next 16 silently downgrades
+          to 75 (Round 6 measured `q=75` on every srcset URL despite this prop).
+          `fetchPriority="high"` is passed explicitly because `priority` alone
+          doesn't emit the hint in Next 16; the HTTP preload handles the Link:
+          header but the element-level hint is what the browser uses to weight
+          this against other priority resources during render. */}
       <Image
         src="/images/46205966351_7ca2cd4681_k.webp"
         alt=""
         fill
         priority
+        fetchPriority="high"
         quality={85}
         sizes="100vw"
         className="object-cover"

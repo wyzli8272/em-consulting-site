@@ -41,11 +41,18 @@
      declaration. Plain strings can't IACV, and CJK body glyphs are still
      handled correctly by the browser's font substitution at glyph level. */
   --font-body: var(--font-body-sans, Helvetica), "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /* --font-chinese: OS-native CJK sans only. The Noto_Sans_SC next/font/
-     google binding was removed in favor of system fonts — see lib/fonts.ts
-     for the performance rationale. PingFang SC is the Apple default;
-     Microsoft YaHei and Source Han Sans SC cover Windows / Linux. */
-  --font-chinese: "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", sans-serif;
+  /* --font-chinese: Public Sans first for Latin glyphs, then OS-native
+     CJK sans fallbacks for Chinese characters. The pre-Round-6 revision
+     started the chain with "PingFang SC" / "Microsoft YaHei" — which
+     meant Latin glyphs on any `font-chinese` element on /en (hero
+     subtitle, Team credentials, Pricing descriptions, FAQ answers —
+     ~13 places) routed to the CJK sans face instead of Public Sans.
+     English copy was visibly off-brand on /en, rendering as "Helvetica-
+     like but not Helvetica." Public Sans at the head of the chain
+     handles Latin at all font-chinese sites; the browser substitutes
+     PingFang SC / YaHei / Source Han only for CJK codepoints at
+     glyph level — correct behavior on both locales. */
+  --font-chinese: var(--font-body-sans, Helvetica), "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", Arial, sans-serif;
 }
 
 /* Fluid type scale */

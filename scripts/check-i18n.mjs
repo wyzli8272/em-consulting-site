@@ -35,20 +35,16 @@ const walk = (a, b, path) => {
   const ta = typeOf(a);
   const tb = typeOf(b);
   if (ta !== tb) {
+    // Report the mismatch and stop descending at THIS node — an array can't
+    // be aligned to an object, a string can't be aligned to a list. The
+    // parent `for (const k of keysA)` loop is what surfaces every OTHER
+    // missing key in the same subtree, so we still get a full report in one
+    // pass; we just can't walk deeper into a pair that isn't structurally
+    // comparable. Commit 7 (`3147134`) tried to be clever here with a
+    // same-kind-descent branch, but `ta !== tb` makes that branch
+    // tautologically unreachable. Reverted to the straightforward return.
     errors.push(`${path || "<root>"}: type mismatch (zh-CN=${ta}, en=${tb})`);
-    // Descend when both sides are containers of the same kind — a string-vs-
-    // object mismatch at one key shouldn't hide every missing translation
-    // inside a sibling subtree. The early-return pre-Round-5 bailed out
-    // entirely on any type mismatch, which undersold the error budget on
-    // large diffs ("fix the one type mismatch, re-run, see the next N
-    // missing keys"). Descending reports everything in one pass.
-    if (ta === "object" && tb === "object") {
-      // Walk the intersection as objects.
-    } else if (ta === "array" && tb === "array") {
-      // Walk the intersection as arrays.
-    } else {
-      return;
-    }
+    return;
   }
 
   if (ta === "array") {

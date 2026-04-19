@@ -27,6 +27,23 @@ export async function generateMetadata({
   // hasLocale is a type predicate — `locale` is narrowed to Locale below.
   const dict = await getDictionary(locale);
 
+  // IMPORTANT: when we hand-construct `openGraph` / `twitter` here,
+  // Next's file-convention auto-injection from `src/app/opengraph-image.tsx`
+  // is SUPPRESSED unless we explicitly include `images`. Pre-Round-6 the
+  // blocks below omitted `images` entirely, so live HTML on both locales
+  // shipped zero `og:image` / `twitter:image` meta tags — every WeChat /
+  // LinkedIn / Twitter share previewed with no image despite the OG route
+  // serving a branded 1200×630 PNG. Fix: always include `images` when
+  // overriding `openGraph.*` / `twitter.*`. The bare Next default 404 page
+  // (which has no explicit override) correctly emits og:image via the same
+  // file convention — that's what confirmed the regression.
+  const ogImage = {
+    url: "/opengraph-image",
+    width: 1200,
+    height: 630,
+    alt: dict.metadata.title,
+  };
+
   return {
     // Resolves relative OG/Twitter image URLs (including the ImageResponse
     // routes at /opengraph-image, /icon, /apple-icon) to absolute URLs so
@@ -41,11 +58,13 @@ export async function generateMetadata({
       siteName: "EM Consulting",
       locale: locale === "zh-CN" ? "zh_CN" : "en_US",
       type: "website",
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: dict.metadata.title,
       description: dict.metadata.description,
+      images: [ogImage],
     },
     alternates: {
       canonical: locale === "zh-CN" ? "/" : "/en",
@@ -123,11 +142,19 @@ export default async function LocaleLayout({
         >
           {JSON.stringify(jsonLd)}
         </Script>
+        {/* GA4 demoted from `afterInteractive` to `lazyOnload` (Round 6).
+            The gtag script is ~160 KB with 41% of its JS unused according
+            to Round-6 Lighthouse, and `afterInteractive` pushes it into
+            the critical path right after hydration. `lazyOnload` defers
+            until after the page fires `window.load`, letting LCP +
+            interaction-ready complete first. Analytics fidelity takes a
+            small hit (bounce events fire a few hundred ms later) but the
+            Lighthouse Performance lift is worth it. */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-CGMPR92FK7"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="lazyOnload">
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

@@ -34,6 +34,12 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    // Next 16 added an opt-in allowlist: `quality` props on <Image>
+    // outside this list are silently downgraded to 75 (measured in
+    // Round 6: every Hero srcset URL emitted `q=75` despite passing
+    // `quality={85}` in code). Keep 75 for the default + any values
+    // any component actually passes.
+    qualities: [75, 80, 85],
   },
   async headers() {
     return [
