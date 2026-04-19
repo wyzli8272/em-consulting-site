@@ -33,7 +33,7 @@ export default function Hero({ translations }: HeroProps) {
   const shouldReduce = useReducedMotion();
   return (
     <section
-      className="relative flex min-h-[100dvh] items-end bg-ink px-6 overflow-hidden pb-24 md:pb-32"
+      className="relative flex min-h-[100dvh] items-end bg-ink px-6 overflow-hidden pb-20 md:pb-32"
       aria-labelledby="hero-heading"
     >
       {/* Campus photo background. `quality={85}` gets more detail for the
