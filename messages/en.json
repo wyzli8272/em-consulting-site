@@ -11,14 +11,14 @@
     "pricing": "Pricing",
     "faq": "FAQ",
     "contact": "Contact",
-    "cta": "Book a Session"
+    "cta": "Book 90-Min Session"
   },
   "hero": {
     "sectionTag": "College Admissions Strategy",
     "title": "A structured plan for U.S. college admissions.",
-    "subtitle": "Wharton Huntsman Program (dual degree, ~50 admits/year globally). Mary: MIT and Wharton admits the same cycle. Both founders walk every family through the season.",
+    "subtitle": "Wharton Huntsman dual degree (~50 admits/year globally) and MIT. Both founders walk every family through the season.",
     "cta": "Book a 90-Minute Session →",
-    "ctaSubtext": "Free, no contract. A 90-minute read on your child's competitiveness and a strategy sketch."
+    "ctaSubtext": "Free, no contract. A 90-minute read on your child's competitiveness and an initial strategy outline."
   },
   "whyUs": {
     "sectionTag": "Why Us",
@@ -42,7 +42,7 @@
       },
       {
         "title": "Founding cohort · max 10",
-        "description": "The free 90-minute diagnostic gives a candid assessment of your child's competitiveness. We accept up to 10 families this application cycle. You walk away with the assessment whether we work together or not."
+        "description": "The free 90-minute diagnostic gives a candid assessment of your child's competitiveness. We accept up to 10 families this application cycle."
       }
     ]
   },
@@ -191,7 +191,7 @@
     "sectionTag": "Contact",
     "title": "Start here",
     "cta": "Book a 90-Minute Session →",
-    "ctaDescription": "At this point, you've seen the track record and the pricing. A 90-minute diagnostic gives you a candid read on where your child's competitiveness sits today. Whether we work together afterward is your family's call."
+    "ctaDescription": "The track record and pricing are above. A 90-minute diagnostic gives you a candid read on where your child's competitiveness sits today; whether we work together afterward is your family's call."
   },
   "footer": {
     "copyright": "© 2026 EM Consulting. All rights reserved."

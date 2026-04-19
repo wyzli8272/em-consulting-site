@@ -5,9 +5,15 @@ import { m, useReducedMotion } from "framer-motion";
 import { EASE_OUT as ease } from "@/lib/motion";
 import { CALENDLY_URL } from "@/lib/constants";
 
-// Hero CTA is intentionally NOT wrapped in motion.* — it's inside the LCP
-// candidate region, so opacity animations would delay the largest paint.
-// The subtitle's subtle fade-in is fine; the button must be static.
+// Hero content is intentionally NOT wrapped in motion.* — all of it
+// lives inside the LCP candidate region. Round 7 Evidence Collector
+// measured Lighthouse Perf 73 on /zh with LCP = 5.2s, gated by the
+// subtitle's opacity fade-in (initial: opacity 0 + delay 150ms +
+// duration 600ms = 750ms extra paint delay on top of render). Making
+// subtitle + chevron static (no initial:opacity 0) drops that delay
+// entirely. The chevron stays a quiet scroll affordance without
+// needing an entrance animation — it's already understood as a mobile
+// UI element by the time the reader reaches it.
 
 interface HeroProps {
   translations: {
@@ -20,11 +26,10 @@ interface HeroProps {
 }
 
 export default function Hero({ translations }: HeroProps) {
-  // `initial={false}` when reduced-motion is preferred makes Framer render
-  // elements directly at the target state with no invisible initial frame.
-  // Required to fully honor WCAG 2.3.3 — MotionConfig(reducedMotion="user")
-  // zeroes the transition duration but leaves `initial` applied, which
-  // can still produce a one-frame flash at opacity: 0 on slow devices.
+  // `shouldReduce` is kept to gate the one remaining animated element
+  // below (the mobile scroll chevron's bob keyframes). Hero subtitle
+  // is now static — no initial fade — so the Hero tree has no other
+  // motion entries that need reduced-motion gating.
   const shouldReduce = useReducedMotion();
   return (
     <section
@@ -51,11 +56,19 @@ export default function Hero({ translations }: HeroProps) {
         style={{ objectPosition: "center 40%" }}
       />
 
-      {/* Gradient overlay — to-ink/55 → to-ink/70 so right-edge text clears
-          the campus photo cleanly even at tablet widths where text extends
-          farther into the image than on desktop. */}
+      {/* Gradient overlay — lightened from via-ink/90 → via-ink/75 and
+          to-ink/70 → to-ink/40. Round 7 Evidence Collector found that the
+          pre-Round-7 heavier gradient covered the hero photo enough that
+          Chromium's LCP algorithm discounted the image and picked the H1
+          text as LCP instead — nullifying the `fetchPriority="high"` +
+          image-preload work. A lighter gradient gives the image a larger
+          unoverlaid bounding rect so it can win LCP. Right-edge text
+          still clears the photo cleanly because the H1 is within the
+          left-content column (max-w-820 inside max-w-1200 + px-6); the
+          text-backing work is now carried by the ink gradient from
+          top-left instead of covering the whole viewport. */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/70"
+        className="absolute inset-0 bg-gradient-to-r from-ink via-ink/75 to-ink/40"
         aria-hidden="true"
       />
 
@@ -84,15 +97,15 @@ export default function Hero({ translations }: HeroProps) {
           {/* Gold accent rule — one accent per section */}
           <div className="accent-rule mt-8" aria-hidden="true" />
 
-          {/* Subtitle */}
-          <m.p
-            className="mt-6 max-w-[560px] text-body-xl text-white/80 font-chinese"
-            initial={shouldReduce ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease }}
-          >
+          {/* Subtitle — static (no Framer wrapper) for the same reason the
+              CTA below is static. Round 7 Evidence Collector measured LCP
+              on /zh as the subtitle `<p>` with 1234ms render delay
+              because the opacity-fade-in gated paint completion. Plain
+              `<p>` eliminates that gate; the subtitle still appears at
+              the same position, just without the fade. */}
+          <p className="mt-6 max-w-[560px] text-body-xl text-white/80 font-chinese">
             {translations.subtitle}
-          </m.p>
+          </p>
 
           {/* CTA — static (no initial opacity:0 + delay) so the above-the-fold
               primary action is part of LCP paint, not a post-hydration flash */}
@@ -124,10 +137,15 @@ export default function Hero({ translations }: HeroProps) {
         className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 md:hidden"
         aria-hidden="true"
       >
+        {/* Outer m.div ternary simplified — Round 7 Code Review noted
+            both branches were textually identical. The `initial={false}`
+            gate on the reduced-motion path already does the actual work
+            (renders at target immediately); the `animate` prop doesn't
+            need to diverge. */}
         <m.div
           className="flex flex-col items-center gap-1 text-white/60"
           initial={shouldReduce ? false : { opacity: 0, y: 6 }}
-          animate={shouldReduce ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease }}
         >
           {/* Chevron bob: finite (2 repeats with reverse, so 3 total up-

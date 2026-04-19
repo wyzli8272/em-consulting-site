@@ -1,71 +1,104 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { displayFont, bodyFont } from "@/lib/fonts";
+import { SITE_URL } from "@/lib/constants";
+import "./globals.css";
 
 /**
  * App-level 404 — catches BOTH top-level unmatched URLs (`/garbage`) and
  * invalid-locale segments (the `notFound()` call in `[locale]/layout.tsx`
- * when `hasLocale()` rejects). Pre-Round-6 only `[locale]/not-found.tsx`
- * existed, which meant:
+ * when `hasLocale()` rejects).
  *
- *   1. Top-level unmatched URLs fell through to Next.js's bare default
- *      404 page (white bg, system-ui, black/white divider) — visibly
- *      broken brand. Every deep-link with a typo hit an amateur page.
- *   2. `[locale]/not-found.tsx` used `await headers()` + `await cookies()`
- *      to infer locale for a bilingual render — which escalates the
- *      entire `[locale]` segment to Dynamic. Round 6 measured `Cache-
- *      Control: no-store` and `X-Vercel-Cache: MISS` on every request;
- *      no edge caching, direct TTFB hit.
+ * Round 7 Commit 2 fixed a CRITICAL regression that shipped in Round 6
+ * Commit 2 (`d28756a`): the original app-level 404 declared its own
+ * `<html>` / `<body>` but didn't import `globals.css` or attach the
+ * font-variable classes — so on the live site every unmatched URL
+ * rendered in browser-default Times New Roman on transparent background.
+ * Evidence Collector confirmed: `document.styleSheets.length === 0` on
+ * `/garbage`. Four independent audit agents (Frontend, Code Review,
+ * Brand Guardian, Evidence Collector) caught it in Round 7.
  *
- * Moving the 404 to the app root fixes both: top-level URLs are now
- * caught, AND `[locale]` no longer uses dynamic APIs so Next can
- * prerender it statically. Bilingual copy handles both audiences
- * without needing to know which locale the visitor expected — a
- * parent who typoed `/en/pric ing` doesn't care whether EM shows the
- * message in zh or en, only that it looks like the same firm.
+ * The fix: import `./globals.css` at the top, attach
+ * `${displayFont.variable} ${bodyFont.variable}` to `<html>` so the
+ * `--font-display-serif` / `--font-body-sans` custom properties are
+ * defined, and carry the SITE_URL-based `metadataBase` so any
+ * metadata-referenced assets (og images) resolve absolutely.
+ *
+ * Bilingual copy is presented with per-block `lang` attributes so
+ * screen readers switch voice profiles between zh and en mid-page
+ * (WCAG 3.1.2 Language of Parts). Adds the Italiana wordmark above
+ * the 404 tag so the brand asserts even on the error page (Brand
+ * Guardian Round 7 MEDIUM — every other surface carries the
+ * wordmark; the 404 shouldn't be the exception). Sizing reduced from
+ * stacked `text-title` (~112 px block at desktop) to a fixed mid-tier
+ * `text-[2.25rem] md:text-[2.75rem]` so the bilingual headline reads
+ * like a terse error page, not a hero landing.
  */
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Not found — EM Consulting",
   robots: { index: false, follow: false },
 };
 
 export default function NotFound() {
   return (
-    <html lang="en" dir="ltr" className="font-body bg-cream text-navy antialiased">
-      <body>
+    <html
+      lang="zh-CN"
+      dir="ltr"
+      className={`${displayFont.variable} ${bodyFont.variable}`}
+    >
+      <body className="font-body bg-cream text-navy antialiased">
         <main
           id="main-content"
           className="flex min-h-[100dvh] flex-col items-center justify-center bg-ink px-6 text-center"
         >
-          <span className="section-tag text-gold">404</span>
+          {/* Wordmark — brand asserts on every surface, 404 included. */}
+          <span className="font-display text-xl tracking-tight text-white/80">
+            EM Consulting
+          </span>
+
+          <span className="section-tag text-gold mt-8">404</span>
           <div className="accent-rule mt-4 mx-auto" aria-hidden="true" />
 
-          {/* Bilingual on one page — parent sees both the Chinese and
-              English messages without the server needing to guess which
-              locale they came in on (which would force Dynamic rendering). */}
-          <h1 className="mt-6 font-display text-title text-white">
-            页面未找到
-            <span className="mt-2 block text-title text-white/75">
+          {/* Bilingual headline with per-block `lang` so VoiceOver / NVDA
+              switch voice profiles mid-page. Size capped at a fixed
+              mid-tier so the two-line stack doesn't balloon at desktop
+              clamps. */}
+          <h1 className="mt-6 font-display text-[2.25rem] leading-tight text-white md:text-[2.75rem]">
+            <span lang="zh-CN">页面未找到</span>
+            <span
+              lang="en"
+              className="mt-2 block text-white/75"
+            >
               Not found.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-[520px] text-body-lg text-white/70">
-            您访问的页面已移动，或从未存在。
+          <p
+            lang="zh-CN"
+            className="mt-6 max-w-[520px] text-body-lg text-white/75"
+          >
+            此页面不存在，或已更改链接。
           </p>
-          <p className="mt-2 max-w-[520px] text-body-lg text-white/70">
-            The page you are looking for has moved or never existed.
+          <p
+            lang="en"
+            className="mt-2 max-w-[520px] text-body-lg text-white/75"
+          >
+            This page does not exist or has moved.
           </p>
 
           <div className="mt-10 flex flex-col items-center gap-4 md:flex-row md:gap-6">
             <Link
               href="/"
+              lang="zh-CN"
               className="inline-block bg-gold px-8 py-3.5 text-base font-medium text-ink transition-colors duration-200 hover:bg-gold-hover"
             >
               返回首页
             </Link>
             <Link
               href="/en"
-              className="inline-block border border-white/30 px-8 py-3.5 text-base font-medium text-white transition-colors duration-200 hover:bg-white/10"
+              lang="en"
+              className="inline-block border border-white/45 px-8 py-3.5 text-base font-medium text-white transition-colors duration-200 hover:bg-white/10"
             >
               Return home (English)
             </Link>

@@ -289,7 +289,13 @@ export default function Navigation({ translations, locale }: NavigationProps) {
               onClick={(e) => scrollTo(s.id, e)}
               className={`text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-200 ${
                 scrolled
-                  ? "text-navy hover:text-navy/60"
+                  ? // Hover at `/70` (not `/60`) on cream — clears WCAG
+                    // 4.5:1 (~4.92:1) while still visibly dimming.
+                    // Round 7 A11y L1: `/60` (~3.75:1) technically a
+                    // hover state so AA is lenient, but on sticky-
+                    // hover devices the text stays under 4.5:1 for
+                    // as long as the cursor rests.
+                    "text-navy hover:text-navy/70"
                   : "text-white hover:text-white/70"
               }`}
             >
@@ -313,7 +319,7 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             lang={locale === "zh-CN" ? "en" : "zh-CN"}
             className={`text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-200 ${
               scrolled
-                ? "text-navy hover:text-navy/60"
+                ? "text-navy hover:text-navy/70"
                 : "text-white hover:text-white/70"
             }`}
             aria-label={switchLabel}

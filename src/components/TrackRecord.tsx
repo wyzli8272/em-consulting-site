@@ -205,9 +205,13 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
           </m.figure>
         )}
 
-        {/* Anti-objection framing — from Eric's project brief */}
+        {/* Anti-objection framing — from Eric's project brief. Round 7
+            UI Designer M1: opacity `text-navy/85` was the only `/85`
+            instance site-wide and didn't fit the "emphatic body on
+            cream" tier which the rest of the file uses at `/80`
+            (Team credentials, FAQ answers). Normalized to /80. */}
         <m.p
-          className="mt-16 max-w-[720px] font-display text-subtitle text-navy/85 italic"
+          className="mt-16 max-w-[720px] font-display text-subtitle text-navy/80 italic"
           initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={NEAR_VIEWPORT}
