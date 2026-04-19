@@ -15,10 +15,10 @@
   },
   "hero": {
     "sectionTag": "College Admissions Strategy",
-    "title": "A structured five-milestone plan for U.S. college applications.",
-    "subtitle": "Huntsman Program (Wharton + College dual degree, ~50 admits/year globally) · MIT and Wharton dual admit the same cycle. An advisor walks every family through the full application season.",
+    "title": "A structured plan for U.S. college admissions.",
+    "subtitle": "Wharton Huntsman Program (dual degree, ~50 admits/year globally). Mary: MIT and Wharton admits the same cycle. Both founders walk every family through the season.",
     "cta": "Book a 90-Minute Session →",
-    "ctaSubtext": "Free, no contract. A 90-minute session to assess your child's competitiveness and map out a strategy."
+    "ctaSubtext": "Free, no contract. A 90-minute read on your child's competitiveness and a strategy sketch."
   },
   "whyUs": {
     "sectionTag": "Why Us",
@@ -26,7 +26,7 @@
     "items": [
       {
         "title": "MIT + Wharton, same cycle",
-        "description": "Most consultants sold their last admit a decade ago. We just got ours. The cycle we're advising on is the one we lived through two months back."
+        "description": "Most consultants sold their last admit a decade ago. Ours was this spring. We're advising on the cycle we just lived through."
       },
       {
         "title": "Five milestones, real deliverables",
@@ -34,7 +34,7 @@
       },
       {
         "title": "We turn down more than we take",
-        "description": "We turn down students we can't actually help. We take the cases where our work changes the outcome."
+        "description": "With 10 first-cohort slots and two founders doing the work, we only take cases where our time will actually change the outcome. If we can't move the needle, we say so up front."
       },
       {
         "title": "Native bilingual communication",
@@ -42,7 +42,7 @@
       },
       {
         "title": "Founding cohort · max 10",
-        "description": "The free 90-minute diagnostic gives a candid assessment of your child's competitiveness. We accept up to 10 families this application cycle, and the assessment is yours to keep whether we work together or not."
+        "description": "The free 90-minute diagnostic gives a candid assessment of your child's competitiveness. We accept up to 10 families this application cycle. You walk away with the assessment whether we work together or not."
       }
     ]
   },
@@ -105,7 +105,7 @@
       "quote": "Eric helped me through the entire process — narrowing my school list, sharpening my extracurriculars, and figuring out my personal statement. I was stuck on what story to tell, and he gave me a framework that made it click. He also reviewed all my supplementals and helped me apply to scholarships I wouldn't have found on my own. It made the whole thing a lot less stressful.",
       "attribution": "Duke '29 · mentored by Eric before EM Consulting"
     },
-    "antiObjection": "We have no borrowed admissions credentials to list. What we can offer is the application cycle both founders just walked through, and the reasoning behind every judgment we made inside it."
+    "antiObjection": "We have no borrowed admissions credentials to list. What we can offer is the application cycle both founders just walked through, and the reasoning behind every judgment we made along the way."
   },
   "team": {
     "sectionTag": "Who We Are",
@@ -150,7 +150,7 @@
       "nameEn": "Full Package",
       "price": "$6,000–11,000",
       "priceAlt": "approx. ¥45,000–80,000",
-      "description": "Five-milestone engagement covering 8–12 schools, with every written deliverable. Parent updates at each milestone plus additional check-ins during intensive phases."
+      "description": "Five milestones across 8–12 schools, with a written deliverable at each. You hear from us at every milestone, plus extra check-ins through the essay and review months."
     }
   },
   "faq": {
@@ -159,11 +159,11 @@
     "items": [
       {
         "q": "Aren't you just students yourselves?",
-        "a": "We just lived the application cycle we're consulting on. Two months ago, we were sitting across from admissions officers ourselves. That proximity is an advantage, not a liability. Former admissions officers can spot adult-ghostwritten essays; our closeness in age makes it easier for students to write in their own voice."
+        "a": "We just lived the application cycle we're consulting on. Two months ago, we were sitting across from admissions officers ourselves. That closeness is what makes the work useful — former admissions officers can spot adult-ghostwritten essays, and our age makes it easier for students to write in their own voice."
       },
       {
         "q": "What is the refund and cancellation policy?",
-        "a": "Full terms are in our service agreement. Summary: Before Milestone 1 (Positioning Deck) delivery: first installment (50%) refunded, minus a $500 administrative fee. After Milestone 1, before Milestone 3 (Essay phase): first installment non-refundable (core deliverables received); second installment not yet collected. After Milestone 3 commences: both installments non-refundable (most labor-intensive phase). Either party may terminate with 30 days written notice; pro-rata refund applies to milestones not yet commenced. The free diagnostic carries no fee and requires no contract."
+        "a": "Full terms are in our service agreement. Summary: Before Milestone 1 (Positioning Deck) delivery: first installment (50%) refunded, minus a ¥3,500 (approx. $500) administrative fee. After Milestone 1, before Milestone 3 (Essay phase): first installment non-refundable (core deliverables received); second installment not yet collected. After Milestone 3 commences: both installments non-refundable (most labor-intensive phase). Either party may terminate with 30 days written notice; pro-rata refund applies to milestones not yet commenced. The free diagnostic carries no fee and requires no contract."
       },
       {
         "q": "How do you prevent ghostwriting concerns on essays?",
@@ -183,7 +183,7 @@
       },
       {
         "q": "How are you different from legacy agencies like New Oriental or Crimson?",
-        "a": "We don't introduce ourselves by ranking competitors. Here's what we actually do: two founders who admitted to MIT and Wharton the same cycle, native Mandarin with parents, five milestones with written deliverables at each stage. Parents can judge fit from there."
+        "a": "Every firm fits a different kind of family. Here's what we actually do: two founders admitted to MIT and Wharton the same cycle, native Mandarin with parents, five milestones each with a written deliverable. Parents can judge fit from there."
       }
     ]
   },
@@ -191,7 +191,7 @@
     "sectionTag": "Contact",
     "title": "Start here",
     "cta": "Book a 90-Minute Session →",
-    "ctaDescription": "At this point, you've seen the track record, the process, and the pricing. A 90-minute diagnostic tells you where your child's competitiveness sits today. Whether we work together afterward is your family's call."
+    "ctaDescription": "At this point, you've seen the track record and the pricing. A 90-minute diagnostic gives you a candid read on where your child's competitiveness sits today. Whether we work together afterward is your family's call."
   },
   "footer": {
     "copyright": "© 2026 EM Consulting. All rights reserved."
