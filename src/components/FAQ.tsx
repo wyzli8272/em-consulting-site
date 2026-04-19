@@ -1,7 +1,11 @@
 "use client";
 
 import { m, useReducedMotion } from "framer-motion";
-import { EASE_OUT as ease } from "@/lib/motion";
+import {
+  EASE_OUT as ease,
+  DEFAULT_VIEWPORT,
+  INSIDE_VIEWPORT,
+} from "@/lib/motion";
 
 interface FAQItem {
   q: string;
@@ -30,7 +34,7 @@ export default function FAQ({ translations }: FAQProps) {
           className="md:col-span-4 md:sticky md:top-28 md:self-start"
           initial={shouldReduce ? false : { opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={DEFAULT_VIEWPORT}
           transition={{ duration: 0.7, ease }}
         >
           <span className="section-tag text-navy/70">
@@ -58,12 +62,12 @@ export default function FAQ({ translations }: FAQProps) {
                 className="group py-6"
                 initial={shouldReduce ? false : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{
-                  duration: 0.5,
-                  delay: i * 0.05,
-                  ease,
-                }}
+                viewport={INSIDE_VIEWPORT}
+                transition={
+                  shouldReduce
+                    ? { duration: 0 }
+                    : { duration: 0.5, delay: i * 0.05, ease }
+                }
               >
                 <summary className="faq-summary flex cursor-pointer items-start justify-between gap-6 text-left">
                   <div className="flex gap-5">

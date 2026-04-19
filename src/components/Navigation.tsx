@@ -184,6 +184,16 @@ export default function Navigation({ translations, locale }: NavigationProps) {
   // Restore scroll position after a locale-toggle navigation. Fires once
   // on mount; clears the key so that an intentional return to top (e.g.
   // clicking the brand wordmark) isn't second-guessed on the next nav.
+  //
+  // Round 6 code review caught a race: the original single-RAF attempt
+  // fired before the hero image decoded, so deep-scrolled restorations
+  // landed 100-400px off-target. Two-stage strategy:
+  //   1. Try immediately on mount (cheap — if layout is already there,
+  //      this works in the first paint and the user sees no jump).
+  //   2. If the target y exceeds the current document height (typical
+  //      on cold load because the hero image hasn't decoded yet), wait
+  //      for `window.load` — which fires only after all resources
+  //      (images, fonts) have finished loading — then retry.
   useEffect(() => {
     if (typeof window === "undefined") return;
     let saved: string | null = null;
@@ -196,9 +206,25 @@ export default function Navigation({ translations, locale }: NavigationProps) {
     }
     const y = Number(saved);
     if (!Number.isFinite(y) || y <= 0) return;
-    // Defer one frame so layout/paint settle first (CJK glyphs coming
-    // from OS fonts, which can shift height briefly as they swap in).
-    requestAnimationFrame(() => window.scrollTo({ top: y, behavior: "auto" }));
+
+    const attempt = () => window.scrollTo({ top: y, behavior: "auto" });
+
+    // First attempt — defer one RAF so synchronous layout completes.
+    const rafId = requestAnimationFrame(() => {
+      attempt();
+      // If we couldn't reach the target because content hasn't painted
+      // yet, wait for the full `load` event and retry once.
+      if (Math.ceil(window.scrollY) < y - 4) {
+        if (document.readyState === "complete") {
+          // Already loaded — our scroll just got clamped by layout.
+          // Nothing more we can do without introducing fragility.
+          return;
+        }
+        const onLoad = () => attempt();
+        window.addEventListener("load", onLoad, { once: true });
+      }
+    });
+    return () => cancelAnimationFrame(rafId);
   }, []);
 
   return (

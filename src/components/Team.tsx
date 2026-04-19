@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import { m, useReducedMotion } from "framer-motion";
-import { EASE_OUT as ease } from "@/lib/motion";
+import {
+  EASE_OUT as ease,
+  DEFAULT_VIEWPORT,
+  NEAR_VIEWPORT,
+  INSIDE_VIEWPORT,
+} from "@/lib/motion";
 
 interface TeamMember {
   name: string;
@@ -88,7 +93,7 @@ export default function Team({ translations }: TeamProps) {
         <m.div
           initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={DEFAULT_VIEWPORT}
           transition={{ duration: 0.6, ease }}
         >
           <span className="section-tag text-navy/70">
@@ -111,7 +116,7 @@ export default function Team({ translations }: TeamProps) {
             className="md:col-span-6"
             initial={shouldReduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={NEAR_VIEWPORT}
             transition={{ duration: 0.7, ease }}
           >
             <MemberCard member={translations.eric} />
@@ -121,7 +126,7 @@ export default function Team({ translations }: TeamProps) {
             className="md:col-span-6"
             initial={shouldReduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={NEAR_VIEWPORT}
             transition={{ duration: 0.7, delay: 0.15, ease }}
           >
             <MemberCard member={translations.mary} />
@@ -140,7 +145,7 @@ export default function Team({ translations }: TeamProps) {
           className="mt-16 flex flex-col items-center"
           initial={shouldReduce ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={INSIDE_VIEWPORT}
           transition={{ duration: 0.6, delay: 0.2, ease }}
         >
           <div className="h-px w-48 bg-navy/15" aria-hidden="true" />

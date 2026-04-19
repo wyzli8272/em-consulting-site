@@ -6,9 +6,6 @@ interface FooterProps {
 
 export default function Footer({ translations }: FooterProps) {
   return (
-    // The <footer> element is implicitly role="contentinfo" when scoped to
-    // <body>, so the explicit attribute is redundant and can trip duplicate-
-    // landmark warnings in some audit tools.
     <footer className="border-t border-white/[0.08] bg-ink px-6 py-14">
       <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-8">
         {/* Accent rule closes the page with the same gold signature used under

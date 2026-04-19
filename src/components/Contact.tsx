@@ -1,7 +1,7 @@
 "use client";
 
 import { m, useReducedMotion } from "framer-motion";
-import { EASE_OUT as ease } from "@/lib/motion";
+import { EASE_OUT as ease, DEFAULT_VIEWPORT } from "@/lib/motion";
 import { CALENDLY_URL } from "@/lib/constants";
 
 interface ContactProps {
@@ -26,7 +26,7 @@ export default function Contact({ translations }: ContactProps) {
           className="max-w-[720px]"
           initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={DEFAULT_VIEWPORT}
           transition={{ duration: 0.6, ease }}
         >
           <span className="section-tag text-gold">

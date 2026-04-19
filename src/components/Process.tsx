@@ -1,7 +1,11 @@
 "use client";
 
 import { m, useReducedMotion } from "framer-motion";
-import { EASE_OUT as ease } from "@/lib/motion";
+import {
+  EASE_OUT as ease,
+  DEFAULT_VIEWPORT,
+  NEAR_VIEWPORT,
+} from "@/lib/motion";
 
 interface ProcessProps {
   translations: {
@@ -28,7 +32,7 @@ export default function Process({ translations }: ProcessProps) {
         <m.div
           initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={DEFAULT_VIEWPORT}
           transition={{ duration: 0.6, ease }}
         >
           <span className="section-tag text-gold">
@@ -52,7 +56,7 @@ export default function Process({ translations }: ProcessProps) {
               className="relative flex gap-6 md:gap-10"
               initial={shouldReduce ? false : { opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={NEAR_VIEWPORT}
               transition={{
                 duration: 0.6,
                 delay: i * 0.08,

@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 import { m, useReducedMotion } from "framer-motion";
-import { EASE_OUT as ease } from "@/lib/motion";
+import {
+  EASE_OUT as ease,
+  DEFAULT_VIEWPORT,
+  NEAR_VIEWPORT,
+} from "@/lib/motion";
 
 interface School {
   name: string;
@@ -44,7 +48,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
         <m.div
           initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={DEFAULT_VIEWPORT}
           transition={{ duration: 0.6, ease }}
         >
           <span className="section-tag text-navy/70">
@@ -67,7 +71,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
           className="mt-16 grid gap-8 md:grid-cols-12 md:gap-12"
           initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={NEAR_VIEWPORT}
           transition={{ duration: 0.6, ease }}
         >
           <div className="md:col-span-4">
@@ -100,7 +104,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
           className="mt-16 grid gap-8 md:grid-cols-12 md:gap-12"
           initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={NEAR_VIEWPORT}
           transition={{ duration: 0.6, ease }}
         >
           <div className="md:col-span-4">
@@ -142,7 +146,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
             className="mt-20 relative"
             initial={shouldReduce ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={NEAR_VIEWPORT}
             transition={{ duration: 0.6, ease }}
           >
             {/* Decorative oversized quote mark. Round 5 cropped 8rem → 5rem
@@ -206,7 +210,7 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
           className="mt-16 max-w-[720px] font-display text-subtitle text-navy/85 italic"
           initial={shouldReduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={NEAR_VIEWPORT}
           transition={{ duration: 0.6, ease }}
         >
           {translations.antiObjection}

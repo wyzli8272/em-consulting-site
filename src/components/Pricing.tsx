@@ -1,7 +1,11 @@
 "use client";
 
 import { m, useReducedMotion } from "framer-motion";
-import { EASE_OUT as ease } from "@/lib/motion";
+import {
+  EASE_OUT as ease,
+  DEFAULT_VIEWPORT,
+  NEAR_VIEWPORT,
+} from "@/lib/motion";
 
 interface PricingTier {
   name: string;
@@ -35,7 +39,7 @@ export default function Pricing({ translations }: PricingProps) {
           className="md:col-span-4 md:sticky md:top-28 md:self-start"
           initial={shouldReduce ? false : { opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={DEFAULT_VIEWPORT}
           transition={{ duration: 0.7, ease }}
         >
           <span className="section-tag text-navy/70">
@@ -61,7 +65,7 @@ export default function Pricing({ translations }: PricingProps) {
             className="relative bg-navy p-10 md:p-14"
             initial={shouldReduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={NEAR_VIEWPORT}
             transition={{ duration: 0.6, ease }}
           >
             {/* Full Package title sits between Audit's `text-subtitle`
@@ -103,7 +107,7 @@ export default function Pricing({ translations }: PricingProps) {
             className="border border-navy/15 bg-cream p-8 md:p-10"
             initial={shouldReduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={NEAR_VIEWPORT}
             transition={{ duration: 0.6, delay: 0.1, ease }}
           >
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">

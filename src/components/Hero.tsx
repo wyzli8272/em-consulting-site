@@ -67,7 +67,13 @@ export default function Hero({ translations }: HeroProps) {
             {translations.sectionTag}
           </span>
 
-          {/* H1 — static render for fast LCP; serif display, no font-bold (The Seasons weight 400 only) */}
+          {/* H1 — static render for fast LCP; serif display. Italiana only
+              ships weight 400, and `font-synthesis: none` is set globally
+              so a `font-bold` class here would synthesize nothing and
+              render at 400 anyway. Display weight for zh-CN is corrected
+              in globals.css via `html[lang="zh-CN"] .text-display.font-
+              display` to match the optical weight of the OS CJK serif
+              fallback. */}
           <h1
             id="hero-heading"
             className="mt-5 font-display text-display text-white"
@@ -121,25 +127,34 @@ export default function Hero({ translations }: HeroProps) {
         <m.div
           className="flex flex-col items-center gap-1 text-white/60"
           initial={shouldReduce ? false : { opacity: 0, y: 6 }}
-          animate={shouldReduce ? undefined : { opacity: 1, y: 0 }}
+          animate={shouldReduce ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease }}
         >
+          {/* Chevron bob: finite (2 repeats with reverse, so 3 total up-
+              and-back cycles) — an affordance that asks for attention and
+              then stops, rather than one that loops forever. `Infinity`
+              was flagged in Round 6 as reading "processing spinner" to
+              some users. Under reduced-motion, `animate` explicitly
+              targets `y: 0` (rest state) rather than `undefined`, which
+              was ambiguous Framer semantics across minor versions. */}
           <m.svg
             width="14"
             height="14"
             viewBox="0 0 14 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            animate={
+            aria-hidden="true"
+            animate={shouldReduce ? { y: 0 } : { y: [0, 3, 0] }}
+            transition={
               shouldReduce
-                ? undefined
-                : { y: [0, 3, 0] }
+                ? { duration: 0 }
+                : {
+                    duration: 1.8,
+                    repeat: 2,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                  }
             }
-            transition={{
-              duration: 1.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
           >
             <path
               d="M3.5 5.5l3.5 3.5 3.5-3.5"
