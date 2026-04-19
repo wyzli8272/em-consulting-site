@@ -18,7 +18,7 @@
     "title": "A structured U.S. admissions plan.",
     "subtitle": "Wharton Huntsman dual degree and MIT admit, same cycle. Both founders on every engagement.",
     "cta": "Book a 90-Minute Session →",
-    "ctaSubtext": "Free, no contract. A 90-minute read on your child's competitiveness and an initial strategy outline."
+    "ctaSubtext": "Free, no contract. 90 minutes to read your child's competitiveness and map the strategy direction."
   },
   "whyUs": {
     "sectionTag": "Why Us",
@@ -159,11 +159,15 @@
     "items": [
       {
         "q": "Aren't you just students yourselves?",
-        "a": "We just lived the application cycle we're consulting on. Two months ago, we were sitting across from admissions officers ourselves. That closeness is what makes the work useful — former admissions officers can spot adult-ghostwritten essays, and our age makes it easier for students to write in their own voice."
+        "a": "We just lived the application cycle we're consulting on. Two months ago, we were sitting across from admissions officers ourselves. That closeness is what makes the work useful. Former admissions officers can spot adult-ghostwritten essays; at our age it's easier for students to write in their own voice."
       },
       {
         "q": "What is the refund and cancellation policy?",
         "a": "Full terms are in our service agreement. Summary: Before Milestone 1 (Positioning Deck) delivery: first installment (50%) refunded, minus a ¥3,500 (approx. $500) administrative fee. After Milestone 1, before Milestone 3 (Essay phase): first installment non-refundable (core deliverables received); second installment not yet collected. After Milestone 3 commences: both installments non-refundable (most labor-intensive phase). Either party may terminate with 30 days written notice; pro-rata refund applies to milestones not yet commenced. The free diagnostic carries no fee and requires no contract."
+      },
+      {
+        "q": "How are you different from legacy agencies like New Oriental or Crimson?",
+        "a": "Every firm fits a different kind of family. Both of us were admitted to MIT and Wharton this past spring. We run parent calls in native Mandarin, and each of the five milestones produces a written deliverable. Parents can judge fit from there."
       },
       {
         "q": "How do you prevent ghostwriting concerns on essays?",
@@ -171,7 +175,7 @@
       },
       {
         "q": "Why no admission guarantee?",
-        "a": "Admissions decisions belong to the schools, not to us. Our fees compensate for strategy, time, and written deliverables, not for outcome. Agencies that promise admission usually lock in schools your child would already have a strong shot at, and package that certainty as a guarantee. We focus on the schools where strategy changes the outcome."
+        "a": "Admissions decisions belong to the schools. Our fees compensate for strategy, time, and written deliverables; the outcome itself is the committee's call. Agencies that promise admission usually lock in schools your child would already have a strong shot at, and package that certainty as a guarantee. We focus on the schools where strategy changes the outcome."
       },
       {
         "q": "What if you decline us after the diagnostic?",
@@ -180,10 +184,6 @@
       {
         "q": "How many hours per week does the student commit?",
         "a": "It varies by milestone. Month 1 (Positioning): 2–3 hours/week. Months 2–4 (Profile): 1–2 hours/week plus activity time. Months 4–7 (Essay peak): 5–8 hours/week across multiple drafts. Months 7–8 (Review): 3–5 hours/week. Months 8–10 (Post-submission): 1–2 hours/week. Most of that time is the student's own writing and revision."
-      },
-      {
-        "q": "How are you different from legacy agencies like New Oriental or Crimson?",
-        "a": "Every firm fits a different kind of family. Both of us were admitted to MIT and Wharton this past spring. We run parent calls in native Mandarin, and each of the five milestones produces a written deliverable. Parents can judge fit from there."
       }
     ]
   },

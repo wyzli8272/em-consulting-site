@@ -167,11 +167,10 @@ export default function Navigation({ translations, locale }: NavigationProps) {
         window.location.assign(`${otherLocale}${hash}`);
         return;
       }
-      // No hash: record the scroll position and let <Link> handle the nav.
-      // We still block-and-assign to force a full navigation — Next's
-      // client-side soft navigation preserves state the route resolver
-      // doesn't want preserved. sessionStorage survives the browser-level
-      // document swap.
+      // No hash: record the scroll position and let <Link scroll={false}>
+      // handle the soft client-side nav. sessionStorage is tab-scoped, so
+      // the value survives Next's client-side route swap and is read by
+      // the scroll-restore effect on the destination locale's mount.
       try {
         window.sessionStorage.setItem("em-scroll", String(window.scrollY));
       } catch {

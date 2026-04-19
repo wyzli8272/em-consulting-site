@@ -8,7 +8,8 @@ export const contentType = "image/png";
 /**
  * Browser tab favicon. Italiana "EM" monogram on ink-navy — same typeface as
  * the OG wordmark, so the brand reads consistently from social preview to
- * browser tab. Falls back to Georgia if the Google Fonts fetch times out.
+ * browser tab. Falls back to Georgia if the bundled TTF read fails (see
+ * lib/og-fonts.ts for why the font is disk-bundled, not fetched).
  *
  * fontSize 20 with letter-spacing -0.06em is the sweet spot: readable at the
  * 16×16 downsample Chrome/Safari apply, and still looks intentional at 32×32.
