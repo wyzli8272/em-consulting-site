@@ -64,13 +64,16 @@ export default function Pricing({ translations }: PricingProps) {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease }}
           >
-            {/* Full Package title one tier larger than the Audit title
-                below so the anchor tier dominates visually at every
-                breakpoint. On mobile both cards stack under their smaller
-                paddings, and the navy fill alone was not quite enough
-                asymmetry — the h3 size step closes the gap. */}
+            {/* Full Package title sits between Audit's `text-subtitle`
+                (~24-34px) and the price's `text-headline` (~40-80px) so
+                the title-then-price hierarchy reads: tier name < price.
+                Round 5 bumped this to `text-title` (~30-56px) which ended
+                up matching the price's effective weight at desktop clamps,
+                flattening the hierarchy. A fixed mid-tier keeps the
+                anchor-tier dominance over Audit without overpowering
+                the price numeral — which is the real headline here. */}
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h3 className="text-title font-display text-white">
+              <h3 className="text-[1.75rem] md:text-[2.25rem] leading-tight font-display text-white">
                 {translations.full.name}
               </h3>
               <span className="text-sm text-white/60" lang="en">

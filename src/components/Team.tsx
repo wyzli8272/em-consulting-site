@@ -33,7 +33,12 @@ function MemberCard({ member }: { member: TeamMember }) {
 
   return (
     <div>
-      <div className="relative mb-6 aspect-[4/5] w-full max-w-[380px] overflow-hidden bg-navy/5">
+      {/* Placeholder color matches the surrounding cream section background
+          instead of `bg-navy/5` — during lazy image paint on cream surfaces
+          the navy tint read as a loading-state smudge, not a reserved space.
+          `aspect-[4/5]` alone already reserves the layout slot; matching the
+          parent bg means the placeholder is invisible until the image paints. */}
+      <div className="relative mb-6 aspect-[4/5] w-full max-w-[380px] overflow-hidden bg-cream">
         {photo && (
           <Image
             src={photo.src}
@@ -51,7 +56,7 @@ function MemberCard({ member }: { member: TeamMember }) {
       <p className="mt-1 text-sm text-navy/70">{member.role}</p>
       {/* Credential bullets use a middle-dot, not an em-dash, to keep
           em-dash usage scoped to sentence-level punctuation elsewhere. */}
-      <ul className="mt-4 space-y-2" role="list">
+      <ul className="mt-4 space-y-2">
         {member.credentials.map((cred) => (
           <li
             key={cred}
@@ -123,13 +128,14 @@ export default function Team({ translations }: TeamProps) {
           </m.div>
         </div>
 
-        {/* Together note — full-width row, centered under the two partner
-            cards. Added a gold accent-rule above it so the center-aligned
-            prose is anchored by a visible hairline rather than floating
-            loose between the cards and the next section. The rule uses
-            the same gold signature that sits under every section tag on
-            the page, so the together-note reads as a branded closer on
-            the Team block rather than a loose disclaimer. */}
+        {/* Together note — full-width row, centered under the partner cards.
+            Round 6 replaced the 48px gold accent-rule above it with a 192px
+            hairline at `navy/15`. The gold rule's size + saturation read as
+            "new section starting," not "these two work together as a unit"
+            — the UI audit flagged it as an orphan mid-page header. A longer,
+            quieter hairline anchors the center-aligned prose without
+            competing with the section-start accent-rules that sit under every
+            actual section tag elsewhere on the page. */}
         <m.div
           className="mt-16 flex flex-col items-center"
           initial={shouldReduce ? false : { opacity: 0, y: 12 }}
@@ -137,7 +143,7 @@ export default function Team({ translations }: TeamProps) {
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.6, delay: 0.2, ease }}
         >
-          <div className="accent-rule" aria-hidden="true" />
+          <div className="h-px w-48 bg-navy/15" aria-hidden="true" />
           <p className="mt-6 max-w-[520px] text-center text-body-lg text-navy/75 font-chinese">
             {translations.together}
           </p>

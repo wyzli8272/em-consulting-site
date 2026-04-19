@@ -207,10 +207,11 @@ export default function Navigation({ translations, locale }: NavigationProps) {
         scrolled
           ? // Hairline boundary instead of drop shadow — editorial
             // publications use a rule, not a cast shadow, to separate
-            // the masthead from the page. navy/[0.08] matches the
-            // Footer's top border weight so the page opens and closes
-            // with the same hairline signature.
-            "bg-cream/95 border-b border-navy/[0.08]"
+            // the masthead from the page. Round 6 bumped 0.08 → 0.12
+            // because at 375px the 8% navy rule was disappearing
+            // entirely on cream; 12% still reads as editorial-quiet
+            // without competing with the page's accent rules.
+            "bg-cream/95 border-b border-navy/[0.12]"
           : // Pre-scroll scrim over the hero photo. 80% ink so
             // `text-white/80` nav links clear 4.5:1 even over the
             // lightest areas of the campus photo.
@@ -219,11 +220,16 @@ export default function Navigation({ translations, locale }: NavigationProps) {
       aria-label={locale === "zh-CN" ? "主导航" : "Main navigation"}
     >
       <div className="mx-auto max-w-[1200px] px-6 flex h-16 items-center justify-between">
-        {/* Anchor (not button) so middle-click / cmd-click / right-click behave
-            correctly and the link semantics are preserved for keyboard users.
-            preventDefault only on plain left-click to keep smooth scroll. */}
-        <a
-          href="#top"
+        {/* Brand wordmark is a Link to the locale root, not an in-document
+            anchor. On plain left-click we still smooth-scroll (no navigation)
+            so the scroll-to-top affordance is preserved; but middle-click /
+            cmd-click / right-click → open-in-new-tab now land at the real
+            locale root URL, which is semantically what the wordmark means.
+            Pre-Round-6 the href was `#top` with no matching `id="top"` in
+            the document, so AT users navigating by landmark/anchor hit a
+            broken in-document reference. */}
+        <Link
+          href={otherLocale === "/en" ? "/" : "/en"}
           onClick={(e) => {
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
             e.preventDefault();
@@ -239,13 +245,10 @@ export default function Navigation({ translations, locale }: NavigationProps) {
           className={`font-display text-xl tracking-tight transition-colors duration-300 ${
             scrolled ? "text-navy" : "text-white"
           }`}
+          aria-label={`EM Consulting, ${locale === "zh-CN" ? "回到顶部" : "back to top"}`}
         >
           EM Consulting
-          <span className="sr-only">
-            {" — "}
-            {locale === "zh-CN" ? "回到顶部" : "back to top"}
-          </span>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-7 md:flex">
           {sections.map((s) => (
@@ -375,7 +378,6 @@ export default function Navigation({ translations, locale }: NavigationProps) {
               href={`#${s.id}`}
               onClick={(e) => scrollTo(s.id, e)}
               className="text-xs uppercase tracking-[0.2em] font-medium text-white transition-colors duration-200 hover:text-white/70"
-              tabIndex={mobileOpen ? 0 : -1}
             >
               {translations[s.key]}
             </a>
@@ -396,7 +398,6 @@ export default function Navigation({ translations, locale }: NavigationProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 bg-gold px-8 py-3 text-ink text-xs uppercase tracking-[0.1em] font-medium transition-colors duration-200 hover:bg-gold-hover"
-            tabIndex={mobileOpen ? 0 : -1}
           >
             {translations.cta}
             <span className="sr-only"> {ctaNewTabLabel}</span>

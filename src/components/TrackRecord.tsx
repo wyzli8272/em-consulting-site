@@ -145,8 +145,14 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease }}
           >
+            {/* Decorative oversized quote mark. Round 5 cropped 8rem → 5rem
+                on mobile to fix overflow, but 5rem was smaller than the
+                testimonial body text and lost its decorative function —
+                the audit read it as typeset punctuation, not an editorial
+                flourish. 6rem on mobile stays inside viewport while
+                keeping the glyph visibly larger than the quote body. */}
             <span
-              className="absolute -top-6 -left-2 md:-top-10 md:-left-6 font-display text-[5rem] md:text-[12rem] leading-none text-gold-whisper select-none pointer-events-none"
+              className="absolute -top-6 -left-2 md:-top-10 md:-left-6 font-display text-[6rem] md:text-[12rem] leading-none text-gold-whisper select-none pointer-events-none"
               aria-hidden="true"
             >
               &ldquo;

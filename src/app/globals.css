@@ -158,15 +158,19 @@ summary.faq-summary:focus-visible {
   border-radius: 2px;
 }
 
-/* zh-CN display weight correction. Italiana ships weight 400 but reads
-   as a hairline on the page (roughly weight 200 optically). The OS CJK
-   serifs it falls through to (Songti SC, STSong, SimSun, Noto Serif CJK
-   SC) render at their native weight 400, which produces a ~1.5x weight
-   mismatch mid-headline on zh-CN where Latin glyphs sit next to Chinese
-   characters. Force weight 300 on the zh-CN display class so the CJK
-   fallback cut lands closer to Italiana's optical weight. No effect on
-   /en where Italiana is the only font that renders. */
-html[lang="zh-CN"] .font-display {
+/* zh-CN display weight correction — SCOPED to the display + headline tier
+   only (Round 6 fix). Italiana is hairline-optically even at weight 400;
+   the OS CJK serifs it falls through to (Songti SC / STSong / SimSun /
+   Noto Serif CJK SC) render thicker, producing a weight mismatch on
+   mixed Latin+CJK headlines.
+   The earlier revision applied `font-weight: 300` site-wide on
+   `html[lang="zh-CN"] .font-display` — which over-thinned Italiana at
+   `.text-subtitle` and `.text-title` mid-tier headings (Pricing h3,
+   Team member names, WhyUs item titles). Scoping to the top tier only
+   keeps the Latin+CJK balance where it matters (hero-scale ≥~50px) and
+   lets mid-tier stay at full weight. No effect on /en. */
+html[lang="zh-CN"] .text-display.font-display,
+html[lang="zh-CN"] .text-headline.font-display {
   font-weight: 300;
 }
 
