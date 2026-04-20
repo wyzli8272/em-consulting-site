@@ -26,7 +26,7 @@
     "items": [
       {
         "title": "MIT + Wharton, same cycle",
-        "description": "We just got our own admits two months ago. The application cycle we're consulting on is the one we just walked through."
+        "description": "We applied and were admitted ourselves two years ago, same cycle we're consulting on. Recent enough that the logic still tracks; close enough to students that they write in their own voice with us."
       },
       {
         "title": "Five milestones, real deliverables",
@@ -52,33 +52,33 @@
     "milestones": [
       {
         "number": "01",
-        "title": "Strategic positioning",
+        "title": "Strategic Positioning",
         "timeline": "Month 1",
-        "deliverable": "Positioning deck with core narrative direction, initial school list (8–12), and essay topic map."
+        "deliverable": "Positioning Deck"
       },
       {
         "number": "02",
-        "title": "Profile optimization",
+        "title": "Profile Optimization",
         "timeline": "Months 2–4",
-        "deliverable": "Profile roadmap covering activity adjustments, recommendation strategy, and test timeline."
+        "deliverable": "Profile Roadmap"
       },
       {
         "number": "03",
-        "title": "Essay development",
+        "title": "Essay Development",
         "timeline": "Months 4–7",
-        "deliverable": "Finalized essays with 3–4 feedback rounds each. All content written by the student."
+        "deliverable": "Finalized essay portfolio (student-authored, 3–4 feedback rounds per essay)"
       },
       {
         "number": "04",
-        "title": "Application review",
+        "title": "Application Review",
         "timeline": "Months 7–8",
-        "deliverable": "Submission checklist with full materials review, mock interviews, and a written parent brief."
+        "deliverable": "Submission Checklist"
       },
       {
         "number": "05",
-        "title": "Post-submission",
+        "title": "Post-Submission Strategy",
         "timeline": "Months 8–10",
-        "deliverable": "Decision analysis framework covering waitlist strategy and multi-offer comparison."
+        "deliverable": "Decision Framework"
       }
     ]
   },
@@ -105,7 +105,7 @@
       "quote": "Eric helped me through the entire process — narrowing my school list, sharpening my extracurriculars, and figuring out my personal statement. I was stuck on what story to tell, and he gave me a framework that made it click. He also reviewed all my supplementals and helped me apply to scholarships I wouldn't have found on my own. It made the whole thing a lot less stressful.",
       "attribution": "Duke '29 · mentored by Eric before EM Consulting"
     },
-    "antiObjection": "We have no borrowed admissions credentials to list. What we can offer is the application cycle both founders just walked through, and the reasoning behind every judgment we made along the way."
+    "antiObjection": "We have no borrowed admissions credentials to list. What we can offer is the application cycle both founders walked through as applicants two years ago, and the reasoning behind every judgment we made along the way."
   },
   "team": {
     "sectionTag": "Who We Are",
@@ -143,15 +143,17 @@
       "nameEn": "Admissions Audit",
       "price": "$300–500",
       "priceAlt": "approx. ¥2,000–3,500",
-      "description": "Standalone written report after a 90-minute session: positioning, competitiveness analysis, strategic recommendations. Purchasable on its own, no obligation to continue."
+      "description": "A 90-minute diagnostic session followed by a written assessment of positioning, competitiveness, and recommended strategy. Delivered within 5 business days. If you later sign the Full Package, the Audit fee is credited toward your package price."
     },
     "full": {
       "name": "Full Package",
       "nameEn": "Full Package",
       "price": "$6,000–11,000",
       "priceAlt": "approx. ¥45,000–80,000",
-      "description": "Five milestones across 8–12 schools, with a written deliverable at each. You hear from us at every milestone, plus extra check-ins through the essay and review months."
-    }
+      "description": "Five milestones of one-on-one guidance covering 8–12 schools. Strategic positioning, essay development, application review, mock interviews, and parent updates at every milestone. 50% at signing, 50% at Milestone 3.",
+      "exclusions": "Test prep (SAT, ACT, TOEFL), academic tutoring, ghostwriting, and hourly consulting are not included."
+    },
+    "paymentNote": "Payment by wire transfer, Wise, or Stripe in USD. ¥ amounts shown are approximate references; the USD amount in the service agreement governs."
   },
   "faq": {
     "sectionTag": "FAQ",
@@ -159,7 +161,7 @@
     "items": [
       {
         "q": "Aren't you just students yourselves?",
-        "a": "We just lived the application cycle we're consulting on. Two months ago, we were sitting across from admissions officers ourselves. That closeness is what makes the work useful. Former admissions officers can spot adult-ghostwritten essays; at our age it's easier for students to write in their own voice."
+        "a": "We walked through this application cycle as applicants two years ago, and both of us are now sophomores at Penn. That's recent enough that the logic still tracks, and close enough to students that they write in their own voice with us — not in an adult's reword."
       },
       {
         "q": "What is the refund and cancellation policy?",
@@ -167,11 +169,11 @@
       },
       {
         "q": "How are you different from legacy agencies like New Oriental or Crimson?",
-        "a": "Every firm fits a different kind of family. Both of us were admitted to MIT and Wharton this past spring. We run parent calls in native Mandarin, and each of the five milestones produces a written deliverable. Parents can judge fit from there."
+        "a": "Every firm fits a different kind of family. Both of us were admitted to MIT and Wharton in the same cycle, and we're now sophomores at Penn. We run parent calls in native Mandarin, and each of the five milestones produces a written deliverable. Parents can judge fit from there."
       },
       {
-        "q": "How do you prevent ghostwriting concerns on essays?",
-        "a": "We never write or substantially rewrite any application material. Our work is to discuss topics, suggest outlines, and give feedback on the student's own drafts. Each essay runs 3–4 rounds, and every revision is tracked in writing. If a family wants ghostwriting, we'll end the engagement."
+        "q": "How do you ensure academic integrity?",
+        "a": "Our role is strictly advisory. We brainstorm topics, provide outlines, and give feedback; the student writes every word. We keep records of the iterative drafting process to document original authorship. If a family requests ghostwriting, we end the engagement, and refund terms are governed by the service agreement."
       },
       {
         "q": "Why no admission guarantee?",
@@ -180,6 +182,10 @@
       {
         "q": "What if you decline us after the diagnostic?",
         "a": "The 90-minute diagnostic is free regardless. If we determine fit isn't right, you still leave with a candid assessment of your child's competitiveness. If you want that assessment in writing, the standalone Admissions Audit (see Pricing below) covers the same ground as a formal written report."
+      },
+      {
+        "q": "How quickly do you respond?",
+        "a": "We respond within two business days. Extended response times may apply during university exam periods, which we communicate in advance."
       },
       {
         "q": "How many hours per week does the student commit?",
@@ -194,6 +200,7 @@
     "ctaDescription": "The track record and pricing are above. A 90-minute diagnostic gives you a candid read on where your child's competitiveness sits today; whether we work together afterward is your family's call."
   },
   "footer": {
-    "copyright": "© 2026 EM Consulting. All rights reserved."
+    "copyright": "© 2026 EM Consulting. All rights reserved.",
+    "location": "Based in Philadelphia, PA"
   }
 }

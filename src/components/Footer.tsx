@@ -1,6 +1,13 @@
 interface FooterProps {
   translations: {
     copyright: string;
+    // Single-line locality note ("Based in Philadelphia, PA" / "总部位于
+    // 宾夕法尼亚州费城"). A minor trust signal for parents who Google
+    // the firm's address; also lets us pass verification from HNW
+    // families who expect a discoverable U.S. address even for a
+    // remote-first boutique. Stacked below copyright in a sub-column
+    // so the wordmark stays the visual anchor of the footer row.
+    location: string;
   };
 }
 
@@ -20,9 +27,23 @@ export default function Footer({ translations }: FooterProps) {
           <span className="font-display text-xl tracking-tight text-white">
             EM Consulting
           </span>
-          <span className="text-sm text-white/70">
-            {translations.copyright}
-          </span>
+          {/* Copyright + location stack to the right. md:items-end keeps
+              the locality line flush with the copyright above on wide
+              viewports; mobile centers both lines with the wordmark.
+              text-white/60 for location (vs /70 copyright) reads as
+              secondary metadata rather than equal-weight claim — the
+              copyright carries the legal assertion, location is a
+              locator. */}
+          <div className="flex flex-col items-center gap-1 md:items-end">
+            <span className="text-sm text-white/70">
+              {translations.copyright}
+            </span>
+            {translations.location && (
+              <span className="text-sm text-white/60 font-chinese">
+                {translations.location}
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </footer>

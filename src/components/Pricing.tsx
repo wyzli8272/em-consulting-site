@@ -13,6 +13,12 @@ interface PricingTier {
   price: string;
   priceAlt: string;
   description: string;
+  // Optional exclusions clause, currently set on Full Package only.
+  // Rendered as a subordinate paragraph beneath `description` so the
+  // "what's NOT included" boundary reads as deliberate guardrail, not
+  // fine-print disclaimer. Aligns with Service Agreement §1.6 so HNW
+  // parents don't assume SAT/ACT/TOEFL prep comes bundled.
+  exclusions?: string;
 }
 
 interface PricingProps {
@@ -22,6 +28,11 @@ interface PricingProps {
     note: string;
     audit: PricingTier;
     full: PricingTier;
+    // Single-line payment-methods + currency-governance note rendered
+    // below both cards. Maps to Service Agreement §4.3 (USD governs,
+    // RMB is reference) so the /zh-CN ¥ display doesn't imply RMB is
+    // the contractual denomination.
+    paymentNote: string;
   };
 }
 
@@ -100,6 +111,19 @@ export default function Pricing({ translations }: PricingProps) {
             <p className="mt-5 max-w-[520px] text-body-lg text-white/80 font-chinese">
               {translations.full.description}
             </p>
+            {/* Exclusions — deliberate boundary, not fine-print. Sits under
+                the main description with a hairline divider so it reads
+                as a second paragraph of equal weight, visually quieter via
+                reduced opacity and smaller text. Aligns with Service
+                Agreement §1.6. The divider (border-t border-white/10) is
+                the one place this card uses a horizontal rule; kept
+                extra-thin and low-contrast so it separates thoughts
+                without adding visual noise. */}
+            {translations.full.exclusions && (
+              <p className="mt-5 max-w-[520px] border-t border-white/10 pt-5 text-sm text-white/60 font-chinese">
+                {translations.full.exclusions}
+              </p>
+            )}
           </m.article>
 
           {/* Audit — secondary cream card (not pure white, aligns with surface token) */}
@@ -130,6 +154,23 @@ export default function Pricing({ translations }: PricingProps) {
               {translations.audit.description}
             </p>
           </m.article>
+
+          {/* Payment methods + currency-governance note. Lives in the
+              cards column (md:col-span-8) so it aligns with the cards
+              rather than the left-rail note. Small and muted so it
+              reads as a contract-adjacent disclosure, not a sales
+              pitch. Service Agreement §4.3 says USD governs; this
+              line tells parents the ¥ display is reference only —
+              prevents any later "but the website said ¥" surprise. */}
+          <m.p
+            className="pt-2 max-w-[520px] text-sm text-navy/60 font-chinese"
+            initial={shouldReduce ? false : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={NEAR_VIEWPORT}
+            transition={{ duration: 0.5, delay: 0.2, ease }}
+          >
+            {translations.paymentNote}
+          </m.p>
         </div>
       </div>
     </section>
