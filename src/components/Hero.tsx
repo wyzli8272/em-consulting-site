@@ -87,9 +87,15 @@ export default function Hero({ translations }: HeroProps) {
               in globals.css via `html[lang="zh-CN"] .text-display.font-
               display` to match the optical weight of the OS CJK serif
               fallback. */}
+          {/* `whitespace-pre-line` honors explicit `\n` in the title string
+              so locales can dictate their own line-break position — /zh-CN
+              sets `"结构化的美本\n申请方案"` to break before 申请 (avoids the
+              orphaned "方案" on line 2 that the default browser wrap
+              produced). /en has no `\n` in its title, so the class is a
+              no-op on that locale. Per Mary's manual zh-CN audit. */}
           <h1
             id="hero-heading"
-            className="mt-5 font-display text-display text-white"
+            className="mt-5 font-display text-display text-white whitespace-pre-line"
           >
             {translations.title}
           </h1>

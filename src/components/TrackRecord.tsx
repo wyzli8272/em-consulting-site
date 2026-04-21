@@ -16,6 +16,12 @@ interface School {
 interface FounderCred {
   name: string;
   detail: string;
+  // Optional institutional badge next to the founder credential — Wharton
+  // for Eric (where he matriculated after the Huntsman ED admit), MIT for
+  // Mary (same-cycle EA admit). Added per Mary's manual zh-CN audit so
+  // parents recognize the brand badges next to the founder names. Null-
+  // safe fallback mirrors the `schools[].logo` pattern below the divider.
+  logo?: string | null;
 }
 
 interface TrackRecordProps {
@@ -81,13 +87,34 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
           </div>
           <ul className="md:col-span-8 space-y-6" role="list">
             {translations.founderCreds.map((cred) => (
-              <li key={cred.name}>
-                <p className="font-display text-subtitle text-navy">
-                  {cred.name}
-                </p>
-                <p className="mt-1 text-body-lg text-navy/75 font-chinese">
-                  {cred.detail}
-                </p>
+              <li key={cred.name} className="flex items-start gap-5">
+                {/* Institutional badge — Wharton for Eric, MIT for Mary.
+                    `h-12` fixed height with `w-auto` preserves the natural
+                    aspect ratio of horizontal wordmarks; `max-w-[140px]`
+                    prevents any single wordmark from overpowering the
+                    credential text. Unlike the mentorship-schools logos
+                    below (grayscale + opacity-60), these founder badges
+                    render at full saturation so they read as affirmative
+                    "this is where they matriculated" signals, not
+                    decorative icons. `alt=""` because the adjacent
+                    `<p>` carries the institution name for screen readers. */}
+                {cred.logo && (
+                  <Image
+                    src={cred.logo}
+                    alt=""
+                    width={140}
+                    height={48}
+                    className="h-10 md:h-12 w-auto max-w-[140px] object-contain shrink-0 mt-1"
+                  />
+                )}
+                <div>
+                  <p className="font-display text-subtitle text-navy">
+                    {cred.name}
+                  </p>
+                  <p className="mt-1 text-body-lg text-navy/75 font-chinese">
+                    {cred.detail}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>

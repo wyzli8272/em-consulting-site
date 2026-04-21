@@ -39,9 +39,13 @@ export default function WhyUs({ translations }: WhyUsProps) {
             {translations.sectionTag}
           </span>
           <div className="accent-rule mt-4" aria-hidden="true" />
+          {/* `whitespace-pre-line` honors explicit `\n` in the title so
+              /zh-CN can break before "EM Consulting" (otherwise the
+              Chinese+Latin mix wraps awkwardly). /en title has no `\n`,
+              so class is a no-op there. Per Mary's manual zh-CN audit. */}
           <h2
             id="why-us-heading"
-            className="mt-5 font-display text-title text-navy"
+            className="mt-5 font-display text-title text-navy whitespace-pre-line"
           >
             {translations.title}
           </h2>

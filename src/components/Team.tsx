@@ -27,8 +27,24 @@ interface TeamProps {
 
 // Portraits are decorative — the adjacent <h3> carries the name for screen readers.
 // Keep `src` and `position` only; alt is always "" so no need to track it here.
+//
+// Round 12 headshot alignment (per Eric's directive + Mary's manual audit):
+// Eric's head was sitting significantly higher in his frame than Mary's,
+// producing a visible vertical offset between the two heads when rendered
+// side-by-side. The frames share `aspect-[4/5]`, so alignment is driven
+// entirely by `objectPosition`. Prior values: Eric 20%, Mary 15%. Mary's
+// original framing kept her head near the top of the frame (15% = show
+// more of the top area), while Eric's at 20% also showed a lot of top.
+// Because Eric's source photo actually has his head POSITIONED HIGH in
+// the crop, showing more-of-the-top meant his head kept climbing higher
+// on the page. Fix: INCREASE Eric's objectPosition to show LESS of the
+// top (pushes his head down toward center of the visible frame). Keeping
+// Mary at 15%; moving Eric to 35% is the first iteration — if the heads
+// are still more than 6px apart at 1440×900, iterate. This is a data-
+// driven alignment; the percentages here directly trade off with where
+// the head lands in the viewport.
 const photos: Record<string, { src: string; position: string }> = {
-  Eric: { src: "/images/eric.jpg", position: "center 20%" },
+  Eric: { src: "/images/eric.jpg", position: "center 35%" },
   Mary: { src: "/images/mary.jpg", position: "center 15%" },
 };
 

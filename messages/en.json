@@ -8,7 +8,7 @@
     "process": "Process",
     "trackRecord": "Advisory",
     "team": "Team",
-    "pricing": "Pricing",
+    "pricing": "How We Work",
     "faq": "FAQ",
     "contact": "Contact",
     "cta": "Book 90-Min Session"
@@ -88,8 +88,8 @@
     "subtitle": "EM Consulting was founded in 2026. Below are the founders' own admissions results, plus the schools where students Eric mentored (before starting the firm) were admitted.",
     "founderCredsLabel": "Founders' own admissions",
     "founderCreds": [
-      { "name": "Eric Li", "detail": "Huntsman Program admit (ED) · ~50 global admits/year" },
-      { "name": "Mary Liu", "detail": "Same cycle: MIT (EA, Astrophysics) and Wharton (ED)" }
+      { "name": "Eric Li", "detail": "Huntsman Program admit (ED) · ~50 global admits/year", "logo": "/images/Wharton-Logo-RGB.png" },
+      { "name": "Mary Liu", "detail": "Same cycle: MIT (EA, Sloan) and Wharton (ED)", "logo": "/images/MIT-logo.png" }
     ],
     "mentorshipLabel": "Schools where Eric's mentees were admitted (pre-firm)",
     "schools": [
@@ -99,7 +99,7 @@
       { "name": "Duke University", "logo": "/images/Duke_University_logo.svg.png" },
       { "name": "Emory University", "logo": "/images/Emory-University-Logo.png" },
       { "name": "Georgetown University", "logo": "/images/Georgetown_University_Logotype.svg.png" },
-      { "name": "Tulane University", "logo": null }
+      { "name": "Tulane University", "logo": "/images/Tulane-logo.png" }
     ],
     "testimonial": {
       "quote": "Eric helped me through the entire process — narrowing my school list, sharpening my extracurriculars, and figuring out my personal statement. I was stuck on what story to tell, and he gave me a framework that made it click. He also reviewed all my supplementals and helped me apply to scholarships I wouldn't have found on my own. It made the whole thing a lot less stressful.",
@@ -117,25 +117,25 @@
       "credentials": [
         "Huntsman Program (Wharton + College of Arts & Sciences)",
         "Joseph Wharton Scholar",
-        "Native Mandarin · Chinese diaspora network",
         "YC-backed founder",
-        "VC scout at multiple funds"
+        "VC scout at multiple funds",
+        "Native Mandarin · Chinese diaspora network"
       ]
     },
     "mary": {
       "name": "Mary Liu",
       "role": "Co-Founder · Admissions Guidance",
       "credentials": [
-        "Admitted to MIT (EA, Astrophysics) and Wharton (ED), same cycle",
-        "Wharton School",
+        "Admitted to MIT (EA, Sloan) and Wharton (ED), same cycle",
+        "AP all 5s, SAT 1570",
         "Citi Sales & Trading summer analyst",
-        "Chinese-language education content (Xiaohongshu)",
+        "Chinese-language education content creator (Xiaohongshu)",
         "Native Mandarin"
       ]
     }
   },
   "pricing": {
-    "sectionTag": "Pricing",
+    "sectionTag": "How We Work",
     "title": "Transparent pricing",
     "note": "Every engagement begins with a free 90-minute diagnostic. No contract until you decide to work with us. After confirming fit, pricing depends on school count (8–12) and service depth.",
     "audit": {
@@ -181,7 +181,7 @@
       },
       {
         "q": "What if you decline us after the diagnostic?",
-        "a": "The 90-minute diagnostic is free regardless. If we determine fit isn't right, you still leave with a candid assessment of your child's competitiveness. If you want that assessment in writing, the standalone Admissions Audit (see Pricing below) covers the same ground as a formal written report."
+        "a": "The 90-minute diagnostic is free regardless. If we determine fit isn't right, you still leave with a candid assessment of your child's competitiveness. If you want that assessment in writing, the standalone Admissions Audit (see How We Work below) covers the same ground as a formal written report."
       },
       {
         "q": "How quickly do you respond?",
