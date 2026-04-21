@@ -88,25 +88,28 @@ export default function TrackRecord({ translations }: TrackRecordProps) {
           <ul className="md:col-span-8 space-y-6" role="list">
             {translations.founderCreds.map((cred) => (
               <li key={cred.name} className="flex items-start gap-5">
-                {/* Institutional badge — Wharton for Eric, MIT for Mary.
-                    `h-12` fixed height with `w-auto` preserves the natural
-                    aspect ratio of horizontal wordmarks; `max-w-[140px]`
-                    prevents any single wordmark from overpowering the
-                    credential text. Unlike the mentorship-schools logos
-                    below (grayscale + opacity-60), these founder badges
-                    render at full saturation so they read as affirmative
-                    "this is where they matriculated" signals, not
-                    decorative icons. `alt=""` because the adjacent
-                    `<p>` carries the institution name for screen readers. */}
-                {cred.logo && (
-                  <Image
-                    src={cred.logo}
-                    alt=""
-                    width={140}
-                    height={48}
-                    className="h-10 md:h-12 w-auto max-w-[140px] object-contain shrink-0 mt-1"
-                  />
-                )}
+                {/* Logo column is a fixed-width container (not a naturally-
+                    sized Image) so the adjacent name/detail block always
+                    starts at the same X-coordinate regardless of individual
+                    logo width. The Wharton wordmark is substantially wider
+                    than MIT's at natural aspect ratio — without this fixed
+                    column, names landed at different X-positions across
+                    rows, producing a visible "indent" between Eric Li and
+                    Mary Liu that Round 12's first implementation shipped.
+                    The `flex items-center justify-start` inside the column
+                    keeps the logo vertically centered within the reserved
+                    slot so the logo visual aligns with the name baseline. */}
+                <div className="w-[160px] shrink-0 flex items-center justify-start pt-1">
+                  {cred.logo && (
+                    <Image
+                      src={cred.logo}
+                      alt=""
+                      width={160}
+                      height={48}
+                      className="h-10 md:h-12 w-auto max-w-full object-contain"
+                    />
+                  )}
+                </div>
                 <div>
                   <p className="font-display text-subtitle text-navy">
                     {cred.name}

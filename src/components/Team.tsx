@@ -26,25 +26,35 @@ interface TeamProps {
 }
 
 // Portraits are decorative — the adjacent <h3> carries the name for screen readers.
-// Keep `src` and `position` only; alt is always "" so no need to track it here.
 //
-// Round 12 headshot alignment (per Eric's directive + Mary's manual audit):
-// Eric's head was sitting significantly higher in his frame than Mary's,
-// producing a visible vertical offset between the two heads when rendered
-// side-by-side. The frames share `aspect-[4/5]`, so alignment is driven
-// entirely by `objectPosition`. Prior values: Eric 20%, Mary 15%. Mary's
-// original framing kept her head near the top of the frame (15% = show
-// more of the top area), while Eric's at 20% also showed a lot of top.
-// Because Eric's source photo actually has his head POSITIONED HIGH in
-// the crop, showing more-of-the-top meant his head kept climbing higher
-// on the page. Fix: INCREASE Eric's objectPosition to show LESS of the
-// top (pushes his head down toward center of the visible frame). Keeping
-// Mary at 15%; moving Eric to 35% is the first iteration — if the heads
-// are still more than 6px apart at 1440×900, iterate. This is a data-
-// driven alignment; the percentages here directly trade off with where
-// the head lands in the viewport.
-const photos: Record<string, { src: string; position: string }> = {
-  Eric: { src: "/images/eric.jpg", position: "center 35%" },
+// Round 12 Commit 2 headshot alignment — the real fix:
+// The Round 12 Commit 1 attempt (Eric 20%→35% objectPosition) didn't
+// visibly change anything because the underlying problem isn't vertical
+// position, it's FACE SIZE. Eric's source photo is a full-body candid
+// on Penn's campus — his head occupies ~20-25% of the frame area.
+// Mary's photo is a tight portrait — her head occupies ~40% of the
+// frame area. `object-cover` + `objectPosition` can crop/shift but can
+// NEVER scale the face to match. CSS `transform: scale()` on Eric's
+// image zooms in so his face is visually closer to Mary's apparent
+// scale, and the container's `overflow-hidden` clips the overflow.
+// `transformOrigin: center 15%` anchors the zoom near the top of the
+// frame (approximately where Eric's face sits in the original framing)
+// so scaling pushes content downward around the face rather than
+// centering on his torso. Values here are empirical — iterate by eye
+// if a later design pass finds them off. Long-term cleaner fix: re-crop
+// eric.jpg to match Mary's tight-portrait framing so no transform is
+// needed. See Audit Lessons §2.19 note about source-image framing vs
+// CSS-only alignment tradeoffs.
+const photos: Record<
+  string,
+  { src: string; position: string; scale?: number; scaleOrigin?: string }
+> = {
+  Eric: {
+    src: "/images/eric.jpg",
+    position: "center 25%",
+    scale: 1.45,
+    scaleOrigin: "center 15%",
+  },
   Mary: { src: "/images/mary.jpg", position: "center 15%" },
 };
 
@@ -67,7 +77,13 @@ function MemberCard({ member }: { member: TeamMember }) {
             fill
             sizes="(max-width: 768px) 100vw, 380px"
             className="object-cover"
-            style={{ objectPosition: photo.position }}
+            style={{
+              objectPosition: photo.position,
+              ...(photo.scale && {
+                transform: `scale(${photo.scale})`,
+                transformOrigin: photo.scaleOrigin || "center",
+              }),
+            }}
             loading="lazy"
             quality={80}
           />
